@@ -38,6 +38,15 @@ public class RoomNumber {
      * @param roomNumber A valid room number.
      */
     public RoomNumber(String roomNumber) {
+        this(roomNumber, LocalDate.now());
+    }
+
+    /**
+     * Constructs an {@code RoomNumber}.
+     *
+     * @param roomNumber A valid room number.
+     */
+    public RoomNumber(String roomNumber, LocalDate lastModified) {
         requireNonNull(roomNumber);
         checkArgument(isValidRoomNumber(roomNumber), MESSAGE_CONSTRAINTS);
         Matcher matcher = Pattern.compile(VALIDATION_REGEX).matcher(roomNumber);
@@ -45,7 +54,7 @@ public class RoomNumber {
         this.block = matcher.group(1);
         this.floor = matcher.group(2);
         this.roomNumber = matcher.group(3);
-        lastModified = LocalDate.now();
+        this.lastModified = lastModified;
     }
 
     /**
