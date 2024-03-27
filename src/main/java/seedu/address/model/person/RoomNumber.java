@@ -22,6 +22,7 @@ public class RoomNumber {
      * otherwise " " (a blank string) becomes a valid input.
      */
     public static final String VALIDATION_REGEX = "(\\w{2,})-(\\w{2})-(\\w{2,})";
+    public static final String VALIDATION_REGEX_W_DATE = "(\\w{2,})-(\\w{2})-(\\w{2,}) (\\d{4}-\\d{2}-\\d{2})";
 
     // Ignore the year, it will be updated
     private static final LocalDate FIRST_RESULT_RELEASE = LocalDate.parse("2020-04-05");
@@ -45,6 +46,7 @@ public class RoomNumber {
      * Constructs an {@code RoomNumber}.
      *
      * @param roomNumber A valid room number.
+     * @param lastModified A valid room number.
      */
     public RoomNumber(String roomNumber, LocalDate lastModified) {
         requireNonNull(roomNumber);
@@ -58,10 +60,33 @@ public class RoomNumber {
     }
 
     /**
+     * Constructs an {@code RoomNumber}.
+     *
+     * @param roomNumber A valid room number.
+     */
+    public RoomNumber(String roomNumber, boolean flag) {
+        requireNonNull(roomNumber);
+        checkArgument(isValidRoomNumberWDate(roomNumber), "");
+        Matcher matcher = Pattern.compile(VALIDATION_REGEX_W_DATE).matcher(roomNumber);
+        matcher.find();
+        this.block = matcher.group(1);
+        this.floor = matcher.group(2);
+        this.roomNumber = matcher.group(3);
+        this.lastModified = LocalDate.parse(matcher.group(4));
+    }
+
+    /**
      * Returns true if a given string is a valid room number.
      */
     public static boolean isValidRoomNumber(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    /**
+     * Returns true if a given string is a valid room number with date.
+     */
+    public static boolean isValidRoomNumberWDate(String test) {
+        return test.matches(VALIDATION_REGEX_W_DATE);
     }
 
     /**
