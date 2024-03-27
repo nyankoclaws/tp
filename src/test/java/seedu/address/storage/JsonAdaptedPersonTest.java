@@ -3,7 +3,11 @@ package seedu.address.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.storage.JsonAdaptedPerson.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BENSON;
+import static seedu.address.testutil.TypicalPersons.CARL;
+import static seedu.address.testutil.TypicalPersons.DANIEL;
+import static seedu.address.testutil.TypicalPersons.ELLE;
 
 import org.junit.jupiter.api.Test;
 
@@ -32,17 +36,28 @@ public class JsonAdaptedPersonTest {
 
     @Test
     public void toModelType_validPersonDetails_returnsPerson() throws Exception {
-        JsonAdaptedPerson person = new JsonAdaptedPerson(BENSON);
-        assertEquals(BENSON, person.toModelType());
+        JsonAdaptedPerson person1 = new JsonAdaptedPerson(ALICE);
+        assertEquals(ALICE, person1.toModelType());
+        JsonAdaptedPerson person2 = new JsonAdaptedPerson(BENSON);
+        assertEquals(BENSON, person2.toModelType());
+        JsonAdaptedPerson person3 = new JsonAdaptedPerson(CARL);
+        assertEquals(CARL, person3.toModelType());
+        JsonAdaptedPerson person4 = new JsonAdaptedPerson(DANIEL);
+        assertEquals(DANIEL, person4.toModelType());
+        JsonAdaptedPerson person5 = new JsonAdaptedPerson(ELLE);
+        assertEquals(ELLE, person5.toModelType());
     }
 
     @Test
     public void toModelType_invalidName_throwsIllegalValueException() {
-        JsonAdaptedPerson person =
-                new JsonAdaptedPerson(INVALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ROOMNUMBER, VALID_TELEGRAM,
-                        VALID_BIRTHDAY);
+        JsonAdaptedPerson person = new JsonAdaptedPerson(INVALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ROOMNUMBER,
+                        VALID_TELEGRAM, VALID_BIRTHDAY);
         String expectedMessage = Name.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+        JsonAdaptedPerson person1 = new JsonAdaptedPerson(VALID_NAME, INVALID_PHONE, VALID_EMAIL, VALID_ROOMNUMBER,
+                VALID_TELEGRAM, VALID_BIRTHDAY);
+        String expectedMessage1 = Phone.MESSAGE_CONSTRAINTS;
+        assertThrows(IllegalValueException.class, expectedMessage, person1::toModelType);
     }
 
     @Test

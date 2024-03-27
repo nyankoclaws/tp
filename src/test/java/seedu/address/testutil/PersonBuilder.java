@@ -34,7 +34,7 @@ public class PersonBuilder {
         name = new Name(DEFAULT_NAME);
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
-        roomNumber = new RoomNumber(DEFAULT_ROOMNUMBER);
+        roomNumber = new RoomNumber(DEFAULT_ROOMNUMBER, true);
         telegram = new Telegram(DEFAULT_TELEGRAM);
         birthday = new Birthday(DEFAULT_BIRTHDAY);
     }
