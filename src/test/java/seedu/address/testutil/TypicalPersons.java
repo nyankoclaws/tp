@@ -28,18 +28,22 @@ public class TypicalPersons {
     public static final Person ALICE = new PersonBuilder().withName("Alice Pauline")
             .withRoomNumber("nw-12-12").withTelegram("alicePauline").withBirthday("23/12/1990")
             .withEmail("alice@example.com").withPhone("94351253").build();
+    // Room number not present
     public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
-            .withRoomNumber("WO-02-25").withTelegram("bensonMeier").withBirthday("25/02/2001")
+            .withTelegram("bensonMeier").withBirthday("25/02/2001")
             .withEmail("johnd@example.com").withPhone("98765432").build();
+    // Email not present
     public static final Person CARL = new PersonBuilder().withName("Carl Kurz").withPhone("95352563")
-            .withEmail("heinz@example.com").withRoomNumber("IW-03-12").withTelegram("carlKurz")
+            .withRoomNumber("IW-03-12").withTelegram("carlKurz")
             .withBirthday("12/04/1995").build();
+    // Telegram not present
     public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier").withPhone("87652533")
-            .withEmail("cornelia@example.com").withRoomNumber("an-10-10").withTelegram("danielMeier")
+            .withEmail("cornelia@example.com").withRoomNumber("an-10-10")
             .withBirthday("10/10/2002").build();
+    // Birthday not present
     public static final Person ELLE = new PersonBuilder().withName("Elle Meyer").withPhone("94822243")
-            .withEmail("werner@example.com").withRoomNumber("tt-02-12B").withTelegram("elleMeyer")
-            .withBirthday("14/02/1999").build();
+            .withEmail("werner@example.com").withRoomNumber("tt-02-12B")
+            .withTelegram("elleMeyer").build();
     public static final Person FIONA = new PersonBuilder().withName("Fiona Kunz").withPhone("94822427")
             .withEmail("lydia@example.com").withRoomNumber("od-05-12S").withTelegram("fionaKunz")
             .withBirthday("12/05/2002").build();
