@@ -30,10 +30,18 @@ public class PersonUtil {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_NAME + person.getName().fullName + " ");
         sb.append(PREFIX_PHONE + person.getPhone().value + " ");
-        sb.append(PREFIX_EMAIL + person.getEmail().value + " ");
-        sb.append(PREFIX_ROOMNUMBER + person.getRoomNumber().toString() + " ");
-        sb.append(PREFIX_TELEGRAM + person.getTelegram().value + " ");
-        sb.append(PREFIX_BIRTHDAY + String.valueOf(person.getBirthday().value) + " ");
+        if (person.getEmail() != null) {
+            sb.append(PREFIX_EMAIL + person.getEmail().value + " ");
+        }
+        if (person.getRoomNumber() != null) {
+            sb.append(PREFIX_ROOMNUMBER + person.getRoomNumber().toString() + " ");
+        }
+        if (person.getTelegram() != null) {
+            sb.append(PREFIX_TELEGRAM + person.getTelegram().value + " ");
+        }
+        if (person.getBirthday() != null) {
+            sb.append(PREFIX_BIRTHDAY + String.valueOf(person.getBirthday().value) + " ");
+        }
         return sb.toString();
     }
 

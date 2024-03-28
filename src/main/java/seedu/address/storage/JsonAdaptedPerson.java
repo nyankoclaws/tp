@@ -48,7 +48,7 @@ class JsonAdaptedPerson {
         name = source.getName().fullName;
         phone = source.getPhone().value;
         email = source.getEmail() == null ? null : source.getEmail().value;
-        roomNumber = source.getRoomNumber() == null ? null : source.getRoomNumber().toString();
+        roomNumber = source.getRoomNumber() == null ? null : source.getRoomNumber().toStringWDate();
         telegram = source.getTelegram() == null ? null : source.getTelegram().value;
         birthday = source.getBirthday() == null ? null : String.valueOf(source.getBirthday().value);
     }
@@ -76,40 +76,37 @@ class JsonAdaptedPerson {
         }
         final Phone modelPhone = new Phone(phone);
 
-        if (email == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
+        Email modelEmail = null;
+        if (email != null) {
+            if (!Email.isValidEmail(email)) {
+                throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
+            }
+            modelEmail = new Email(email);
         }
-        if (!Email.isValidEmail(email)) {
-            throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
-        }
-        final Email modelEmail = new Email(email);
 
-        if (roomNumber == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    RoomNumber.class.getSimpleName()));
+        RoomNumber modelRoomNumber = null;
+        if (roomNumber != null) {
+            if (!RoomNumber.isValidRoomNumberWDate(roomNumber)) {
+                throw new IllegalValueException(RoomNumber.MESSAGE_CONSTRAINTS);
+            }
+            modelRoomNumber = new RoomNumber(roomNumber, true);
         }
-        if (!RoomNumber.isValidRoomNumber(roomNumber)) {
-            throw new IllegalValueException(RoomNumber.MESSAGE_CONSTRAINTS);
-        }
-        final RoomNumber modelRoomNumber = new RoomNumber(roomNumber);
 
-        if (telegram == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    Telegram.class.getSimpleName()));
+        Telegram modelTelegram = null;
+        if (telegram != null) {
+            if (!Telegram.isValidTelegram(telegram)) {
+                throw new IllegalValueException(Telegram.MESSAGE_CONSTRAINTS);
+            }
+            modelTelegram = new Telegram(telegram);
         }
-        if (!Telegram.isValidTelegram(telegram)) {
-            throw new IllegalValueException(Telegram.MESSAGE_CONSTRAINTS);
-        }
-        final Telegram modelTelegram = new Telegram(telegram);
 
-        if (birthday == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    Birthday.class.getSimpleName()));
+        Birthday modelBirthday = null;
+        if (birthday != null) {
+            if (!Birthday.isValidBirthday(birthday)) {
+                throw new IllegalValueException(Birthday.MESSAGE_CONSTRAINTS);
+            }
+            modelBirthday = new Birthday(birthday);
         }
-        if (!Birthday.isValidBirthday(birthday)) {
-            throw new IllegalValueException(Birthday.MESSAGE_CONSTRAINTS);
-        }
-        final Birthday modelBirthday = new Birthday(birthday);
 
         return new Person(modelName, modelPhone, modelEmail, modelRoomNumber, modelTelegram, modelBirthday);
     }
