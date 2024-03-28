@@ -68,8 +68,6 @@ public class PersonCard extends UiPart<Region> {
         email.setText(person.getEmail() != null ? person.getEmail().value : "");
 
         if (person.getDormTag() != null) {
-//            dormTag.setText(person.getDormTag().tagName);
-//            tags.getChildren().add(dormTag);
             dormTag.getChildren().add(new Label(person.getDormTag().tagName));
         }
 
