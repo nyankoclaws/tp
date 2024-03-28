@@ -56,6 +56,7 @@ public class NewPersonBuilder {
         roomNumber = personToCopy.getRoomNumber();
         telegram = personToCopy.getTelegram();
         birthday = personToCopy.getBirthday();
+        freeTimeTags = new HashSet<>(personToCopy.getTags());
     }
 
     /**

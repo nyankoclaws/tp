@@ -27,14 +27,14 @@
     "phone" : "87652533",
     "email" : "cornelia@example.com",
     "roomNumber": "an-10-10 2023-10-21",
-    "birthday": "10/10/2002"
+    "birthday": "10/10/2002",
     "tags": [ "Mon:1000-1400" ]
   }, {
     "name" : "Elle Meyer",
     "phone" : "94822243",
     "email" : "werner@example.com",
     "roomNumber": "tt-02-12B 2023-10-21",
-    "telegram": "elleMeyer"
+    "telegram": "elleMeyer",
     "tags": [ "Mon:1000-1400" ]
   }, {
     "name" : "Fiona Kunz",

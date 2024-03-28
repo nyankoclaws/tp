@@ -35,7 +35,6 @@ public class AddCommandParserTest {
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Person bob = BOB;
         Person expectedPerson = new NewPersonBuilder(BOB).build();
 
         // whitespace only preamble

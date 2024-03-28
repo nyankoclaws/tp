@@ -2,6 +2,7 @@ package seedu.address.testutil;
 
 import static seedu.address.logic.commands.CommandTestUtil.VALID_BIRTHDAY_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_FREE_TIME_TAG_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ROOMNUMBER_BOB;
@@ -43,5 +44,5 @@ public class TypicalNewPersons {
 
     public static final Person BOB = new NewPersonBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
             .withEmail(VALID_EMAIL_BOB).withRoomNumber(VALID_ROOMNUMBER_BOB).withTelegram(VALID_TELEGRAM_BOB)
-            .withBirthday(VALID_BIRTHDAY_BOB).withFreeTimeTags("Mon:1000-1400").build();
+            .withBirthday(VALID_BIRTHDAY_BOB).withFreeTimeTags(VALID_FREE_TIME_TAG_BOB).build();
 }
