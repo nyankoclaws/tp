@@ -27,8 +27,8 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.RoomNumber;
 import seedu.address.model.person.Telegram;
-import seedu.address.testutil.NewPersonBuilder;
 import seedu.address.model.tag.FreeTimeTag;
+import seedu.address.testutil.NewPersonBuilder;
 
 public class AddCommandParserTest {
     private AddCommandParser parser = new AddCommandParser();
@@ -53,7 +53,6 @@ public class AddCommandParserTest {
         Telegram telegram = null;
         Birthday birthday = new Birthday(VALID_BIRTHDAY_BOB);
         Set<FreeTimeTag> freeTimeTag = Set.of(new FreeTimeTag("Wed:1400-2000"));
-
 
         Person expectedPerson = new Person(name, phone, email, roomNumber, telegram, birthday, freeTimeTag);
 

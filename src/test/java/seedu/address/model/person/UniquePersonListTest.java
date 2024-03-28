@@ -83,6 +83,7 @@ public class UniquePersonListTest {
     @Test
     public void setPerson_editedPersonHasSameIdentity_success() {
         uniquePersonList.add(ALICE);
+        NewPersonBuilder hi = new NewPersonBuilder(ALICE).withRoomNumber(VALID_ROOMNUMBER_BOB);
         Person editedAlice = new NewPersonBuilder(ALICE).withRoomNumber(VALID_ROOMNUMBER_BOB).build();
         uniquePersonList.setPerson(ALICE, editedAlice);
         UniquePersonList expectedUniquePersonList = new UniquePersonList();
@@ -161,8 +162,8 @@ public class UniquePersonListTest {
 
     @Test
     public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, ()
-            -> uniquePersonList.asUnmodifiableObservableList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () ->
+            uniquePersonList.asUnmodifiableObservableList().remove(0));
     }
 
     @Test

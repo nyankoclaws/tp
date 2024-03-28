@@ -1,5 +1,8 @@
 package seedu.address.testutil;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import seedu.address.model.person.Birthday;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -7,6 +10,8 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.RoomNumber;
 import seedu.address.model.person.Telegram;
+import seedu.address.model.tag.FreeTimeTag;
+import seedu.address.model.util.SampleDataUtil;
 
 /**
  * A utility class to help with building Person objects.
@@ -26,6 +31,7 @@ public class NewPersonBuilder {
     private RoomNumber roomNumber;
     private Telegram telegram;
     private Birthday birthday;
+    private Set<FreeTimeTag> freeTimeTags;
 
     /**
      * Creates a {@code NewPersonBuilder} with the default details.
@@ -37,6 +43,7 @@ public class NewPersonBuilder {
         roomNumber = null;
         telegram = null;
         birthday = null;
+        freeTimeTags = new HashSet<>();
     }
 
     /**
@@ -99,8 +106,16 @@ public class NewPersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code FreeTimeTag} of the {@code Person} that we are building.
+     */
+    public NewPersonBuilder withFreeTimeTags(String... freeTime) {
+        this.freeTimeTags = SampleDataUtil.getTagSet(freeTime);
+        return this;
+    }
+
     public Person build() {
-        return new Person(name, phone, email, roomNumber, telegram, birthday);
+        return new Person(name, phone, email, roomNumber, telegram, birthday, freeTimeTags);
     }
 
 }
