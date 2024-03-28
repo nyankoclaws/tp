@@ -1,6 +1,7 @@
 package seedu.address.testutil;
 
 import static seedu.address.logic.parser.CliSyntax.PREFIX_BIRTHDAY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DORMTAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_FREETIMETAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -38,6 +39,7 @@ public class PersonUtil {
         sb.append(PREFIX_ROOMNUMBER + person.getRoomNumber().toString() + " ");
         sb.append(PREFIX_TELEGRAM + person.getTelegram().value + " ");
         sb.append(PREFIX_BIRTHDAY + String.valueOf(person.getBirthday().value) + " ");
+        sb.append(PREFIX_DORMTAG + person.getDormTag().tagName + " ");
         person.getTags().stream().forEach(
                 s -> sb.append(PREFIX_FREETIMETAG + s.tagName + " ")
         );
@@ -57,6 +59,7 @@ public class PersonUtil {
                 .append(roomNumber.toString()).append(" "));
         descriptor.getTelegram().ifPresent(telegram -> sb.append(PREFIX_TELEGRAM).append(telegram.value).append(" "));
         descriptor.getBirthday().ifPresent(birthday -> sb.append(PREFIX_BIRTHDAY).append(birthday.value).append(" "));
+        descriptor.getDormTag().ifPresent(dormTag -> sb.append(PREFIX_DORMTAG).append(dormTag.tagName).append(" "));
         if (descriptor.getTags().isPresent()) {
             Set<FreeTimeTag> tags = descriptor.getTags().get();
             if (tags.isEmpty()) {

@@ -47,7 +47,9 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label email;
     @FXML
-    private FlowPane freeTimeTags;
+    private FlowPane dormTag;
+    @FXML
+    private FlowPane tags;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to
@@ -64,8 +66,15 @@ public class PersonCard extends UiPart<Region> {
         telegram.setText(person.getTelegram() != null ? person.getTelegram().value : "");
         birthday.setText(person.getBirthday() != null ? String.valueOf(person.getBirthday()) : "");
         email.setText(person.getEmail() != null ? person.getEmail().value : "");
+
+        if (person.getDormTag() != null) {
+//            dormTag.setText(person.getDormTag().tagName);
+//            tags.getChildren().add(dormTag);
+            dormTag.getChildren().add(new Label(person.getDormTag().tagName));
+        }
+
         person.getTags().stream()
                 .sorted(Comparator.comparing(freeTag -> freeTag.tagName))
-                .forEach(freeTag -> freeTimeTags.getChildren().add(new Label(freeTag.tagName)));
+                .forEach(freeTag -> tags.getChildren().add(new Label(freeTag.tagName)));
     }
 }

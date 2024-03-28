@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_BIRTHDAY_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DORM_TAG_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
@@ -90,6 +91,7 @@ public class PersonTest {
                 ALICE.getRoomNumber(),
                 ALICE.getTelegram(),
                 ALICE.getBirthday(),
+                ALICE.getDormTag(),
                 ALICE.getTags());
         assertFalse(ALICE.equals(aliceCopyWithoutEmail));
         assertFalse(aliceCopyWithoutEmail.equals(ALICE));
@@ -101,6 +103,7 @@ public class PersonTest {
                 null,
                 ALICE.getTelegram(),
                 ALICE.getBirthday(),
+                ALICE.getDormTag(),
                 ALICE.getTags());
         assertFalse(ALICE.equals(aliceCopyWithoutRoomNumber));
         assertFalse(aliceCopyWithoutRoomNumber.equals(ALICE));
@@ -112,6 +115,7 @@ public class PersonTest {
                 ALICE.getRoomNumber(),
                 null,
                 ALICE.getBirthday(),
+                ALICE.getDormTag(),
                 ALICE.getTags());
         assertFalse(ALICE.equals(aliceCopyWithoutTelegram));
         assertFalse(aliceCopyWithoutTelegram.equals(ALICE));
@@ -123,6 +127,7 @@ public class PersonTest {
                 ALICE.getRoomNumber(),
                 ALICE.getTelegram(),
                 null,
+                ALICE.getDormTag(),
                 ALICE.getTags());
         assertFalse(ALICE.equals(aliceCopyWithoutBirthday));
         assertFalse(aliceCopyWithoutBirthday.equals(ALICE));
@@ -132,7 +137,8 @@ public class PersonTest {
     public void toStringMethod() {
         String expected = Person.class.getCanonicalName() + "{name=" + ALICE.getName() + ", phone=" + ALICE.getPhone()
                 + ", tags=[[Mon:1000-1400]]" + ", email=" + ALICE.getEmail() + ", roomNumber=" + ALICE.getRoomNumber()
-                + ", telegram=" + ALICE.getTelegram() + ", birthday=" + ALICE.getBirthday() + "}";
+                + ", telegram=" + ALICE.getTelegram() + ", birthday=" + ALICE.getBirthday()
+                + ", dormTag=" + ALICE.getDormTag() + "}";
         assertEquals(expected, ALICE.toString());
     }
 }

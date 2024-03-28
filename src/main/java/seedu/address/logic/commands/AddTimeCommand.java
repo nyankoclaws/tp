@@ -21,6 +21,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.RoomNumber;
 import seedu.address.model.person.Telegram;
+import seedu.address.model.tag.DormTag;
 import seedu.address.model.tag.FreeTimeTag;
 
 /**
@@ -126,9 +127,10 @@ public class AddTimeCommand extends Command {
         RoomNumber updatedRoomNumber = personToEdit.getRoomNumber();
         Telegram updatedTelegram = personToEdit.getTelegram();
         Birthday updatedBirthday = personToEdit.getBirthday();
+        DormTag updatedDormTag = personToEdit.getDormTag();
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedRoomNumber, updatedTelegram,
-                updatedBirthday, updatedTags);
+                updatedBirthday, updatedDormTag, updatedTags);
     }
 
     @Override
