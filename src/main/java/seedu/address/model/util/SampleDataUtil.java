@@ -1,6 +1,9 @@
 package seedu.address.model.util;
 
 import java.time.LocalDate;
+import java.util.Arrays;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
@@ -11,6 +14,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.RoomNumber;
 import seedu.address.model.person.Telegram;
+import seedu.address.model.tag.FreeTimeTag;
 
 /**
  * Contains utility methods for populating {@code AddressBook} with sample data.
@@ -64,4 +68,12 @@ public class SampleDataUtil {
         return sampleAb;
     }
 
+    /**
+     * Returns a tag set containing the list of strings given.
+     */
+    public static Set<FreeTimeTag> getTagSet(String... strings) {
+        return Arrays.stream(strings)
+                .map(FreeTimeTag::new)
+                .collect(Collectors.toSet());
+    }
 }
