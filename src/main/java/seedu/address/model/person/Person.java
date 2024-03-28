@@ -81,6 +81,7 @@ public class Person {
     }
 
     public DormTag getDormTag() {
+        logger.log(Level.INFO, "Retrieved person's dorm tag");
         return dormTag;
     }
 
