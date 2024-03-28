@@ -5,6 +5,7 @@ import static seedu.address.logic.commands.CommandTestUtil.BIRTHDAY_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static seedu.address.logic.commands.CommandTestUtil.ROOMNUMBER_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.TELEGRAM_DESC_BOB;
@@ -55,11 +56,17 @@ public class AddCommandParserTest {
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB
                 + ROOMNUMBER_DESC_BOB + BIRTHDAY_DESC_BOB, new AddCommand(expectedPerson));
     }
-
+    @Test
+    public void parse_preamble_fail() {
+        // Non-empty preamble
+        assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
+                        + ROOMNUMBER_DESC_BOB + TELEGRAM_DESC_BOB + BIRTHDAY_DESC_BOB,
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+    }
     @Test
     public void parse_nameMissing_fail() {
         // whitespace only preamble
-        assertParseFailure(parser, PHONE_DESC_BOB + EMAIL_DESC_BOB
+        assertParseFailure(parser, PREAMBLE_WHITESPACE + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + ROOMNUMBER_DESC_BOB + TELEGRAM_DESC_BOB + BIRTHDAY_DESC_BOB,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
     }
@@ -67,7 +74,7 @@ public class AddCommandParserTest {
     @Test
     public void parse_phoneMissing_fail() {
         // whitespace only preamble
-        assertParseFailure(parser, NAME_DESC_BOB + EMAIL_DESC_BOB
+        assertParseFailure(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + EMAIL_DESC_BOB
                         + ROOMNUMBER_DESC_BOB + TELEGRAM_DESC_BOB + BIRTHDAY_DESC_BOB,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
     }
