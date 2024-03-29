@@ -2,6 +2,8 @@ package seedu.address.model.person;
 
 import java.util.function.Predicate;
 
+import seedu.address.commons.util.ToStringBuilder;
+
 /**
  * Tests that a {@code Person}'s {@code FreeTimeTag} contains the current time.
  */
@@ -22,5 +24,24 @@ public class PersonIsFreePredicate implements Predicate<Person> {
         return person.getTags().stream().anyMatch(
                 tag -> tag.isContained(this.currentTime)
         );
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        }
+        if (!(other instanceof PersonIsFreePredicate)) {
+            return false;
+        }
+        PersonIsFreePredicate otherPredicate = (PersonIsFreePredicate) other;
+        return currentTime.equals(otherPredicate.currentTime);
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .add("current time", currentTime)
+                .toString();
     }
 }
