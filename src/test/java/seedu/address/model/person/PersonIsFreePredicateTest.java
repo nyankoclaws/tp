@@ -1,10 +1,15 @@
 package seedu.address.model.person;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
 public class PersonIsFreePredicateTest {
+    @Test
+    public void instantiate_null_failure() {
+        assertThrows(NullPointerException.class, () -> new PersonIsFreePredicate(null));
+    }
     @Test
     public void equals() {
         PersonIsFreePredicate firstPredicate = new PersonIsFreePredicate("free");

@@ -1,5 +1,7 @@
 package seedu.address.model.person;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.function.Predicate;
 
 import seedu.address.commons.util.ToStringBuilder;
@@ -9,7 +11,13 @@ import seedu.address.commons.util.ToStringBuilder;
  */
 public class PersonIsFreePredicate implements Predicate<Person> {
     private final String currentTime;
+
+    /**
+     * Constructs a {@code PersonIsFreePredicate}.
+     * @param currentTime the current time.
+     */
     public PersonIsFreePredicate(String currentTime) {
+        requireNonNull(currentTime);
         this.currentTime = currentTime;
     }
 
