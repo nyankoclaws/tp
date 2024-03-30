@@ -16,12 +16,12 @@ import seedu.address.model.util.SampleDataUtil;
 /**
  * A utility class to help with building Person objects.
  */
-public class PersonBuilder {
+public class NewPersonBuilder {
 
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
-    public static final String DEFAULT_ROOMNUMBER = "sw-01-01 2023-10-20";
+    public static final String DEFAULT_ROOMNUMBER = "sw-01-01";
     public static final String DEFAULT_TELEGRAM = "amyBee";
     public static final String DEFAULT_BIRTHDAY = "01/01/2000";
 
@@ -34,9 +34,9 @@ public class PersonBuilder {
     private Set<FreeTimeTag> freeTimeTags;
 
     /**
-     * Creates a {@code PersonBuilder} with the default details.
+     * Creates a {@code NewPersonBuilder} with the default details.
      */
-    public PersonBuilder() {
+    public NewPersonBuilder() {
         name = new Name(DEFAULT_NAME);
         phone = new Phone(DEFAULT_PHONE);
         email = null;
@@ -47,9 +47,9 @@ public class PersonBuilder {
     }
 
     /**
-     * Initializes the PersonBuilder with the data of {@code personToCopy}.
+     * Initializes the NewPersonBuilder with the data of {@code personToCopy}.
      */
-    public PersonBuilder(Person personToCopy) {
+    public NewPersonBuilder(Person personToCopy) {
         name = personToCopy.getName();
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
@@ -62,7 +62,7 @@ public class PersonBuilder {
     /**
      * Sets the {@code Name} of the {@code Person} that we are building.
      */
-    public PersonBuilder withName(String name) {
+    public NewPersonBuilder withName(String name) {
         this.name = new Name(name);
         return this;
     }
@@ -70,15 +70,15 @@ public class PersonBuilder {
     /**
      * Sets the {@code RoomNumber} of the {@code Person} that we are building.
      */
-    public PersonBuilder withRoomNumber(String roomNumber) {
-        this.roomNumber = new RoomNumber(roomNumber, true);
+    public NewPersonBuilder withRoomNumber(String roomNumber) {
+        this.roomNumber = new RoomNumber(roomNumber);
         return this;
     }
 
     /**
      * Sets the {@code Telegram} of the {@code Person} that we are building.
      */
-    public PersonBuilder withTelegram(String telegram) {
+    public NewPersonBuilder withTelegram(String telegram) {
         this.telegram = new Telegram(telegram);
         return this;
     }
@@ -86,7 +86,7 @@ public class PersonBuilder {
     /**
      * Sets the {@code Birthday} of the {@code Person} that we are building.
      */
-    public PersonBuilder withBirthday(String birthday) {
+    public NewPersonBuilder withBirthday(String birthday) {
         this.birthday = new Birthday(birthday);
         return this;
     }
@@ -94,7 +94,7 @@ public class PersonBuilder {
     /**
      * Sets the {@code Phone} of the {@code Person} that we are building.
      */
-    public PersonBuilder withPhone(String phone) {
+    public NewPersonBuilder withPhone(String phone) {
         this.phone = new Phone(phone);
         return this;
     }
@@ -102,7 +102,7 @@ public class PersonBuilder {
     /**
      * Sets the {@code Email} of the {@code Person} that we are building.
      */
-    public PersonBuilder withEmail(String email) {
+    public NewPersonBuilder withEmail(String email) {
         this.email = new Email(email);
         return this;
     }
@@ -110,7 +110,7 @@ public class PersonBuilder {
     /**
      * Sets the {@code FreeTimeTag} of the {@code Person} that we are building.
      */
-    public PersonBuilder withFreeTimeTags(String ... freeTime) {
+    public NewPersonBuilder withFreeTimeTags(String... freeTime) {
         this.freeTimeTags = SampleDataUtil.getTagSet(freeTime);
         return this;
     }

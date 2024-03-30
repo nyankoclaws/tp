@@ -48,6 +48,7 @@ public class RoomNumberTest {
             date1 = date1.minusYears(1);
         }
         assertFalse(RoomNumber.isOutdated(date1));
+        assertFalse((new RoomNumber("sw-01-01", date1)).isOutdated());
 
         // If updated on the firstResultRelease for this AY
         LocalDate date2 = LocalDate.parse("2020-04-05");
@@ -56,10 +57,12 @@ public class RoomNumberTest {
             date2 = date2.minusYears(1);
         }
         assertFalse(RoomNumber.isOutdated(date2));
+        assertFalse((new RoomNumber("sw-01-01", date2)).isOutdated());
 
         // If updated before the firstResultRelease for this AY
         LocalDate date3 = date2.minusDays(1);
         assertTrue(RoomNumber.isOutdated(date3));
+        assertTrue((new RoomNumber("sw-01-01", date3)).isOutdated());
     }
 
     @Test
