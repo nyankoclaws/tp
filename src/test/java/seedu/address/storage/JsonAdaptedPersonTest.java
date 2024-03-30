@@ -3,7 +3,11 @@ package seedu.address.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.storage.JsonAdaptedPerson.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BENSON;
+import static seedu.address.testutil.TypicalPersons.CARL;
+import static seedu.address.testutil.TypicalPersons.DANIEL;
+import static seedu.address.testutil.TypicalPersons.ELLE;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +38,8 @@ public class JsonAdaptedPersonTest {
     private static final String VALID_NAME = BENSON.getName().toString();
     private static final String VALID_PHONE = BENSON.getPhone().toString();
     private static final String VALID_EMAIL = BENSON.getEmail().toString();
-    private static final String VALID_ROOMNUMBER = BENSON.getRoomNumber().toString();
+    private static final String VALID_ROOMNUMBER =
+                BENSON.getRoomNumber() == null ? null : BENSON.getRoomNumber().toStringWDate();
     private static final String VALID_TELEGRAM = BENSON.getTelegram().toString();
     private static final String VALID_BIRTHDAY = "25/02/2001";
     private static final String VALID_DORMTAG = BENSON.getDormTag().toString();
@@ -44,8 +49,16 @@ public class JsonAdaptedPersonTest {
 
     @Test
     public void toModelType_validPersonDetails_returnsPerson() throws Exception {
-        JsonAdaptedPerson person = new JsonAdaptedPerson(BENSON);
-        assertEquals(BENSON, person.toModelType());
+        JsonAdaptedPerson person1 = new JsonAdaptedPerson(ALICE);
+        assertEquals(ALICE, person1.toModelType());
+        JsonAdaptedPerson person2 = new JsonAdaptedPerson(BENSON);
+        assertEquals(BENSON, person2.toModelType());
+        JsonAdaptedPerson person3 = new JsonAdaptedPerson(CARL);
+        assertEquals(CARL, person3.toModelType());
+        JsonAdaptedPerson person4 = new JsonAdaptedPerson(DANIEL);
+        assertEquals(DANIEL, person4.toModelType());
+        JsonAdaptedPerson person5 = new JsonAdaptedPerson(ELLE);
+        assertEquals(ELLE, person5.toModelType());
     }
 
     @Test
@@ -55,6 +68,10 @@ public class JsonAdaptedPersonTest {
                         VALID_BIRTHDAY, VALID_DORMTAG, VALID_FREETIMETAGS);
         String expectedMessage = Name.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+        JsonAdaptedPerson person1 = new JsonAdaptedPerson(VALID_NAME, INVALID_PHONE, VALID_EMAIL, VALID_ROOMNUMBER,
+                VALID_TELEGRAM, VALID_BIRTHDAY, VALID_FREETIMETAGS);
+        String expectedMessage1 = Phone.MESSAGE_CONSTRAINTS;
+        assertThrows(IllegalValueException.class, expectedMessage1, person1::toModelType);
     }
 
     @Test
@@ -92,27 +109,11 @@ public class JsonAdaptedPersonTest {
     }
 
     @Test
-    public void toModelType_nullEmail_throwsIllegalValueException() {
-        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, null, VALID_ROOMNUMBER,
-                VALID_TELEGRAM, VALID_BIRTHDAY, VALID_DORMTAG, VALID_FREETIMETAGS);
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName());
-        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
-    }
-
-    @Test
     public void toModelType_invalidRoomNumber_throwsIllegalValueException() {
         JsonAdaptedPerson person =
                 new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, INVALID_ROOMNUMBER, VALID_TELEGRAM,
                         VALID_BIRTHDAY, VALID_DORMTAG, VALID_FREETIMETAGS);
         String expectedMessage = RoomNumber.MESSAGE_CONSTRAINTS;
-        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
-    }
-
-    @Test
-    public void toModelType_nullRoomNumber_throwsIllegalValueException() {
-        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, null,
-                VALID_TELEGRAM, VALID_BIRTHDAY, VALID_DORMTAG, VALID_FREETIMETAGS);
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, RoomNumber.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
 
@@ -126,27 +127,11 @@ public class JsonAdaptedPersonTest {
     }
 
     @Test
-    public void toModelType_nullTelegram_throwsIllegalValueException() {
-        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ROOMNUMBER,
-                null, VALID_BIRTHDAY, VALID_DORMTAG, VALID_FREETIMETAGS);
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Telegram.class.getSimpleName());
-        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
-    }
-
-    @Test
     public void toModelType_invalidBirthday_throwsIllegalValueException() {
         JsonAdaptedPerson person =
                 new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ROOMNUMBER, VALID_TELEGRAM,
                         INVALID_BIRTHDAY, VALID_DORMTAG, VALID_FREETIMETAGS);
         String expectedMessage = Birthday.MESSAGE_CONSTRAINTS;
-        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
-    }
-
-    @Test
-    public void toModelType_nullBirthday_throwsIllegalValueException() {
-        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ROOMNUMBER,
-                VALID_TELEGRAM, null, VALID_DORMTAG, VALID_FREETIMETAGS);
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Birthday.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
 
@@ -168,13 +153,4 @@ public class JsonAdaptedPersonTest {
         String expectedMessage = DormTag.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
-
-    @Test
-    public void toModelType_nullDormTag_throwsIllegalValueException() {
-        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ROOMNUMBER,
-                VALID_TELEGRAM, VALID_BIRTHDAY, null, VALID_FREETIMETAGS);
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, DormTag.class.getSimpleName());
-        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
-    }
-
 }

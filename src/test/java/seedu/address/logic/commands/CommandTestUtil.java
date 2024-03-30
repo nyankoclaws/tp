@@ -39,6 +39,8 @@ public class CommandTestUtil {
     public static final String VALID_EMAIL_BOB = "bob@example.com";
     public static final String VALID_ROOMNUMBER_AMY = "sw-01-01";
     public static final String VALID_ROOMNUMBER_BOB = "nw-02-02";
+    public static final String VALID_ROOMNUMBER_AMY_W_DATE = "sw-01-01 2023-10-21";
+    public static final String VALID_ROOMNUMBER_BOB_W_DATE = "nw-02-02 2023-10-21";
     public static final String VALID_TELEGRAM_AMY = "amyBee";
     public static final String VALID_TELEGRAM_BOB = "bobChoo";
     public static final String VALID_BIRTHDAY_AMY = "01/01/2000";
