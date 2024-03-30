@@ -57,7 +57,7 @@ public class SampleDataUtil {
                     new Birthday("16/04/1993"), new DormTag("UTR"), getTagSet("Tue:0700-2100")),
             new Person(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
                     new RoomNumber("21-11-31", date3), new Telegram("royBalakrishnan"),
-                    new Birthday("18/09/1992"), new DormTag("PGPR"), getTagSet("Tue:0700-2100"))   
+                    new Birthday("18/09/1992"), new DormTag("PGPR"), getTagSet("Tue:0700-2100"))
         };
     }
 
