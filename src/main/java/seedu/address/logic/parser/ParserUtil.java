@@ -15,9 +15,8 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.RoomNumber;
 import seedu.address.model.person.Telegram;
+import seedu.address.model.tag.DormTag;
 import seedu.address.model.tag.FreeTimeTag;
-
-
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -127,6 +126,21 @@ public class ParserUtil {
             throw new ParseException(Email.MESSAGE_CONSTRAINTS);
         }
         return new Email(trimmedEmail);
+    }
+
+    /**
+     * Parses a {@code String tag} into a {@code DormTag}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code tag} is invalid.
+     */
+    public static DormTag parseDormTag(String tag) throws ParseException {
+        requireNonNull(tag);
+        String trimmedTag = tag.trim();
+        if (!DormTag.isValidTagName(trimmedTag)) {
+            throw new ParseException(DormTag.MESSAGE_CONSTRAINTS);
+        }
+        return new DormTag(trimmedTag);
     }
 
     /**

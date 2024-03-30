@@ -3,6 +3,7 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_BIRTHDAY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DORMTAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_FREETIMETAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -40,7 +41,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ROOMNUMBER,
-                        PREFIX_TELEGRAM, PREFIX_BIRTHDAY, PREFIX_FREETIMETAG);
+                        PREFIX_TELEGRAM, PREFIX_BIRTHDAY, PREFIX_DORMTAG, PREFIX_FREETIMETAG);
 
         Set <Index> index = new HashSet<>();
 
@@ -95,6 +96,9 @@ public class EditCommandParser implements Parser<EditCommand> {
                 throw new ParseException(String.format(EditCommand.MESSAGE_MULTIEDIT_FAIL, "BIRTHDAY"));
             }
             editPersonDescriptor.setBirthday(ParserUtil.parseBirthday(argMultimap.getValue(PREFIX_BIRTHDAY).get()));
+        }
+        if (argMultimap.getValue(PREFIX_DORMTAG).isPresent()) {
+            editPersonDescriptor.setDormTag(ParserUtil.parseDormTag(argMultimap.getValue(PREFIX_DORMTAG).get()));
         }
 
         parseFreeTimeTagsForEdit(argMultimap.getAllValues(PREFIX_FREETIMETAG)).ifPresent(editPersonDescriptor::setTags);

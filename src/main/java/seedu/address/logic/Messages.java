@@ -57,6 +57,10 @@ public class Messages {
             builder.append("; Birthday: ").append(person.getBirthday());
         }
 
+        if (person.getDormTag() != null) {
+            builder.append("; Dorm Tag: ").append(person.getDormTag());
+        }
+
         if (!person.getTags().isEmpty()) {
             builder.append("; Free Time Tags: ");
             person.getTags().forEach(builder::append);

@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_BIRTHDAY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DORMTAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_FREETIMETAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -30,7 +31,8 @@ public class AddCommand extends Command {
             + PREFIX_ROOMNUMBER + "ROOM NUMBER "
             + PREFIX_TELEGRAM + "TELEGRAM "
             + PREFIX_BIRTHDAY + "BIRTHDAY "
-            + "[" + PREFIX_FREETIMETAG + "TAG]...\n"
+            + PREFIX_DORMTAG + "DORM TAG "
+            + "[" + PREFIX_FREETIMETAG + "FREE TIME TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "
@@ -38,6 +40,7 @@ public class AddCommand extends Command {
             + PREFIX_ROOMNUMBER + "sw-01-01 "
             + PREFIX_TELEGRAM + "johnDoe "
             + PREFIX_BIRTHDAY + "12/12/2000 "
+            + PREFIX_DORMTAG + "PGPR "
             + PREFIX_FREETIMETAG + "Mon:1300-1400";
 
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";

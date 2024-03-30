@@ -90,6 +90,7 @@ public class PersonTest {
                 ALICE.getRoomNumber(),
                 ALICE.getTelegram(),
                 ALICE.getBirthday(),
+                ALICE.getDormTag(),
                 ALICE.getTags());
         assertFalse(ALICE.equals(aliceCopyWithoutEmail));
         assertFalse(aliceCopyWithoutEmail.equals(ALICE));
@@ -101,6 +102,7 @@ public class PersonTest {
                 null,
                 ALICE.getTelegram(),
                 ALICE.getBirthday(),
+                ALICE.getDormTag(),
                 ALICE.getTags());
         assertFalse(ALICE.equals(aliceCopyWithoutRoomNumber));
         assertFalse(aliceCopyWithoutRoomNumber.equals(ALICE));
@@ -112,6 +114,7 @@ public class PersonTest {
                 ALICE.getRoomNumber(),
                 null,
                 ALICE.getBirthday(),
+                ALICE.getDormTag(),
                 ALICE.getTags());
         assertFalse(ALICE.equals(aliceCopyWithoutTelegram));
         assertFalse(aliceCopyWithoutTelegram.equals(ALICE));
@@ -123,6 +126,7 @@ public class PersonTest {
                 ALICE.getRoomNumber(),
                 ALICE.getTelegram(),
                 null,
+                ALICE.getDormTag(),
                 ALICE.getTags());
         assertFalse(ALICE.equals(aliceCopyWithoutBirthday));
         assertFalse(aliceCopyWithoutBirthday.equals(ALICE));
@@ -132,7 +136,8 @@ public class PersonTest {
     public void toStringMethod() {
         String expected = Person.class.getCanonicalName() + "{name=" + ALICE.getName() + ", phone=" + ALICE.getPhone()
                 + ", tags=[[Mon:1000-1400]]" + ", email=" + ALICE.getEmail() + ", roomNumber=" + ALICE.getRoomNumber()
-                + ", telegram=" + ALICE.getTelegram() + ", birthday=" + ALICE.getBirthday() + "}";
+                + ", telegram=" + ALICE.getTelegram() + ", birthday=" + ALICE.getBirthday()
+                + ", dormTag=" + ALICE.getDormTag() + "}";
         assertEquals(expected, ALICE.toString());
     }
 }

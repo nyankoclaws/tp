@@ -17,6 +17,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.RoomNumber;
 import seedu.address.model.person.Telegram;
+import seedu.address.model.tag.DormTag;
 import seedu.address.model.tag.FreeTimeTag;
 
 /**
@@ -32,6 +33,7 @@ class JsonAdaptedPerson {
     private final String roomNumber;
     private final String telegram;
     private final String birthday;
+    private final String dormTag;
     private final List<JsonAdaptedFreeTimeTag> freeTimeTags = new ArrayList<>();
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -40,6 +42,7 @@ class JsonAdaptedPerson {
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("roomNumber") String roomNumber,
                              @JsonProperty("telegram") String telegram, @JsonProperty("birthday") String birthday,
+                             @JsonProperty("dormTag") String dormTag,
                              @JsonProperty("tags") List<JsonAdaptedFreeTimeTag> freeTimeTags) {
         this.name = name;
         this.phone = phone;
@@ -47,6 +50,7 @@ class JsonAdaptedPerson {
         this.roomNumber = roomNumber;
         this.telegram = telegram;
         this.birthday = birthday;
+        this.dormTag = dormTag;
         if (freeTimeTags != null) {
             this.freeTimeTags.addAll(freeTimeTags);
         }
@@ -62,6 +66,7 @@ class JsonAdaptedPerson {
         roomNumber = source.getRoomNumber() == null ? null : source.getRoomNumber().toStringWDate();
         telegram = source.getTelegram() == null ? null : source.getTelegram().value;
         birthday = source.getBirthday() == null ? null : String.valueOf(source.getBirthday().value);
+        dormTag = source.getDormTag() == null ? null : source.getDormTag().tagName;
         freeTimeTags.addAll(source.getTags().stream()
                 .map(JsonAdaptedFreeTimeTag::new)
                 .collect(Collectors.toList()));
@@ -126,10 +131,19 @@ class JsonAdaptedPerson {
             modelBirthday = new Birthday(birthday);
         }
 
+        if (dormTag == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    DormTag.class.getSimpleName()));
+        }
+        if (!DormTag.isValidTagName(dormTag)) {
+            throw new IllegalValueException(DormTag.MESSAGE_CONSTRAINTS);
+        }
+        final DormTag modelDormTag = new DormTag(dormTag);
+
         final Set<FreeTimeTag> modelFreeTimeTags = new HashSet<>(freeTimeTagList);
 
         return new Person(modelName, modelPhone, modelEmail, modelRoomNumber, modelTelegram, modelBirthday,
-                modelFreeTimeTags);
+                modelDormTag, modelFreeTimeTags);
     }
 
 }

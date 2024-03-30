@@ -7,6 +7,7 @@
     "roomNumber": "nw-12-12 2023-10-21",
     "telegram": "alicePauline",
     "birthday": "23/12/1990",
+    "dormTag": "PGPR",
     "tags": [ "Mon:1000-1400" ]
   }, {
     "name" : "Benson Meier",
@@ -14,6 +15,7 @@
     "email" : "johnd@example.com",
     "telegram": "bensonMeier",
     "birthday": "25/02/2001",
+    "dormTag": "PGPR",
     "tags": [ "Mon:1000-1400" ]
   }, {
     "name" : "Carl Kurz",
@@ -21,6 +23,7 @@
     "roomNumber": "IW-03-12 2023-10-21",
     "telegram": "carlKurz",
     "birthday": "12/04/1995",
+    "dormTag": "UTR",
     "tags": [ "Mon:1000-1400" ]
   }, {
     "name" : "Daniel Meier",
@@ -28,6 +31,7 @@
     "email" : "cornelia@example.com",
     "roomNumber": "an-10-10 2023-10-21",
     "birthday": "10/10/2002",
+    "dormTag": "UTR",
     "tags": [ "Mon:1000-1400" ]
   }, {
     "name" : "Elle Meyer",
@@ -35,6 +39,7 @@
     "email" : "werner@example.com",
     "roomNumber": "tt-02-12B 2023-10-21",
     "telegram": "elleMeyer",
+    "dormTag": "PGPR",
     "tags": [ "Mon:1000-1400" ]
   }, {
     "name" : "Fiona Kunz",
@@ -43,6 +48,7 @@
     "roomNumber": "od-05-12S 2023-10-21",
     "telegram": "fionaKunz",
     "birthday": "12/05/2002",
+    "dormTag": "UTR",
     "tags": [ "Mon:1000-1400" ]
   }, {
     "name" : "George Best",
@@ -51,6 +57,7 @@
     "roomNumber": "ie-23-12B 2023-10-21",
     "telegram": "georgeBest",
     "birthday": "22/12/1997",
+    "dormTag": "PGPR",
     "tags": [ "Mon:1000-1400" ]
   } ]
 }

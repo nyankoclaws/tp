@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_BIRTHDAY_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DORM_TAG_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
@@ -45,7 +46,9 @@ public class EditCommandTest {
                 .withEmail(VALID_EMAIL_AMY)
                 .withRoomNumber(VALID_ROOMNUMBER_AMY_W_DATE)
                 .withTelegram(VALID_TELEGRAM_AMY)
-                .withBirthday(VALID_BIRTHDAY_AMY).build();
+                .withBirthday(VALID_BIRTHDAY_AMY)
+                .withDormTag(VALID_DORM_TAG_AMY)
+                .build();
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(editedPerson).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, descriptor);
 
