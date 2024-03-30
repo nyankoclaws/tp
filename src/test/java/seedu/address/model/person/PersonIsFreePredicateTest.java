@@ -33,7 +33,7 @@ public class PersonIsFreePredicateTest {
     }
 
     @Test
-    public void test_personNull_failure() {
+    public void test_personNull_throwsNullPointerException() {
         PersonIsFreePredicate predicate = new PersonIsFreePredicate("Mon:0700");
         assertThrows(NullPointerException.class, () -> predicate.test(null));
     }
