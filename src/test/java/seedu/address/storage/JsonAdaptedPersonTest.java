@@ -41,7 +41,7 @@ public class JsonAdaptedPersonTest {
     private static final String VALID_ROOMNUMBER =
                 BENSON.getRoomNumber() == null ? null : BENSON.getRoomNumber().toStringWDate();
     private static final String VALID_TELEGRAM = BENSON.getTelegram().toString();
-    private static final String VALID_BIRTHDAY = "25/02/2001";
+    private static final String VALID_BIRTHDAY = String.valueOf(BENSON.getBirthday().value);
     private static final String VALID_DORMTAG = BENSON.getDormTag().toString();
     private static final List<JsonAdaptedFreeTimeTag> VALID_FREETIMETAGS = BENSON.getTags().stream()
             .map(JsonAdaptedFreeTimeTag::new)

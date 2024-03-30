@@ -46,6 +46,7 @@ public class PersonBuilder {
         roomNumber = null;
         telegram = null;
         birthday = null;
+        dormTag = null;
         freeTimeTags = new HashSet<>();
     }
 
