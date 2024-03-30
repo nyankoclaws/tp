@@ -1,5 +1,6 @@
 package seedu.address.model.tag;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
@@ -26,6 +27,27 @@ public class FreeTimeTag extends Tag {
      */
     public static boolean isValidTagName(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    /**
+     * Returns true if the current time is contained within the tag.
+     * @param currentTime the current time in the format of "Mon-Sun:HHmm"
+     * @return true if the current time is contained within the tag
+     */
+    public boolean isContained(String currentTime) {
+        requireNonNull(currentTime);
+        if (!currentTime.matches("^(Mon|Tue|Wed|Thu|Fri|Sat|Sun):(0[0-9]|1[0-9]|2[0-3])([0-5][0-9])$")) {
+            return false;
+        }
+        String[] split = tagName.split(":");
+        if (!split[0].equals(currentTime.substring(0, 3))) {
+            return false;
+        }
+        String[] time = split[1].split("-");
+        String start = time[0];
+        String end = time[1];
+        String currentTimeStamp = currentTime.substring(4);
+        return currentTimeStamp.compareTo(start) >= 0 && currentTimeStamp.compareTo(end) <= 0;
     }
 
     @Override
