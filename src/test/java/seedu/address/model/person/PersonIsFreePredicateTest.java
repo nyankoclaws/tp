@@ -31,4 +31,10 @@ public class PersonIsFreePredicateTest {
         // different predicate
         assertTrue(!firstPredicate.equals(secondPredicate));
     }
+
+    @Test
+    public void test_personNull_failure() {
+        PersonIsFreePredicate predicate = new PersonIsFreePredicate("Mon:0700");
+        assertThrows(NullPointerException.class, () -> predicate.test(null));
+    }
 }

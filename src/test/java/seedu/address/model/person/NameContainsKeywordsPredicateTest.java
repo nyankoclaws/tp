@@ -2,6 +2,7 @@ package seedu.address.model.person;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
@@ -13,7 +14,10 @@ import org.junit.jupiter.api.Test;
 import seedu.address.testutil.PersonBuilder;
 
 public class NameContainsKeywordsPredicateTest {
-
+    @Test
+    public void instantiate_null_failure() {
+        assertThrows(NullPointerException.class, () -> new NameContainsKeywordsPredicate(null));
+    }
     @Test
     public void equals() {
         List<String> firstPredicateKeywordList = Collections.singletonList("first");
@@ -38,7 +42,11 @@ public class NameContainsKeywordsPredicateTest {
         // different person -> returns false
         assertFalse(firstPredicate.equals(secondPredicate));
     }
-
+    @Test
+    public void test_personNull_throwsNullPointerException() {
+        NameContainsKeywordsPredicate predicate = new NameContainsKeywordsPredicate(Collections.singletonList("Alice"));
+        assertThrows(NullPointerException.class, () -> predicate.test(null));
+    }
     @Test
     public void test_nameContainsKeywords_returnsTrue() {
         // One keyword
