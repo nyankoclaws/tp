@@ -6,9 +6,12 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_FREETIMETAG;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
+import java.util.logging.Logger;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddTimeCommand;
 import seedu.address.logic.commands.AddTimeCommand.EditPersonDescriptor;
@@ -19,6 +22,7 @@ import seedu.address.model.tag.FreeTimeTag;
  * Parses input arguments and creates a new EditCommand object
  */
 public class AddTimeCommandParser implements Parser<AddTimeCommand> {
+    private static final Logger logger = LogsCenter.getLogger(AddTimeCommandParser.class);
 
     /**
      * Parses the given {@code String} of arguments in the context of the AddTimeCommand
@@ -30,10 +34,14 @@ public class AddTimeCommandParser implements Parser<AddTimeCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_FREETIMETAG);
 
-        Index index;
+        Set<Index> index = new HashSet<>();
 
         try {
-            index = ParserUtil.parseIndex(argMultimap.getPreamble());
+            String[] indices = argMultimap.getPreamble().trim().split("\\s+");
+            for (String i : indices) {
+                index.add(ParserUtil.parseIndex(i.trim()));
+            }
+            logger.info("Index parsed successfully");
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTimeCommand.MESSAGE_USAGE), pe);
         }
