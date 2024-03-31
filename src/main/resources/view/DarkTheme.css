@@ -340,6 +340,7 @@
 #tags {
     -fx-hgap: 7;
     -fx-vgap: 3;
+    -fx-padding: 1 0 1 0;
 }
 
 #tags .label {
@@ -354,6 +355,7 @@
 #dormTag {
     -fx-hgap: 7;
     -fx-vgap: 3;
+    -fx-padding: 1 0 0 0;
 }
 
 #dormTag .label {

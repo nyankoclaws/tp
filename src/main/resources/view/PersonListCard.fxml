@@ -33,19 +33,32 @@
           </Label>
           <Label fx:id="name" text="\$first" styleClass="cell_big_label" />
         </HBox>
-        <FlowPane fx:id="dormTag" />
-        <FlowPane fx:id="tags" />
-        <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
-        <Label fx:id="roomNumber" styleClass="cell_small_label" text="\$roomNumber" />
-        <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
-        <Label fx:id="telegram" styleClass="cell_small_label" text="\$telegram" />
-        <Label fx:id="birthday" styleClass="cell_small_label" text="\$birthday" />
+        <HBox>
+          <VBox>
+            <Label text="Dorm:    " styleClass="cell_small_label" />
+            <Label text="Tags:    " styleClass="cell_small_label" />
+            <Label text="Phone:    " styleClass="cell_small_label" />
+            <Label text="Room Number:    " styleClass="cell_small_label" />
+            <Label text="Email:    " styleClass="cell_small_label" />
+            <Label text="Telegram:    " styleClass="cell_small_label" />
+            <Label text="Birthday:    " styleClass="cell_small_label" />
+          </VBox>
+          <VBox>
+            <FlowPane fx:id="dormTag" />
+            <FlowPane fx:id="tags" />
+            <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
+            <Label fx:id="roomNumber" styleClass="cell_small_label" text="\$roomNumber" />
+            <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
+            <Label fx:id="telegram" styleClass="cell_small_label" text="\$telegram" />
+            <Label fx:id="birthday" styleClass="cell_small_label" text="\$birthday" />
+          </VBox>
+        </HBox>
       </VBox>
       <HBox alignment="CENTER_RIGHT" minHeight="105" GridPane.columnIndex="1">
-        <ImageView fitHeight="50" preserveRatio="true">
+        <ImageView fitHeight="25" preserveRatio="true">
           <Image url="/images/birthday_cake.png" />
         </ImageView>
-        <ImageView fitHeight="50" preserveRatio="true">
+        <ImageView fitHeight="25" preserveRatio="true">
           <Image url="/images/calendar_alert.png" />
         </ImageView>
       </HBox>
