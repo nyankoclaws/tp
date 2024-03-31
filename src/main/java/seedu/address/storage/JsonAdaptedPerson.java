@@ -131,14 +131,13 @@ class JsonAdaptedPerson {
             modelBirthday = new Birthday(birthday);
         }
 
+        DormTag modelDormTag = null;
         if (dormTag == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    DormTag.class.getSimpleName()));
+            if (!DormTag.isValidTagName(dormTag)) {
+                throw new IllegalValueException(DormTag.MESSAGE_CONSTRAINTS);
+            }
+            modelDormTag = new DormTag(dormTag);
         }
-        if (!DormTag.isValidTagName(dormTag)) {
-            throw new IllegalValueException(DormTag.MESSAGE_CONSTRAINTS);
-        }
-        final DormTag modelDormTag = new DormTag(dormTag);
 
         final Set<FreeTimeTag> modelFreeTimeTags = new HashSet<>(freeTimeTagList);
 
