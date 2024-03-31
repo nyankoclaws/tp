@@ -36,7 +36,7 @@
         <HBox>
           <VBox>
             <Label text="Dorm:    " styleClass="cell_small_label" />
-            <Label text="Tags:    " styleClass="cell_small_label" />
+            <Label text="Free Time:    " styleClass="cell_small_label" />
             <Label text="Phone:    " styleClass="cell_small_label" />
             <Label text="Room Number:    " styleClass="cell_small_label" />
             <Label text="Email:    " styleClass="cell_small_label" />
