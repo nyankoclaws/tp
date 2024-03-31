@@ -55,10 +55,10 @@
         </HBox>
       </VBox>
       <HBox alignment="CENTER_RIGHT" minHeight="105" GridPane.columnIndex="1">
-        <ImageView fitHeight="25" preserveRatio="true">
+        <ImageView fx:id="birthdayIcon" fitHeight="25" preserveRatio="true">
           <Image url="/images/birthday_cake.png" />
         </ImageView>
-        <ImageView fitHeight="25" preserveRatio="true">
+        <ImageView fx:id="changeRoomNumberIcon" fitHeight="25" preserveRatio="true">
           <Image url="/images/calendar_alert.png" />
         </ImageView>
       </HBox>

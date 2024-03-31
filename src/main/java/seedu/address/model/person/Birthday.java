@@ -60,6 +60,14 @@ public class Birthday {
         return Optional.empty();
     }
 
+    /**
+     * Returns true if today is the Birthday.
+     */
+    public boolean isBirthday() {
+        LocalDate thisYearBirthday = value.withYear(LocalDate.now().getYear());
+        return thisYearBirthday.isEqual(LocalDate.now());
+    }
+
     @Override
     public String toString() {
         return value.format(OUTPUT_FORMATTER);
