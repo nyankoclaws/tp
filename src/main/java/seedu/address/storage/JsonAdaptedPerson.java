@@ -132,7 +132,7 @@ class JsonAdaptedPerson {
         }
 
         DormTag modelDormTag = null;
-        if (dormTag == null) {
+        if (dormTag != null) {
             if (!DormTag.isValidTagName(dormTag)) {
                 throw new IllegalValueException(DormTag.MESSAGE_CONSTRAINTS);
             }
