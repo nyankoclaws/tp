@@ -3,15 +3,17 @@
     "name": "Alice Pauline",
     "phone": "94351253",
     "email": "alice@example.com",
-    "roomNumber": "sw-12-12",
+    "roomNumber": "sw-12-12 2023-10-21",
     "telegram": "alicePauline",
-    "birthday": "23/12/1990"
+    "birthday": "23/12/1990",
+    "dormTag": "PGPR"
   }, {
     "name": "Alice Pauline",
     "phone": "94351253",
     "email": "alice@example.com",
-    "roomNumber": "nw-12-12",
+    "roomNumber": "nw-12-12 2023-10-21",
     "telegram": "alicePauline",
-    "birthday": "23/12/1990"
+    "birthday": "23/12/1990",
+    "dormTag": "PGPR"
   } ]
 }

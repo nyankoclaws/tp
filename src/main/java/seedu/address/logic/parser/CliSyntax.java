@@ -12,5 +12,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_ROOMNUMBER = new Prefix("r/");
     public static final Prefix PREFIX_TELEGRAM = new Prefix("t/");
     public static final Prefix PREFIX_BIRTHDAY = new Prefix("b/");
+    public static final Prefix PREFIX_DORMTAG = new Prefix("d/");
+    public static final Prefix PREFIX_FREETIMETAG = new Prefix("ft/");
 
 }
