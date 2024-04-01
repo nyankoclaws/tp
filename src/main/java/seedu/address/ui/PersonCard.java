@@ -4,6 +4,7 @@ import java.util.Comparator;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
@@ -50,6 +51,10 @@ public class PersonCard extends UiPart<Region> {
     private FlowPane dormTag;
     @FXML
     private FlowPane tags;
+    @FXML
+    private ImageView birthdayIcon;
+    @FXML
+    private ImageView changeRoomNumberIcon;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to
@@ -63,7 +68,7 @@ public class PersonCard extends UiPart<Region> {
         phone.setText(person.getPhone().value);
 
         roomNumber.setText(person.getRoomNumber() != null ? person.getRoomNumber().toString() : "");
-        telegram.setText(person.getTelegram() != null ? person.getTelegram().value : "");
+        telegram.setText(person.getTelegram() != null ? "@" + person.getTelegram().value : "");
         birthday.setText(person.getBirthday() != null ? String.valueOf(person.getBirthday()) : "");
         email.setText(person.getEmail() != null ? person.getEmail().value : "");
 
@@ -74,5 +79,8 @@ public class PersonCard extends UiPart<Region> {
         person.getTags().stream()
                 .sorted(Comparator.comparing(freeTag -> freeTag.tagName))
                 .forEach(freeTag -> tags.getChildren().add(new Label(freeTag.tagName)));
+
+        birthdayIcon.setVisible(person.getBirthday().isBirthday());
+        changeRoomNumberIcon.setVisible(person.getRoomNumber().isOutdated());
     }
 }

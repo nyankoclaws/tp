@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
+import java.time.LocalDate;
+
 import org.junit.jupiter.api.Test;
 
 public class BirthdayTest {
@@ -36,6 +38,16 @@ public class BirthdayTest {
         assertTrue(Birthday.isValidBirthday("12/12/2003"));
         assertTrue(Birthday.isValidBirthday("29/02/2024"));
         assertTrue(Birthday.isValidBirthday("26/03/2024"));
+    }
+
+    @Test
+    public void isBirthdayTest() {
+        Birthday todayBirthday = new Birthday(LocalDate.now().minusYears(1).toString());
+        assertTrue(todayBirthday.isBirthday());
+
+        Birthday yesterdayBirthday = new Birthday(LocalDate.now().minusYears(1)
+                .minusDays(1).toString());
+        assertFalse(yesterdayBirthday.isBirthday());
     }
 
     @Test
