@@ -101,6 +101,20 @@ public class RoomNumberTest {
     }
 
     @Test
+    public void toStringWDate() {
+        String roomNum = "sw-01-01";
+        RoomNumber roomNumber = new RoomNumber(roomNum);
+        String expected = roomNum + " " + LocalDate.now().toString();
+        assertTrue(roomNumber.toStringWDate().equals(expected));
+
+        String dateStr = "2022-05-02";
+        LocalDate date1 = LocalDate.parse(dateStr);
+        RoomNumber roomNumber1 = new RoomNumber(roomNum, date1);
+        String expected1 = roomNum + " " + dateStr;
+        assertTrue(roomNumber1.toStringWDate().equals(expected1));
+    }
+
+    @Test
     public void equals() {
         RoomNumber roomNumber = new RoomNumber("sw-01-01");
 
