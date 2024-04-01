@@ -159,3 +159,14 @@ Furthermore, certain edits can cause the Dormie to behave in unexpected ways (e.
 ## Known issues
 
 1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Glossary
+
+| Term                                  | Definition, Examples                                                                                                                                                                                                                                                                            |
+|---------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Command**                           | Instruction provided by a user to specify the desired action or change to be performed by an application.                                                                                                                                                                                       |
+| **Command Line Interface (CLI)**      | Text-based interface used to interact with the application by typing commands into a command box.                                                                                                                                                                                               |
+| **Graphical User Interface (GUI)**    | User interface that allows users to interact with graphical icons and visual indicators, use graphical elements such as windows, buttons, menus, and dialog boxes to facilitate user interaction with the application.                                                                          |
+| **JavaScript Object Notation (JSON)** | Lightweight data interchange format that is easy for humans to read and write and easy for machines to parse and generate. JSON is based on key-value pairs and data structures, making it a popular format for representing structured data in web development and other programming contexts. |
