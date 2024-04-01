@@ -40,8 +40,6 @@ public class AddTimeCommandParser implements Parser<AddTimeCommand> {
 
         EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
 
-        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_FREETIMETAG);
-
         parseFreeTimeTagsForEdit(argMultimap.getAllValues(PREFIX_FREETIMETAG)).ifPresent(editPersonDescriptor::setTags);
 
         return new AddTimeCommand(index, editPersonDescriptor);
@@ -58,10 +56,8 @@ public class AddTimeCommandParser implements Parser<AddTimeCommand> {
         if (tags.isEmpty()) {
             return Optional.empty();
         }
-        if (tags.size() > 2) {
-            throw new ParseException(AddTimeCommand.MORE_THAN_ONE_FREETIME);
-        }
-        Collection<String> tagSet = tags.size() == 1 && tags.contains("") ? Collections.emptySet() : tags;
+
+        Collection<String> tagSet = tags.size() == 1 && tags.contains(" ") ? Collections.emptySet() : tags;
         return Optional.of(ParserUtil.parseFreeTimeTags(tagSet));
     }
 

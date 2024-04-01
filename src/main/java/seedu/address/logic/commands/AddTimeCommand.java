@@ -33,10 +33,14 @@ public class AddTimeCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a free time to the person identified "
             + "by the index number used in the displayed person list. "
-            + PREFIX_FREETIMETAG + "Mon:1300-1400";
+            + PREFIX_FREETIMETAG + "Mon:1300-1400\n"
+            + "Example: " + COMMAND_WORD + " 1 "
+            + PREFIX_FREETIMETAG + "Mon:1330-1400 "
+            + PREFIX_FREETIMETAG + "Mon:1200-1300\n"
+            + "Note: You can add multiple free time tags at once, and they need not be in order! "
+            + "(Refer to the example above) ";
 
     public static final String MESSAGE_ADD_FREETIME_SUCCESS = "Added free time to person: %1$s";
-    public static final String MORE_THAN_ONE_FREETIME = "Only one free time can be added a time.";
 
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;
@@ -82,86 +86,18 @@ public class AddTimeCommand extends Command {
             throw new CommandException(Messages.MESSAGE_NO_FREETIME_SPECIFIED);
         }
 
-        FreeTimeTag freeTimeTag = editPersonDescriptor.getTags().toArray(new FreeTimeTag[1])[0];
+        Set<FreeTimeTag> newFreeTimeTags = editPersonDescriptor.getTags();
 
-        if (freeTimeTag == null) {
+        if (newFreeTimeTags == null) {
             throw new CommandException(Messages.MESSAGE_NO_FREETIME_SPECIFIED);
         }
 
-        Set<FreeTimeTag> freeTimeTags = personToEdit.getTags();
+        Set<FreeTimeTag> oldFreeTimeTags = personToEdit.getTags();
 
-        Set<FreeTimeTag> updatedTags = new HashSet<>();
+        Set<FreeTimeTag> updatedFreeTimeTags = new HashSet<>();
 
-        boolean added = false;
-
-        if (freeTimeTags.size() == 0) {
-            updatedTags.add(freeTimeTag);
-            added = true;
-        } else {
-            String trimmedFreeTimeTag = freeTimeTag.toString().substring(1, freeTimeTag.toString().length() - 1);
-            String day = trimmedFreeTimeTag.substring(0, 3);
-            Integer dayNum = 1;
-            if (day.equals("Tue")) {
-                dayNum = 2;
-            } else if (day.equals("Wed")) {
-                dayNum = 3;
-            } else if (day.equals("Thu")) {
-                dayNum = 4;
-            } else if (day.equals("Fri")) {
-                dayNum = 5;
-            } else if (day.equals("Sat")) {
-                dayNum = 6;
-            } else {
-                dayNum = 7;
-            }
-            Integer newStart = Integer.parseInt(trimmedFreeTimeTag.substring(4, 8));
-            Integer newEnd = Integer.parseInt(trimmedFreeTimeTag.substring(9, 13));
-
-            for (FreeTimeTag tag : freeTimeTags) {
-                String trimmedTag = tag.toString().substring(1, tag.toString().length() - 1);
-                Integer currDayNum = 1;
-                if (trimmedTag.substring(0, 3).equals("Tue")) {
-                    currDayNum = 2;
-                } else if (trimmedTag.substring(0, 3).equals("Wed")) {
-                    currDayNum = 3;
-                } else if (trimmedTag.substring(0, 3).equals("Thu")) {
-                    currDayNum = 4;
-                } else if (trimmedTag.substring(0, 3).equals("Fri")) {
-                    currDayNum = 5;
-                } else if (trimmedTag.substring(0, 3).equals("Sat")) {
-                    currDayNum = 6;
-                } else {
-                    currDayNum = 7;
-                }
-                if (!trimmedTag.substring(0, 3).equals(day)) {
-                    if ((currDayNum < dayNum) && (!added)) {
-                        updatedTags.add(freeTimeTag);
-                        added = true;
-                    }
-                    updatedTags.add(tag);
-
-                } else {
-                    Integer currentStart = Integer.parseInt(trimmedTag.substring(4, 8));
-                    Integer currentEnd = Integer.parseInt(trimmedTag.substring(9, 13));
-
-                    if (currentStart > newStart) {
-                        updatedTags.add(tag);
-                    } else if (currentStart.equals(newStart)) {
-                        updatedTags.add(tag);
-                        if (!added) {
-                            updatedTags.add(freeTimeTag);
-                            added = true;
-                        }
-                    } else {
-                        updatedTags.add(tag);
-                        if (!added) {
-                            updatedTags.add(freeTimeTag);
-                            added = true;
-                        }
-                    }
-                }
-            }
-        }
+        updatedFreeTimeTags.addAll(oldFreeTimeTags);
+        updatedFreeTimeTags.addAll(newFreeTimeTags);
 
         Name updatedName = personToEdit.getName();
         Phone updatedPhone = personToEdit.getPhone();
@@ -172,7 +108,7 @@ public class AddTimeCommand extends Command {
         DormTag updatedDormTag = personToEdit.getDormTag();
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedRoomNumber, updatedTelegram,
-                updatedBirthday, updatedDormTag, updatedTags);
+                updatedBirthday, updatedDormTag, updatedFreeTimeTags);
     }
 
     @Override
