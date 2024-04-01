@@ -14,7 +14,8 @@ public class Messages {
 
     public static final String MESSAGE_WELCOME =
             "Welcome to Dormie!\n"
-                    + "The available commands are as follows: list, add, edit, delete, addTime, deleteTime, whoisFree, find, "
+                    + "The available commands are as follows: list, add, edit, delete, addTime, deleteTime"
+                    + ", whoisFree, find, "
                     + "clear, exit\n"
                     + "Refer to the help guide (link can be found above) for more details.";
     public static final String MESSAGE_UNKNOWN_COMMAND = "Unknown command";
