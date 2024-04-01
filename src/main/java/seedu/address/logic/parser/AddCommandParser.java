@@ -48,7 +48,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         }
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ROOMNUMBER,
-                PREFIX_TELEGRAM);
+                PREFIX_TELEGRAM, PREFIX_BIRTHDAY, PREFIX_DORMTAG);
 
         // Mandatory fields
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
