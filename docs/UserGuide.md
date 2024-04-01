@@ -85,6 +85,10 @@ or to [Command Summary](#command-summary) for a summary of the commands.
 - Items in square brackets are optional.<br>
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
+- Free Time Tags are in the following format: `DDD:HH:mm` <br>
+- `DDD` is from Mon-Sun, `HH:mm` is 24 hour time format <br>
+  e.g. **Mon:1300-1400**
+
 - Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
@@ -98,11 +102,39 @@ or to [Command Summary](#command-summary) for a summary of the commands.
 
 Creates a new contact for a dorm mate.
 
-Format: `add NAME r/ROOM_NUM`
+Format: `add n/NAME p/PHONE_NUMBER`
 
 Examples:
 
-- `add Alice Lim r/02-03`
+- `add Alice Lim p/91234567`
+
+### Add Free Time Tag
+Adds 1 or multiple specified `freeTimeTags`
+
+Format: `addTime INDEX ft/FREE_TIME_TAG`
+
+Examples:
+- Single input: `addTime 1 ft/Mon:1300-1400`
+- Multiple input: `addTime 1 ft/Mon:1300-1400 ft/Tue:1300-1400`
+
+### Delete Free Time Tag
+Deletes 1 or multiple specified `freeTimeTags`
+
+Format: `deleteTime INDEX ft/FREE_TIME_TAG`
+
+Examples:
+- Single input: `deleteTime 1 ft/Mon:1300-1400`
+- Multiple input: `deleteTime 1 ft/Mon:1300-1400 ft/Tue:1300-1400`
+
+### Check who is free
+View all persons that are available on the specified day and time
+
+Format: `whoisfree DAY:TIME`
+- `DAY` is from Mon-Sun
+- `TIME` is 24-hour time format
+
+Example:
+- `whoisfree Mon:1300`
 
 ### Listing all persons : list
 
@@ -112,16 +144,26 @@ Format: `list`
 
 ### Editing a person : edit
 
-Edits an existing person in Dormie.
+Edits the specified fields of an existing person in Dormie.
 
-Format: `edit INDEX n/NAME r/ROOM_NUM`
-
+- Edit function will replace the specified field with the new input
 - Edits the person at the specified INDEX. The index refers to the index number shown in the displayed person list. The index must be a positive integer 1, 2, 3, …​
 - Existing values will be updated to the input values.
+- Minimum 1 parameter must be specified
+
+Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [r/ROOM_NUM] [t/TELEGRAM] [d/DORM_TAG] [ft/FREE_TIME_TAG]`
 
 Examples:
 
-- `edit 1 n/Alex r/05-11` Edits the name and room number of the 1st person to be Alex and 05-11 respectively.
+- `edit 1 n/Alex r/01-05-11` Edits the name and room number of the 1st person to be Alex and 05-11 respectively.
+
+**Important Note**
+- If `freeTimeTags` are edited, the person's `freeTimeTags` will be replaced with the new set of `freeTimeTags`.
+- Example:
+    - Let Joe have a `freeTimeTag`:`Mon:1300-1400` and have the index 1:
+    - `edit 1 ft/`: Will delete the existing `freeTimeTags`
+    - `edit 1 ft/Tue:1300-1400 ft/Wed:1300-1400` Will replace the existing _Monday_ tag with the _Tuesday_ and _Wednesday_ tag.
+
 
 ### Deleting a person : delete
 
