@@ -13,8 +13,7 @@
 
 <HBox id="cardPane" fx:id="cardPane"
   xmlns="http://javafx.com/javafx/17"
-  xmlns:fx="http://javafx.com/fxml/1"
-  maxWidth="1.7976931348623157E308">
+  xmlns:fx="http://javafx.com/fxml/1" maxWidth="1.7976931348623157E308">
   <GridPane HBox.hgrow="ALWAYS">
     <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
@@ -33,26 +32,36 @@
           </Label>
           <Label fx:id="name" text="\$first" styleClass="cell_big_label" />
         </HBox>
-        <HBox>
-          <VBox>
-            <Label text="Dorm:    " styleClass="cell_small_label" />
-            <Label text="Free Time:    " styleClass="cell_small_label" />
-            <Label text="Phone:    " styleClass="cell_small_label" />
-            <Label text="Room Number:    " styleClass="cell_small_label" />
-            <Label text="Email:    " styleClass="cell_small_label" />
-            <Label text="Telegram:    " styleClass="cell_small_label" />
-            <Label text="Birthday:    " styleClass="cell_small_label" />
-          </VBox>
-          <VBox>
+        <VBox>
+          <HBox>
+            <Label text="Dorm" styleClass="cell_small_label" prefWidth= "100" />
             <FlowPane fx:id="dormTag" />
+          </HBox>
+          <HBox>
+            <Label text="Free Time:" styleClass="cell_small_label" prefWidth= "100" />
             <FlowPane fx:id="tags" />
+          </HBox>
+          <HBox>
+            <Label text="Phone:" styleClass="cell_small_label" prefWidth= "100" />
             <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
+          </HBox>
+          <HBox>
+            <Label text="Room Number:" styleClass="cell_small_label" prefWidth= "100" />
             <Label fx:id="roomNumber" styleClass="cell_small_label" text="\$roomNumber" />
+          </HBox>
+          <HBox>
+            <Label text="Email:" styleClass="cell_small_label" prefWidth= "100" />
             <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
+          </HBox>
+          <HBox>
+            <Label text="Telegram:" styleClass="cell_small_label" prefWidth= "100" />
             <Label fx:id="telegram" styleClass="cell_small_label" text="\$telegram" />
+          </HBox>
+          <HBox>
+            <Label text="Birthday:" styleClass="cell_small_label" prefWidth= "100" />
             <Label fx:id="birthday" styleClass="cell_small_label" text="\$birthday" />
-          </VBox>
-        </HBox>
+          </HBox>
+        </VBox>
       </VBox>
       <HBox alignment="CENTER_RIGHT" minHeight="105" GridPane.columnIndex="1">
         <ImageView fx:id="birthdayIcon" fitHeight="25" preserveRatio="true">
