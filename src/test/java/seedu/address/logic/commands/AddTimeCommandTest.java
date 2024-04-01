@@ -76,7 +76,30 @@ public class AddTimeCommandTest {
     }
 
     /**
-     * Edit filtered list where valid free time is specified
+     * Edit filtered list where valid new free time is specified
+     */
+    @Test
+    public void execute_newFreeTime_success() {
+        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+        // ensures that outOfBoundIndex is still in bounds of address book list
+        assertTrue(INDEX_FIRST_PERSON.getZeroBased() < model.getAddressBook().getPersonList().size());
+
+        AddTimeCommand addTimeCommand = new AddTimeCommand(INDEX_FIRST_PERSON,
+                new AddPersonFreeTimeDescriptorBuilder().withFreeTimeTags(VALID_FREE_TIME_TAG_BOB).build());
+
+        Person editedPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+
+        String expectedMessage = String.format(AddTimeCommand.MESSAGE_ADD_FREETIME_SUCCESS,
+                Messages.format(editedPerson));
+
+        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
+
+        assertCommandSuccess(addTimeCommand, model, expectedMessage, expectedModel);
+    }
+
+    /**
+     * Edit filtered list where valid duplicate free time is specified
      */
     @Test
     public void execute_newDuplicateFreeTime_success() {
