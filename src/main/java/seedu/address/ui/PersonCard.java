@@ -63,33 +63,10 @@ public class PersonCard extends UiPart<Region> {
         name.setText(person.getName().fullName);
         phone.setText(person.getPhone().value);
 
-        if (person.getRoomNumber() != null) {
-            roomNumber.setText(person.getRoomNumber().toString());
-        } else {
-            roomNumber.setVisible(false);
-            roomNumber.setManaged(false);
-        }
-
-        if (person.getTelegram() != null) {
-            telegram.setText(person.getTelegram().value);
-        } else {
-            telegram.setVisible(false);
-            telegram.setManaged(false);
-        }
-
-        if (person.getBirthday() != null) {
-            birthday.setText(person.getBirthday().toString());
-        } else {
-            birthday.setVisible(false);
-            birthday.setManaged(false);
-        }
-
-        if (person.getEmail() != null) {
-            email.setText(person.getEmail().value);
-        } else {
-            email.setVisible(false);
-            email.setManaged(false);
-        }
+        roomNumber.setText(person.getRoomNumber() != null ? person.getRoomNumber().toString() : "");
+        telegram.setText(person.getTelegram() != null ? "@" + person.getTelegram().value : "");
+        birthday.setText(person.getBirthday() != null ? String.valueOf(person.getBirthday()) : "");
+        email.setText(person.getEmail() != null ? person.getEmail().value : "");
 
         if (person.getDormTag() != null) {
             dormTag.getChildren().add(new Label(person.getDormTag().tagName));
@@ -99,7 +76,7 @@ public class PersonCard extends UiPart<Region> {
                 .sorted()
                 .forEach(freeTag -> tags.getChildren().add(new Label(freeTag.tagName)));
 
-        birthdayIcon.setVisible(person.getRoomNumber() != null ? person.getBirthday().isBirthday() : false);
+        birthdayIcon.setVisible(person.getBirthday() != null ? person.getBirthday().isBirthday() : false);
         changeRoomNumberIcon.setVisible(person.getRoomNumber() != null ? person.getRoomNumber().isOutdated() : false);
     }
 }
