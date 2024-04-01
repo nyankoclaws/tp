@@ -9,8 +9,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.person.Person;
 
-
-
 /**
  * An UI component that displays information of a {@code Person}.
  */
@@ -62,10 +60,33 @@ public class PersonCard extends UiPart<Region> {
         name.setText(person.getName().fullName);
         phone.setText(person.getPhone().value);
 
-        roomNumber.setText(person.getRoomNumber() != null ? person.getRoomNumber().toString() : "");
-        telegram.setText(person.getTelegram() != null ? person.getTelegram().value : "");
-        birthday.setText(person.getBirthday() != null ? String.valueOf(person.getBirthday()) : "");
-        email.setText(person.getEmail() != null ? person.getEmail().value : "");
+        if (person.getRoomNumber() != null) {
+            roomNumber.setText(person.getRoomNumber().toString());
+        } else {
+            roomNumber.setVisible(false);
+            roomNumber.setManaged(false);
+        }
+
+        if (person.getTelegram() != null) {
+            telegram.setText(person.getTelegram().value);
+        } else {
+            telegram.setVisible(false);
+            telegram.setManaged(false);
+        }
+
+        if (person.getBirthday() != null) {
+            birthday.setText(person.getBirthday().toString());
+        } else {
+            birthday.setVisible(false);
+            birthday.setManaged(false);
+        }
+
+        if (person.getEmail() != null) {
+            email.setText(person.getEmail().value);
+        } else {
+            email.setVisible(false);
+            email.setManaged(false);
+        }
 
         if (person.getDormTag() != null) {
             dormTag.getChildren().add(new Label(person.getDormTag().tagName));
