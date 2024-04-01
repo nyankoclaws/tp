@@ -2,6 +2,8 @@ package seedu.address.logic;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.util.Set;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.person.Birthday;
@@ -11,14 +13,18 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.RoomNumber;
 import seedu.address.model.person.Telegram;
+import seedu.address.model.tag.DormTag;
+import seedu.address.model.tag.FreeTimeTag;
 
 public class MessagesTest {
 
     private static final String FORMATTED_ALL_FIELDS_MESSAGE = "Johnny G; Phone: 98765432; "
-            + "Email: john@gmail.com; Room Number: sw-01-01; Telegram: Johnny; Birthday: 01 January 2000";
-    private static final String FORMATTED_ALL_MANDATORY_FIELDS_MESSAGE = "Johnny; Phone: 98765432";
+            + "Email: john@gmail.com; Room Number: sw-01-01; Telegram: Johnny; Birthday: 01 January 2000; "
+            + "Dorm Tag: [PGPR]; Free Time Tags: [Sun:1000-1400]";
+    private static final String FORMATTED_ALL_MANDATORY_FIELDS_MESSAGE = "Johnny; Phone: 98765432; "
+            + "Free Time Tags: [Sun:1000-1400]";
     private static final String FORMATTED_ALL_MANDATORY_AND_SOME_OPTIONAL_FIELDS_MESSAGE = "Johnny; Phone: 98765432; "
-            + "Room Number: sw-01-01; Birthday: 01 January 2000";
+            + "Room Number: sw-01-01; Birthday: 01 January 2000; " + "Free Time Tags: [Sun:1000-1400]";
 
     @Test
     public void format_personWithAllFields_success() {
@@ -28,8 +34,10 @@ public class MessagesTest {
         RoomNumber roomNumber = new RoomNumber("sw-01-01");
         Telegram telegram = new Telegram("Johnny");
         Birthday birthday = new Birthday("01-01-2000");
+        DormTag dormTag = new DormTag("PGPR");
+        Set<FreeTimeTag> freeTimeTag = Set.of(new FreeTimeTag("Sun:1000-1400"));
 
-        Person person = new Person(name, phone, email, roomNumber, telegram, birthday);
+        Person person = new Person(name, phone, email, roomNumber, telegram, birthday, dormTag, freeTimeTag);
         assertMessageSuccess(person, FORMATTED_ALL_FIELDS_MESSAGE);
     }
 
@@ -41,8 +49,10 @@ public class MessagesTest {
         RoomNumber roomNumber = null;
         Telegram telegram = null;
         Birthday birthday = null;
+        DormTag dormTag = null;
+        Set<FreeTimeTag> freeTimeTag = Set.of(new FreeTimeTag("Sun:1000-1400"));
 
-        Person person = new Person(name, phone, email, roomNumber, telegram, birthday);
+        Person person = new Person(name, phone, email, roomNumber, telegram, birthday, dormTag, freeTimeTag);
         assertMessageSuccess(person, FORMATTED_ALL_MANDATORY_FIELDS_MESSAGE);
     }
 
@@ -54,8 +64,10 @@ public class MessagesTest {
         RoomNumber roomNumber = new RoomNumber("sw-01-01");
         Telegram telegram = null;
         Birthday birthday = new Birthday("01-01-2000");
+        DormTag dormTag = null;
+        Set<FreeTimeTag> freeTimeTag = Set.of(new FreeTimeTag("Sun:1000-1400"));
 
-        Person person = new Person(name, phone, email, roomNumber, telegram, birthday);
+        Person person = new Person(name, phone, email, roomNumber, telegram, birthday, dormTag, freeTimeTag);
         assertMessageSuccess(person, FORMATTED_ALL_MANDATORY_AND_SOME_OPTIONAL_FIELDS_MESSAGE);
     }
 

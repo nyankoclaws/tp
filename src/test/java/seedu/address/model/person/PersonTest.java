@@ -7,10 +7,10 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_BIRTHDAY_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ROOMNUMBER_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ROOMNUMBER_BOB_W_DATE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TELEGRAM_BOB;
+import static seedu.address.testutil.TypicalNewPersons.BOB;
 import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.BOB;
 
 import org.junit.jupiter.api.Test;
 
@@ -28,7 +28,7 @@ public class PersonTest {
 
         // same name, all other attributes different -> returns true
         Person editedAlice = new PersonBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
-                .withRoomNumber(VALID_ROOMNUMBER_BOB).withTelegram(VALID_TELEGRAM_BOB)
+                .withRoomNumber(VALID_ROOMNUMBER_BOB_W_DATE).withTelegram(VALID_TELEGRAM_BOB)
                 .withBirthday(VALID_BIRTHDAY_BOB).build();
         assertTrue(ALICE.isSamePerson(editedAlice));
 
@@ -77,7 +77,7 @@ public class PersonTest {
         assertFalse(ALICE.equals(editedAlice));
 
         // different room number -> returns false
-        editedAlice = new PersonBuilder(ALICE).withRoomNumber(VALID_ROOMNUMBER_BOB).build();
+        editedAlice = new PersonBuilder(ALICE).withRoomNumber(VALID_ROOMNUMBER_BOB_W_DATE).build();
         assertFalse(ALICE.equals(editedAlice));
     }
 
@@ -89,7 +89,9 @@ public class PersonTest {
                 null,
                 ALICE.getRoomNumber(),
                 ALICE.getTelegram(),
-                ALICE.getBirthday());
+                ALICE.getBirthday(),
+                ALICE.getDormTag(),
+                ALICE.getTags());
         assertFalse(ALICE.equals(aliceCopyWithoutEmail));
         assertFalse(aliceCopyWithoutEmail.equals(ALICE));
 
@@ -99,7 +101,9 @@ public class PersonTest {
                 ALICE.getEmail(),
                 null,
                 ALICE.getTelegram(),
-                ALICE.getBirthday());
+                ALICE.getBirthday(),
+                ALICE.getDormTag(),
+                ALICE.getTags());
         assertFalse(ALICE.equals(aliceCopyWithoutRoomNumber));
         assertFalse(aliceCopyWithoutRoomNumber.equals(ALICE));
 
@@ -109,7 +113,9 @@ public class PersonTest {
                 ALICE.getEmail(),
                 ALICE.getRoomNumber(),
                 null,
-                ALICE.getBirthday());
+                ALICE.getBirthday(),
+                ALICE.getDormTag(),
+                ALICE.getTags());
         assertFalse(ALICE.equals(aliceCopyWithoutTelegram));
         assertFalse(aliceCopyWithoutTelegram.equals(ALICE));
 
@@ -119,7 +125,9 @@ public class PersonTest {
                 ALICE.getEmail(),
                 ALICE.getRoomNumber(),
                 ALICE.getTelegram(),
-                null);
+                null,
+                ALICE.getDormTag(),
+                ALICE.getTags());
         assertFalse(ALICE.equals(aliceCopyWithoutBirthday));
         assertFalse(aliceCopyWithoutBirthday.equals(ALICE));
     }
@@ -127,8 +135,9 @@ public class PersonTest {
     @Test
     public void toStringMethod() {
         String expected = Person.class.getCanonicalName() + "{name=" + ALICE.getName() + ", phone=" + ALICE.getPhone()
-                + ", email=" + ALICE.getEmail() + ", roomNumber=" + ALICE.getRoomNumber()
-                + ", telegram=" + ALICE.getTelegram() + ", birthday=" + ALICE.getBirthday() + "}";
+                + ", tags=[[Mon:1000-1400]]" + ", email=" + ALICE.getEmail() + ", roomNumber=" + ALICE.getRoomNumber()
+                + ", telegram=" + ALICE.getTelegram() + ", birthday=" + ALICE.getBirthday()
+                + ", dormTag=" + ALICE.getDormTag() + "}";
         assertEquals(expected, ALICE.toString());
     }
 }
