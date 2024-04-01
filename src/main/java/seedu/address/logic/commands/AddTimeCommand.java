@@ -100,8 +100,10 @@ public class AddTimeCommand extends Command {
         } else {
             String trimmedFreeTimeTag = freeTimeTag.toString().substring(1, freeTimeTag.toString().length() - 1);
             String day = trimmedFreeTimeTag.substring(0, 3);
-            Integer dayNum = 1;
-            if (day.equals("Tue")) {
+            Integer dayNum;
+            if (day.equals("Mon")) {
+                dayNum = 1;
+            } else if (day.equals("Tue")) {
                 dayNum = 2;
             } else if (day.equals("Wed")) {
                 dayNum = 3;
@@ -119,8 +121,10 @@ public class AddTimeCommand extends Command {
 
             for (FreeTimeTag tag : freeTimeTags) {
                 String trimmedTag = tag.toString().substring(1, tag.toString().length() - 1);
-                Integer currDayNum = 1;
-                if (trimmedTag.substring(0, 3).equals("Tue")) {
+                Integer currDayNum;
+                if (trimmedTag.substring(0, 3).equals("Mon")) {
+                    currDayNum = 1;
+                } else if (trimmedTag.substring(0, 3).equals("Tue")) {
                     currDayNum = 2;
                 } else if (trimmedTag.substring(0, 3).equals("Wed")) {
                     currDayNum = 3;
@@ -144,8 +148,12 @@ public class AddTimeCommand extends Command {
                     Integer currentStart = Integer.parseInt(trimmedTag.substring(4, 8));
                     Integer currentEnd = Integer.parseInt(trimmedTag.substring(9, 13));
 
-                    if (currentStart > newStart) {
+                    if (newStart < currentStart) {
                         updatedTags.add(tag);
+                        if (!added) {
+                            updatedTags.add(freeTimeTag);
+                            added = true;
+                        }
                     } else if (currentStart.equals(newStart)) {
                         updatedTags.add(tag);
                         if (!added) {
