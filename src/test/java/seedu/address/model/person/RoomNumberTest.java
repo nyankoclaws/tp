@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 import org.junit.jupiter.api.Test;
 
@@ -34,6 +35,28 @@ public class RoomNumberTest {
         assertTrue(RoomNumber.isValidRoomNumber("sw-12-12"));
         assertTrue(RoomNumber.isValidRoomNumber("kw-01-02"));
         assertTrue(RoomNumber.isValidRoomNumber("kms-03-01"));
+    }
+
+    @Test
+    public void isValidRoomNumberWDate() {
+        // null address
+        assertThrows(NullPointerException.class, () -> RoomNumber.isValidRoomNumberWDate(null));
+        assertFalse(RoomNumber.isValidRoomNumberWDate("sw-12-12"));
+
+        LocalDate today = LocalDate.now();
+        LocalDate yesterday = today.minusDays(1);
+        LocalDate tomorrow = today.plusDays(1);
+
+        // valid addresses & dates
+        assertTrue(RoomNumber.isValidRoomNumberWDate("sw-12-12 " + today.toString()));
+        assertTrue(RoomNumber.isValidRoomNumberWDate("kw-01-02 " + tomorrow.toString()));
+        assertTrue(RoomNumber.isValidRoomNumberWDate("kms-03-01 " + yesterday.toString()));
+
+        // valid addresses & invalid date formats
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MM yyyy");
+        assertFalse(RoomNumber.isValidRoomNumberWDate("sw-12-12 " + today.format(formatter)));
+        assertFalse(RoomNumber.isValidRoomNumberWDate("kw-01-02 " + tomorrow.format(formatter)));
+        assertFalse(RoomNumber.isValidRoomNumberWDate("kms-03-01 " + yesterday.format(formatter)));
     }
 
     @Test
