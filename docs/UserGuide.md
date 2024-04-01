@@ -25,7 +25,7 @@ Action     | Format, Examples
 **Find**   | `find KEYWORD`<br> e.g., `find Alice`
 **Help**   | `help`
 **List**   | `list`
-**Who Is Free**| `whoisfree time`<br> e.g., `whoisfree Mon:0800`
+**Who Is Free**| `whoisfree TIME`<br> e.g., `whoisfree Mon:0800`
 
 --------------------------------------------------------------------------------------------------------------------
 
