@@ -99,7 +99,7 @@ public class RoomNumber {
      * Returns true if a given date is before today.
      */
     public static boolean isValidDate(LocalDate test) {
-        return test.isBefore(LocalDate.now());
+        return !test.isAfter(LocalDate.now());
     }
 
     /**

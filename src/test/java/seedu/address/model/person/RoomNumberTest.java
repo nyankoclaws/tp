@@ -37,6 +37,18 @@ public class RoomNumberTest {
     }
 
     @Test
+    public void isValidDate() {
+        LocalDate today = LocalDate.now();
+        assertTrue(RoomNumber.isValidDate(today));
+
+        LocalDate yesterday = today.minusDays(1);
+        assertTrue(RoomNumber.isValidDate(yesterday));
+
+        LocalDate tomorrow = today.plusDays(1);
+        assertFalse(RoomNumber.isValidDate(tomorrow));
+    }
+
+    @Test
     public void isOutdated() {
         RoomNumber roomNumber = new RoomNumber("sw-01-01");
         assertFalse(roomNumber.isOutdated());
