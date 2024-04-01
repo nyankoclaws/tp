@@ -80,7 +80,7 @@ public class PersonCard extends UiPart<Region> {
                 .sorted(Comparator.comparing(freeTag -> freeTag.tagName))
                 .forEach(freeTag -> tags.getChildren().add(new Label(freeTag.tagName)));
 
-        birthdayIcon.setVisible(person.getBirthday().isBirthday());
-        changeRoomNumberIcon.setVisible(person.getRoomNumber().isOutdated());
+        birthdayIcon.setVisible(person.getRoomNumber() != null ? person.getBirthday().isBirthday() : false);
+        changeRoomNumberIcon.setVisible(person.getRoomNumber() != null ? person.getRoomNumber().isOutdated() : false);
     }
 }
