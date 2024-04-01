@@ -31,7 +31,7 @@ public class Main {
         // the classpath instead of a module.
         // Our application does not use Java modules yet. Even if it did, modules are ignored when
         // packed into a FAT Jar file (as we do), which means this warning will persist even then.
-        // The warning however, can be safely ignored. Thus, the following log informs
+        // The warning however, addcan be safely ignored. Thus, the following log informs
         // the user (if looking at the log output) that the said warning appearing in the log
         // can be ignored.
 

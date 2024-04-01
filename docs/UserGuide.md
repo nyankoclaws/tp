@@ -66,6 +66,26 @@ Dormie is a **desktop app for managing contacts, optimized for use via a Command
 
 ---
 
+## Using This User Guide
+### Text Types
+Type                                | What it means
+-----------                         |----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+**Bold**                            | Command word <br> e.g., **add**, which adds a new contact
+`Code Block`                        | A line of command that can be entered into Dormie's input field <br> e.g., `add n/John Doe p/98765432 e/johnd@example.com r/sw-01-01 t/johnDoe b/12/12/2000 ft/Mon:1300-1400`
+\<value\>                           | Value for the respective field <br> e.g., `add n/<name> p/<phoneNumber> e/<email> r/<roomNumber> t/<telegramHandle> b/<birthday>`
+\[optionalField\]                   | Indicates an optional field <br> e.g., `add n/<name> [t/<telegramHandle>]`, where telegramHandle is an optional field.
+
+### Searching for Keywords (Ctrl-F)
+1. Press the Ctrl + F keys on your keyboard.
+2. A search bar or dialog box should appear on your screen.
+3. Type the keyword or phrase you want to search for in the search bar or dialog box. 
+4. Press Enter or click on the "Find" button to start the search. 
+5. The document viewer or web browser will highlight all instances of the keyword or phrase found within the document. 
+6. To navigate through the search results, you can use the arrow buttons or options provided by the search feature. 
+7. Once you have finished reviewing the search results, you can close the search bar or dialog box to return to your document.
+
+--------------------------------------------------------------------------------------------------------------------
+
 ## Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
