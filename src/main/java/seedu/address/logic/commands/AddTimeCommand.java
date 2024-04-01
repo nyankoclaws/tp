@@ -37,8 +37,8 @@ public class AddTimeCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_FREETIMETAG + "Mon:1330-1400"
             + PREFIX_FREETIMETAG + "Mon:1200-1300\n"
-            + "Note: You can add multiple free time tags at once, and they need not be in order! " +
-            "(Refer to the example above) ";
+            + "Note: You can add multiple free time tags at once, and they need not be in order! "
+            + "(Refer to the example above) ";
 
     public static final String MESSAGE_ADD_FREETIME_SUCCESS = "Added free time to person: %1$s";
 
