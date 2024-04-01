@@ -1,9 +1,8 @@
 package seedu.address.ui;
 
-import java.util.Comparator;
-
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
@@ -48,6 +47,10 @@ public class PersonCard extends UiPart<Region> {
     private FlowPane dormTag;
     @FXML
     private FlowPane tags;
+    @FXML
+    private ImageView birthdayIcon;
+    @FXML
+    private ImageView changeRoomNumberIcon;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to
@@ -93,7 +96,10 @@ public class PersonCard extends UiPart<Region> {
         }
 
         person.getTags().stream()
-                .sorted(Comparator.comparing(freeTag -> freeTag.tagName))
+                .sorted()
                 .forEach(freeTag -> tags.getChildren().add(new Label(freeTag.tagName)));
+
+        birthdayIcon.setVisible(person.getRoomNumber() != null ? person.getBirthday().isBirthday() : false);
+        changeRoomNumberIcon.setVisible(person.getRoomNumber() != null ? person.getRoomNumber().isOutdated() : false);
     }
 }

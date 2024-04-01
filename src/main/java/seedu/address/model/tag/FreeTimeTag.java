@@ -6,7 +6,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 /**
  * Represents a Free Time Tag in Dormie.
  */
-public class FreeTimeTag extends Tag {
+public class FreeTimeTag extends Tag implements Comparable<FreeTimeTag> {
 
     public static final String MESSAGE_CONSTRAINTS = "Free Time Tag should be Mon-Sun:HHmm-HHmm (24hr format)";
     public static final String VALIDATION_REGEX =
@@ -48,6 +48,64 @@ public class FreeTimeTag extends Tag {
         String end = time[1];
         String currentTimeStamp = currentTime.substring(4);
         return currentTimeStamp.compareTo(start) >= 0 && currentTimeStamp.compareTo(end) <= 0;
+    }
+
+    @Override
+    public int compareTo(FreeTimeTag other) {
+        String trimmedThis = this.toString().substring(1, this.toString().length() - 1);
+        String thisDay = trimmedThis.substring(0, 3);
+        Integer thisDayNum;
+        if (thisDay.equals("Mon")) {
+            thisDayNum = 1;
+        } else if (thisDay.equals("Tue")) {
+            thisDayNum = 2;
+        } else if (thisDay.equals("Wed")) {
+            thisDayNum = 3;
+        } else if (thisDay.equals("Thu")) {
+            thisDayNum = 4;
+        } else if (thisDay.equals("Fri")) {
+            thisDayNum = 5;
+        } else if (thisDay.equals("Sat")) {
+            thisDayNum = 6;
+        } else {
+            thisDayNum = 7;
+        }
+        Integer thisStart = Integer.parseInt(trimmedThis.substring(4, 8));
+        Integer thisEnd = Integer.parseInt(trimmedThis.substring(9, 13));
+
+        String trimmedOther = other.toString().substring(1, other.toString().length() - 1);
+        Integer otherStart = Integer.parseInt(trimmedOther.substring(4, 8));
+        Integer otherEnd = Integer.parseInt(trimmedOther.substring(9, 13));
+        Integer otherDayNum;
+        if (trimmedOther.substring(0, 3).equals("Mon")) {
+            otherDayNum = 1;
+        } else if (trimmedOther.substring(0, 3).equals("Tue")) {
+            otherDayNum = 2;
+        } else if (trimmedOther.substring(0, 3).equals("Wed")) {
+            otherDayNum = 3;
+        } else if (trimmedOther.substring(0, 3).equals("Thu")) {
+            otherDayNum = 4;
+        } else if (trimmedOther.substring(0, 3).equals("Fri")) {
+            otherDayNum = 5;
+        } else if (trimmedOther.substring(0, 3).equals("Sat")) {
+            otherDayNum = 6;
+        } else {
+            otherDayNum = 7;
+        }
+
+        if (thisDayNum < otherDayNum) {
+            return -1;
+        } else if (thisDayNum.equals(otherDayNum)) {
+            if (thisStart < otherStart) {
+                return -1;
+            } else if ((thisStart.equals(otherStart)) && (thisEnd < otherEnd)) {
+                return -1;
+            } else {
+                return 1;
+            }
+        } else {
+            return 1;
+        }
     }
 
     @Override
