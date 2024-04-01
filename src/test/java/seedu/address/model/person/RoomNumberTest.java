@@ -102,11 +102,13 @@ public class RoomNumberTest {
 
     @Test
     public void toStringWDate() {
+        // Room number with today lastModified
         String roomNum = "sw-01-01";
         RoomNumber roomNumber = new RoomNumber(roomNum);
         String expected = roomNum + " " + LocalDate.now().toString();
         assertTrue(roomNumber.toStringWDate().equals(expected));
 
+        // Room number with set lastModified
         String dateStr = "2022-05-02";
         LocalDate date1 = LocalDate.parse(dateStr);
         RoomNumber roomNumber1 = new RoomNumber(roomNum, date1);
