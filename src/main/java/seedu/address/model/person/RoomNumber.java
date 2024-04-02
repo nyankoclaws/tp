@@ -38,34 +38,19 @@ public class RoomNumber {
 
     /**
      * Constructs an {@code RoomNumber}.
+     * Sets lastModified date to today.
      *
      * @param roomNumber A valid room number.
      */
     public RoomNumber(String roomNumber) {
-        this(roomNumber, LocalDate.now());
+        this(roomNumber == null ? null : roomNumber + " " + LocalDate.now().toString(), true);
     }
 
     /**
      * Constructs an {@code RoomNumber}.
+     * For backend use, allowing lastModified dates
      *
-     * @param roomNumber A valid room number.
-     * @param lastModified A valid room number.
-     */
-    public RoomNumber(String roomNumber, LocalDate lastModified) {
-        requireNonNull(roomNumber);
-        checkArgument(isValidRoomNumber(roomNumber), MESSAGE_CONSTRAINTS);
-        Matcher matcher = Pattern.compile(VALIDATION_REGEX).matcher(roomNumber);
-        matcher.find();
-        this.block = matcher.group(1);
-        this.floor = matcher.group(2);
-        this.roomNumber = matcher.group(3);
-        this.lastModified = lastModified;
-    }
-
-    /**
-     * Constructs an {@code RoomNumber}.
-     *
-     * @param roomNumber A valid room number.
+     * @param roomNumber A valid room number with lastModified date.
      * @param flag Indicator to process date from roomNumber.
      */
     public RoomNumber(String roomNumber, boolean flag) {
