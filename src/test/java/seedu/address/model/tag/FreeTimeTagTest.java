@@ -7,6 +7,13 @@ import org.junit.jupiter.api.Test;
 
 public class FreeTimeTagTest {
     @Test
+    public void isValidTimeInterval() {
+        assertTrue(FreeTimeTag.isValidTimeInterval("Mon:0700-0900")); // Start > End
+        assertFalse(FreeTimeTag.isValidTimeInterval("Mon:0700-0700")); // Start == End
+        assertFalse(FreeTimeTag.isValidTimeInterval("Mon:0701-0700")); // Start < End
+    }
+
+    @Test
     public void isContained() {
         FreeTimeTag freeTimeTag = new FreeTimeTag("Mon:0700-0900");
 
