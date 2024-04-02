@@ -85,8 +85,8 @@ or to [Command Summary](#command-summary) for a summary of the commands.
 - Items in square brackets are optional.<br>
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
-- Free Time Tags are in the following format: `DDD:HH:mm` <br>
-- `DDD` is from Mon-Sun, `HH:mm` is 24 hour time format <br>
+- Free Time Tags are in the following format: `DDD:HHmm-HHmm` <br>
+- `DDD` is from Mon-Sun, `HHmm` is 24 hour time format <br>
   e.g. **Mon:1300-1400**
 
 - Parameters can be in any order.<br>
