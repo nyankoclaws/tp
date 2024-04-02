@@ -9,6 +9,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class FreeTimeTag extends Tag implements Comparable<FreeTimeTag> {
 
     public static final String MESSAGE_CONSTRAINTS = "Free Time Tag should be Mon-Sun:HHmm-HHmm (24hr format)";
+
+    public static final String MESSAGE_INVALID_TIME_INTERVAL = "Start time should be earlier than End time";
     public static final String VALIDATION_REGEX =
             "^(Mon|Tue|Wed|Thu|Fri|Sat|Sun):(0[0-9]|1[0-9]|2[0-3])([0-5][0-9])-(0[0-9]|1[0-9]|2[0-3])([0-5][0-9])$";
 
@@ -20,8 +22,23 @@ public class FreeTimeTag extends Tag implements Comparable<FreeTimeTag> {
     public FreeTimeTag(String tagName) {
         super(tagName);
         checkArgument(isValidTagName(tagName), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidTimeInterval(tagName), MESSAGE_INVALID_TIME_INTERVAL);
     }
 
+    /**
+     * Checks if the start time is before the end time
+     *
+     * @param input A valid free time tag
+     * @return true if the start time is before the end time
+     */
+    public static boolean isValidTimeInterval(String input) {
+        String[] split = input.split("-");
+        String startString = split[0];
+        String endString = split[1];
+        int start = Integer.parseInt(startString.substring(4));
+        int end = Integer.parseInt(endString);
+        return start < end;
+    }
     /**
      * Returns true if a given string is a valid tag name.
      */
