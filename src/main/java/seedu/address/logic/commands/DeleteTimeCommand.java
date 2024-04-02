@@ -81,30 +81,19 @@ public class DeleteTimeCommand extends Command {
             throw new CommandException(Messages.MESSAGE_NO_FREETIME_SPECIFIED);
         }
 
-        FreeTimeTag freeTimeTag = editPersonDescriptor.getTags().toArray(new FreeTimeTag[1])[0];
+        Set<FreeTimeTag> deleteFreeTimeTags = editPersonDescriptor.getTags();
 
-        if (freeTimeTag == null) {
+        if (deleteFreeTimeTags == null) {
             throw new CommandException(Messages.MESSAGE_NO_FREETIME_SPECIFIED);
         }
 
         Set<FreeTimeTag> freeTimeTags = personToEdit.getTags();
+        Set<FreeTimeTag> updatedFreeTimeTags = new HashSet<>();
 
-        Set<FreeTimeTag> updatedTags = new HashSet<>();
-
-        if (freeTimeTags.size() > 0) {
-            String trimmedFreeTimeTag = freeTimeTag.toString().substring(1, freeTimeTag.toString().length() - 1);
-            String day = trimmedFreeTimeTag.substring(0, 3);
-            Integer newStart = Integer.parseInt(trimmedFreeTimeTag.substring(4, 8));
-            Integer newEnd = Integer.parseInt(trimmedFreeTimeTag.substring(9, 13));
-
-            for (FreeTimeTag tag : freeTimeTags) {
-                String trimmedTag = tag.toString().substring(1, tag.toString().length() - 1);
-                Integer currentStart = Integer.parseInt(trimmedTag.substring(4, 8));
-                Integer currentEnd = Integer.parseInt(trimmedTag.substring(9, 13));
-
-                if (!(trimmedTag.substring(0, 3).equals(day)) || !(newStart.equals(currentStart))
-                        || !(newEnd.equals(currentEnd))) {
-                    updatedTags.add(tag);
+        if (freeTimeTags != null) {
+            for (FreeTimeTag freeTimeTag : freeTimeTags) {
+                if (!deleteFreeTimeTags.contains(freeTimeTag)) {
+                    updatedFreeTimeTags.add(freeTimeTag);
                 }
             }
         }
@@ -118,7 +107,7 @@ public class DeleteTimeCommand extends Command {
         DormTag updatedDormTag = personToEdit.getDormTag();
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedRoomNumber, updatedTelegram,
-                updatedBirthday, updatedDormTag, updatedTags);
+                updatedBirthday, updatedDormTag, updatedFreeTimeTags);
     }
 
     @Override
