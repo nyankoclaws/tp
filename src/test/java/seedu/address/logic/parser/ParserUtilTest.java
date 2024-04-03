@@ -193,7 +193,7 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void testParseFreeTimeTag_ValidTag() {
+    public void testParseFreeTimeTag_validTag() {
         String validTag = "Mon:0900-1700";
         try {
             FreeTimeTag freeTimeTag = ParserUtil.parseFreeTimeTag(validTag);
@@ -204,7 +204,7 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void testParseFreeTimeTag_InvalidTagName() {
+    public void testParseFreeTimeTag_invalidTagName() {
         String invalidTag = "Invalid Tag";
         try {
             ParserUtil.parseFreeTimeTag(invalidTag);
@@ -216,7 +216,7 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void testParseFreeTimeTag_InvalidTimeInterval() {
+    public void testParseFreeTimeTag_invalidTimeInterval() {
         String invalidTag = "Mon:2300-1700";
         try {
             ParserUtil.parseFreeTimeTag(invalidTag);
