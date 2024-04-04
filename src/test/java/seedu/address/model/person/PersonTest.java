@@ -4,7 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_BIRTHDAY_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DORM_TAG_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_FREE_TIME_TAG_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ROOMNUMBER_BOB_W_DATE;
@@ -19,31 +21,51 @@ import seedu.address.testutil.PersonBuilder;
 public class PersonTest {
 
     @Test
-    public void isSamePerson() {
-        // same object -> returns true
+    public void isSamePerson_trueCases_assertTrue() {
+        // same object
         assertTrue(ALICE.isSamePerson(ALICE));
 
-        // null -> returns false
+        // all attributes same
+        Person sameAlice = new PersonBuilder(ALICE).build();
+        assertTrue(ALICE.isSamePerson(sameAlice));
+
+        // same phone, all other attributes different
+        Person editedPhoneAlice = new PersonBuilder(ALICE).withPhone(VALID_PHONE_BOB).build();
+        assertTrue(BOB.isSamePerson(editedPhoneAlice));
+
+        // same email, all other attributes different
+        Person editedEmailAlice = new PersonBuilder(ALICE).withEmail(VALID_EMAIL_BOB).build();
+        assertTrue(BOB.isSamePerson(editedEmailAlice));
+
+        // same telegram, all other attributes different
+        Person editedTelegramAlice = new PersonBuilder(ALICE).withTelegram(VALID_TELEGRAM_BOB).build();
+        assertTrue(BOB.isSamePerson(editedTelegramAlice));
+    }
+
+    @Test
+    public void isSamePerson_falseCases_assertFalse() {
+        // null
         assertFalse(ALICE.isSamePerson(null));
 
-        // same name, all other attributes different -> returns true
-        Person editedAlice = new PersonBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
-                .withRoomNumber(VALID_ROOMNUMBER_BOB_W_DATE).withTelegram(VALID_TELEGRAM_BOB)
-                .withBirthday(VALID_BIRTHDAY_BOB).build();
-        assertTrue(ALICE.isSamePerson(editedAlice));
+        // same name, all other attributes different
+        Person editedNameAlice = new PersonBuilder(ALICE).withName(VALID_NAME_BOB).build();
+        assertFalse(BOB.isSamePerson(editedNameAlice));
 
-        // different name, all other attributes same -> returns false
-        editedAlice = new PersonBuilder(ALICE).withName(VALID_NAME_BOB).build();
-        assertFalse(ALICE.isSamePerson(editedAlice));
+        // same birthday, all other attributes different
+        Person editedBirthdayAlice = new PersonBuilder(ALICE).withBirthday(VALID_BIRTHDAY_BOB).build();
+        assertFalse(BOB.isSamePerson(editedBirthdayAlice));
 
-        // name differs in case, all other attributes same -> returns false
-        Person editedBob = new PersonBuilder(BOB).withName(VALID_NAME_BOB.toLowerCase()).build();
-        assertFalse(BOB.isSamePerson(editedBob));
+        // same room number, all other attributes different
+        Person editedRoomNumberAlice = new PersonBuilder(ALICE).withRoomNumber(VALID_ROOMNUMBER_BOB_W_DATE).build();
+        assertFalse(BOB.isSamePerson(editedRoomNumberAlice));
 
-        // name has trailing spaces, all other attributes same -> returns false
-        String nameWithTrailingSpaces = VALID_NAME_BOB + " ";
-        editedBob = new PersonBuilder(BOB).withName(nameWithTrailingSpaces).build();
-        assertFalse(BOB.isSamePerson(editedBob));
+        // same dorm, all other attributes different
+        Person editedDormAlice = new PersonBuilder(ALICE).withDormTag(VALID_DORM_TAG_BOB).build();
+        assertFalse(BOB.isSamePerson(editedDormAlice));
+
+        // same free time, all other attributes different
+        Person editedFreeTimeAlice = new PersonBuilder(ALICE).withFreeTimeTags(VALID_FREE_TIME_TAG_BOB).build();
+        assertFalse(BOB.isSamePerson(editedFreeTimeAlice));
     }
 
     @Test
