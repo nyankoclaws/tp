@@ -34,31 +34,31 @@
         </HBox>
         <VBox>
           <HBox>
-            <Label text="Dorm:" styleClass="cell_small_label" prefWidth= "100" />
+            <Label text="Dorm:" styleClass="cell_small_label" minWidth= "100" />
             <FlowPane fx:id="dormTag" />
           </HBox>
           <HBox>
-            <Label text="Free Time:" styleClass="cell_small_label" prefWidth= "100" />
+            <Label text="Free Time:" styleClass="cell_small_label" minWidth= "100" />
             <FlowPane fx:id="tags" />
           </HBox>
           <HBox>
-            <Label text="Phone:" styleClass="cell_small_label" prefWidth= "100" />
+            <Label text="Phone:" styleClass="cell_small_label" minWidth= "100" />
             <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
           </HBox>
           <HBox>
-            <Label text="Room Number:" styleClass="cell_small_label" prefWidth= "100" />
+            <Label text="Room Number:" styleClass="cell_small_label" minWidth= "100" />
             <Label fx:id="roomNumber" styleClass="cell_small_label" text="\$roomNumber" />
           </HBox>
           <HBox>
-            <Label text="Email:" styleClass="cell_small_label" prefWidth= "100" />
+            <Label text="Email:" styleClass="cell_small_label" minWidth= "100" />
             <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
           </HBox>
           <HBox>
-            <Label text="Telegram:" styleClass="cell_small_label" prefWidth= "100" />
+            <Label text="Telegram:" styleClass="cell_small_label" minWidth= "100" />
             <Label fx:id="telegram" styleClass="cell_small_label" text="\$telegram" />
           </HBox>
           <HBox>
-            <Label text="Birthday:" styleClass="cell_small_label" prefWidth= "100" />
+            <Label text="Birthday:" styleClass="cell_small_label" minWidth= "100" />
             <Label fx:id="birthday" styleClass="cell_small_label" text="\$birthday" />
           </HBox>
         </VBox>
