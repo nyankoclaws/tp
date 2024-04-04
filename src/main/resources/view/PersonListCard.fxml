@@ -34,7 +34,7 @@
         </HBox>
         <VBox>
           <HBox>
-            <Label text="Dorm" styleClass="cell_small_label" prefWidth= "100" />
+            <Label text="Dorm:" styleClass="cell_small_label" prefWidth= "100" />
             <FlowPane fx:id="dormTag" />
           </HBox>
           <HBox>

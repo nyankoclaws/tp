@@ -61,7 +61,8 @@ public class EditCommand extends Command {
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited person: %1$s";
     public static final String MESSAGE_MULTIEDIT_FAIL = "%1$s cannot be edited for multiple persons at once.";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_PERSON = "A person with same phone, email, or telegram, "
+            + "has already exists in the address book.";
 
     private final Set<Index> indices;
     private final EditPersonDescriptor editPersonDescriptor;

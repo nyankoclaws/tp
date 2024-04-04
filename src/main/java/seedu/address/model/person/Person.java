@@ -95,16 +95,34 @@ public class Person {
     }
 
     /**
-     * Returns true if both persons have the same name.
-     * This defines a weaker notion of equality between two persons.
+     * Returns true if both persons have the same phone, email, or telegram.
+     * This defines a weaker notion of equality between two persons,
+     * by assuming that phone, email, or telegram is unique for each person.
      */
     public boolean isSamePerson(Person otherPerson) {
         if (otherPerson == this) {
             return true;
         }
 
-        return otherPerson != null
-                && otherPerson.getName().equals(getName());
+        if (otherPerson == null) {
+            return false;
+        }
+
+        boolean isSame = false;
+
+        // Check for mandatory fields
+        isSame = isSame || otherPerson.getPhone().equals(getPhone());
+
+        // Check for optional fields
+        if (otherPerson.getEmail() != null && getEmail() != null) {
+            isSame = isSame || otherPerson.getEmail().equals(getEmail());
+        }
+
+        if (otherPerson.getTelegram() != null && getTelegram() != null) {
+            isSame = isSame || otherPerson.getTelegram().equals(getTelegram());
+        }
+
+        return isSame;
     }
 
     /**
