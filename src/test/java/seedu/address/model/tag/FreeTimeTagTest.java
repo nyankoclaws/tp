@@ -71,7 +71,7 @@ public class FreeTimeTagTest {
 
         // Compares different days
         assertTrue(freeTimeTag1.compareTo(freeTimeTag2) == -1);
-        // assertTrue(freeTimeTag2.compareTo(freeTimeTag1) == -1);
+        assertTrue(freeTimeTag2.compareTo(freeTimeTag1) == 1);
 
         // Compares different start and end timings
         assertTrue(freeTimeTag1.compareTo(freeTimeTag8) == -1);
@@ -79,6 +79,6 @@ public class FreeTimeTagTest {
         assertTrue(freeTimeTag1.compareTo(freeTimeTag9) == -1);
         assertTrue(freeTimeTag9.compareTo(freeTimeTag1) == 1);
         assertTrue(freeTimeTag8.compareTo(freeTimeTag9) == -1);
-        // assertTrue(freeTimeTag9.compareTo(freeTimeTag8) == -1);
+        assertTrue(freeTimeTag9.compareTo(freeTimeTag8) == 1);
     }
 }
