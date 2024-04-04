@@ -13,18 +13,20 @@ Dormie is a **desktop app for managing contacts, optimized for use via a Command
 
 ---
 
-## Command summary
+## Command Summary
 
 Action     | Format, Examples
 -----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 **Add**    | `add n/NAME r/ROOM_NUM​` <br> e.g., `add Alice Lim r/02-03`
-**Clear** | `clear`
+**Clear**  | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit**   | `edit INDEX [n/NAME] [r/ROOM_NUM​]​`<br> e.g.,`edit 1 n/Alex r/05-11`
 **Exit**   | `exit`
 **Find**   | `find KEYWORD`<br> e.g., `find Alice`
 **Help**   | `help`
 **List**   | `list`
+**Add Free Time**| `addTime INDEX ft/TIME`<br> e.g., `addTime 1 ft/Mon:0800-1200`
+**Delete Free Time**| `deleteTime INDEX ft/TIME`<br> e.g., `deleteTime 1 ft/Mon:0800-1200`
 **Who Is Free**| `whoisfree TIME`<br> e.g., `whoisfree Mon:0800`
 
 ---
@@ -49,7 +51,7 @@ Type                                | What it means
 
 ---
 
-## Quick start
+## Quick Start
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
@@ -90,6 +92,20 @@ Type                                | What it means
 
 1. Refer to [Features](#features) below for details of each command
 or to [Command Summary](#command-summary) for a summary of the commands.
+---
+
+## Contact Fields
+
+| Field Name        | Valid Format, Examples                                                                                                                                           |
+|-------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Name**          | Any non-empty String, eg:`Dormie`                                                                                                                                |
+| **Dorm Tag**      | Any non-empty String, eg:`PGPR`                                                                                                                                  |
+| **Free Time Tag** | DDD:HHmm-HHmm, Start Time **must** be earlier than End Time, eg:`Mon:1300-1400`                                                                                  |
+| **Phone**         | Must contain 8 digits, eg:`91234567`                                                                                                                             |
+| **Room Number**   | {block}-{floor}-{room number}, where block and room number are at least 2 alphanumeric characters and floor is strictly 2 alphanumeric characters, eg:`nw-12-12` |
+| **Email**         | Must contain @ and .com, eg:`dormie@example.com`                                                                                                                 |
+| **Telegram**      | Can only contain case-insensitive letters A-Z, digits 0-9, and underscores, with a length between 5 and 32 characters, eg:`dormie_123`                           |
+| **Birthday**      | dd/MM/yyyy", "dd-MM-yyyy", "yyyy/MM/dd", "yyyy-MM-dd, eg:`21/01/2024`, `21-01-2024`, `2024/01/21`, `2024-01-21`                                                  |
 
 ---
 
@@ -115,18 +131,29 @@ or to [Command Summary](#command-summary) for a summary of the commands.
 - Extraneous parameters for commands that do not take in parameters (such as `list`) will be ignored.<br>
   e.g. if the command specifies `list 123`, it will be interpreted as `list`.
 
+- Fields with the format followed by `...` can have more than one copy in the command. <br>
+  e.g. `[ft/FREE TIME TAG]...` means there can be more than one free time tag. 
+
 - If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
   </box>
 
-### Adding a person: add
+### Creates a new contact for a dorm mate
 
-Creates a new contact for a dorm mate.
+Adds a person to Dormie.
 
-Format: `add n/NAME p/PHONE_NUMBER`
+Format: `add n/NAME p/PHONE [e/EMAIL] [r/ROOM NUMBER] [t/TELEGRAM] [b/BIRTHDAY] [d/DORM TAG] [ft/FREE TIME TAG]...`
 
-Examples:
+Command usage examples:
 
-- `add Alice Lim p/91234567`
+- Adding a person with only mandatory fields: `add n/Alice Lim p/91234567`
+- Adding a person with all mandatory fields and some optional fields: `add n/Bob p/88998899 r/21-03-01 ft/Tue:1300-1400 ft/Mon:0900-1200 ft/Tue:0800-1000`
+- Adding a person with all fields: `add n/John Doe p/98765432 e/johnd@example.com r/sw-01-01 t/johnDoe b/12/12/2000 d/PGPR ft/Mon:1300-1400`
+
+Some common cases that considered as invalid inputs:
+
+- Invalid format, e.g. missing spaces
+- Missing mandatory fields (name and phone)
+- Duplicate parameters for fields except free time tags: e.g. having two name in the command
 
 ### Add Free Time Tag
 Adds 1 or multiple specified `freeTimeTags`
@@ -223,7 +250,7 @@ Furthermore, certain edits can cause the Dormie to behave in unexpected ways (e.
 
 ---
 
-## Known issues
+## Known Issues
 
 1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
 
