@@ -129,18 +129,29 @@ or to [Command Summary](#command-summary) for a summary of the commands.
 - Extraneous parameters for commands that do not take in parameters (such as `list`) will be ignored.<br>
   e.g. if the command specifies `list 123`, it will be interpreted as `list`.
 
+- Fields with the format followed by `...` can have more than one copy in the command. <br>
+  e.g. `[ft/FREE TIME TAG]...` means there can be more than one free time tag. 
+
 - If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
   </box>
 
-### Adding a person: add
+### Creates a new contact for a dorm mate
 
-Creates a new contact for a dorm mate.
+Adds a person to Dormie.
 
-Format: `add n/NAME p/PHONE_NUMBER`
+Format: `add n/NAME p/PHONE [e/EMAIL] [r/ROOM NUMBER] [t/TELEGRAM] [b/BIRTHDAY] [d/DORM TAG] [ft/FREE TIME TAG]...`
 
-Examples:
+Command usage examples:
 
-- `add Alice Lim p/91234567`
+- Adding a person with only mandatory fields: `add n/Alice Lim p/91234567`
+- Adding a person with all mandatory fields and some optional fields: `add n/Bob p/88998899 r/21-03-01 ft/Tue:1300-1400 ft/Mon:0900-1200 ft/Tue:0800-1000`
+- Adding a person with all fields: `add n/John Doe p/98765432 e/johnd@example.com r/sw-01-01 t/johnDoe b/12/12/2000 d/PGPR ft/Mon:1300-1400`
+
+Some common cases that considered as invalid inputs:
+
+- Invalid format, e.g. missing spaces
+- Missing mandatory fields (name and phone)
+- Duplicate parameters for fields except free time tags: e.g. having two name in the command
 
 ### Add Free Time Tag
 Adds 1 or multiple specified `freeTimeTags`
