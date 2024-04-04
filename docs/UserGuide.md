@@ -90,6 +90,20 @@ Type                                | What it means
 
 1. Refer to [Features](#features) below for details of each command
 or to [Command Summary](#command-summary) for a summary of the commands.
+---
+
+## Contact Fields
+
+| Field Name        | Valid Format, Examples                                                                                                                                           |
+|-------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Name**          | Any non-empty String, eg:`Dormie`                                                                                                                                |
+| **Dorm Tag**      | Any non-empty String, eg:`PGPR`                                                                                                                                  |
+| **Free Time Tag** | DDD:HHmm-HHmm, Start Time **must** be earlier than End Time, eg:`Mon:1300-1400`                                                                                  |
+| **Phone**         | Must contain 8 digits, eg:`91234567`                                                                                                                             |
+| **Room Number**   | {block}-{floor}-{room number}, where block and room number are at least 2 alphanumeric characters and floor is strictly 2 alphanumeric characters, eg:`nw-12-12` |
+| **Email**         | Must contain @ and .com, eg:`dormie@example.com`                                                                                                                 |
+| **Telegram**      | Can only contain case-insensitive letters A-Z, digits 0-9, and underscores, with a length between 5 and 32 characters, eg:`dormie_123`                           |
+| **Birthday**      | dd/MM/yyyy", "dd-MM-yyyy", "yyyy/MM/dd", "yyyy-MM-dd, eg:`21/01/2024`, `21-01-2024`, `2024/01/21`, `2024-01-21`                                                  |
 
 ---
 
