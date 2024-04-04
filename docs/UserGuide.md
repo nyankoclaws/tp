@@ -118,10 +118,13 @@ or to [Command Summary](#command-summary) for a summary of the commands.
 - Fields with the format followed by `...` can have more than one copy in the command. <br>
   e.g. `[ft/FREE TIME TAG]...` means there can be more than one free time tag. 
 
+- Command keywords for the commands should be exactly the same as demonstration, or else Dormie would not recognize it.
+  e.g. `add` is the command keyword in the add command, where `Add` or `ADD` will not work.
+
 - If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
   </box>
 
-### Creates a new contact for a dorm mate
+### Creates a new contact for a dorm mate : add
 
 Adds a person to Dormie.
 
@@ -139,62 +142,32 @@ Some common cases that considered as invalid inputs:
 - Missing mandatory fields (name and phone)
 - Duplicate parameters for fields except free time tags: e.g. having two name in the command
 
-### Add Free Time Tag
-Adds 1 or multiple specified `freeTimeTags`
+### Add Free Time Tag : addTime
 
-Format: `addTime INDEX ft/FREE_TIME_TAG`
+Adds 1 or multiple specified `freeTimeTags` to the specified person.
 
-Examples:
+Format: `addTime INDEX ft/FREE_TIME_TAG...`
+
+Notes on format:
+
+- The index refers to the index number shown in the displayed person list
+- The index must be a positive integer e.g. 1, 2, 3
+
+Command usage examples:
+
 - Single input: `addTime 1 ft/Mon:1300-1400`
 - Multiple input: `addTime 1 ft/Mon:1300-1400 ft/Tue:1300-1400`
 
-### Delete Free Time Tag
-Deletes 1 or multiple specified `freeTimeTags`
+Future enhancement (not implemented yet):
 
-Format: `deleteTime INDEX ft/FREE_TIME_TAG`
+- The command can be performed on multiple person, 
+  e.g. `addTime 1 2 ft/Mon:1300-1400` will add the free time tag to both the first and second person.
 
-Examples:
-- Single input: `deleteTime 1 ft/Mon:1300-1400`
-- Multiple input: `deleteTime 1 ft/Mon:1300-1400 ft/Tue:1300-1400`
+### Clear the entire contact list : clear
 
-### Check who is free
-View all persons that are available on the specified day and time
+Removes all existing contacts from Dormie.
 
-Format: `whoisfree DAY:TIME`
-- `DAY` is from Mon-Sun
-- `TIME` is 24-hour time format
-
-Example:
-- `whoisfree Mon:1300`
-
-### Listing all persons : list
-
-List all contacts and their details
-
-Format: `list`
-
-### Editing a person : edit
-
-Edits the specified fields of an existing person in Dormie.
-
-- Edit function will replace the specified field with the new input
-- Edits the person at the specified INDEX. The index refers to the index number shown in the displayed person list. The index must be a positive integer 1, 2, 3, …​
-- Existing values will be updated to the input values.
-- Minimum 1 parameter must be specified
-
-Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [r/ROOM_NUM] [t/TELEGRAM] [d/DORM_TAG] [ft/FREE_TIME_TAG]`
-
-Examples:
-
-- `edit 1 n/Alex r/01-05-11` Edits the name and room number of the 1st person to be Alex and 05-11 respectively.
-
-**Important Note**
-- If `freeTimeTags` are edited, the person's `freeTimeTags` will be replaced with the new set of `freeTimeTags`.
-- Example:
-    - Let Joe have a `freeTimeTag`:`Mon:1300-1400` and have the index 1:
-    - `edit 1 ft/`: Will delete the existing `freeTimeTags`
-    - `edit 1 ft/Tue:1300-1400 ft/Wed:1300-1400` Will replace the existing _Monday_ tag with the _Tuesday_ and _Wednesday_ tag.
-
+Format: `clear`
 
 ### Deleting a person : delete
 
@@ -202,13 +175,100 @@ Deletes the specified person from Dormie.
 
 Format: `delete INDEX`
 
-- Deletes the person at the specified INDEX.
-- The index refers to the index number shown in the displayed person list.
-- The index must be a positive integer 1, 2, 3, …​
+Notes on format:
 
-Examples:
+- Deletes the person at the specified INDEX
+- The index refers to the index number shown in the displayed person list
+- The index must be a positive integer e.g. 1, 2, 3
 
-- `delete 2` deletes the 2nd person in Dormie.
+Command usage examples:
+
+- Deletes the 2nd person in Dormie: `delete 2`
+
+### Delete Free Time Tag : deleteTime
+
+Deletes 1 or multiple specified `freeTimeTags` from the specified person.
+
+Format: `deleteTime INDEX ft/FREE_TIME_TAG`
+
+Notes on format:
+
+- The index refers to the index number shown in the displayed person list
+- The index must be a positive integer e.g. 1, 2, 3
+
+Command usage examples:
+
+- Single input: `deleteTime 1 ft/Mon:1300-1400`
+- Multiple input: `deleteTime 1 ft/Mon:1300-1400 ft/Tue:1300-1400`
+
+Future enhancement (not implemented yet):
+
+- The command can be performed on multiple person,
+  e.g. `deleteTime 1 2 ft/Mon:1300-1400` will delete the free time tag from both the first and second person.
+
+### Editing a person : edit
+
+Replaces the specified field(s) of an existing person in Dormie with the new input(s).
+
+Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [r/ROOM_NUM] [t/TELEGRAM] [d/DORM_TAG] [ft/FREE_TIME_TAG]...`
+
+Notes on format:
+
+- Edits the person at the specified INDEX. The index refers to the index number shown in the displayed person list. 
+- The index must be a positive integer e.g. 1, 2, 3
+- Minimum 1 parameter must be specified
+
+Command usage examples:
+
+- Edits the name and room number of the 1st person to be Alex and 05-11 respectively: `edit 1 n/Alex r/01-05-11`
+
+**Important Note**
+- If `freeTimeTags` are edited, the person's `freeTimeTags` will be replaced with the new set of `freeTimeTags`. 
+  Example:
+    - Let Joe have a `freeTimeTag`:`Mon:1300-1400` and have the index 1:
+    - `edit 1 ft/`: Will delete the existing `freeTimeTags`
+    - `edit 1 ft/Tue:1300-1400 ft/Wed:1300-1400` Will replace the existing _Monday_ tag with the _Tuesday_ and _Wednesday_ tag.
+- The edit command can be done on multiple person when the change is only done on dorm tag and / or free time tags.
+
+### End the application : exit
+
+Closes the application.
+
+Format: `exit`
+
+### Filter the contact list by name : find
+
+View all persons with name containing the given keyword. 
+
+Format: `find KEYWORD`
+
+### Provide more detail on existing commands : help
+
+Show a link to the User Guide.
+
+Format: `help`
+
+### Listing all persons in Dormie : list
+
+List all persons in Dormie and their details.
+
+Format: `list`
+
+**Important Note**
+- This command can be used to "reset" the view after using `find`.
+
+### Check who is free : whoisfree
+
+View all persons that are available on the specified day and time.
+
+Format: `whoisfree DAY:TIME`
+
+- `DAY` is from Mon-Sun
+- `TIME` is 24-hour time format
+
+Command usage examples:
+
+- `whoisfree Mon:1300`
 
 ### Saving the data
 
@@ -216,13 +276,12 @@ Dormie data are saved in the hard disk automatically after any command that chan
 
 ### Editing the data file
 
-Dormie data are saved automatically as a JSON file [JAR file location]/data/dormie.json. Advanced users are welcome to update data directly by editing that data file.
+Dormie data are saved automatically as a JSON file [JAR file location]/data/dormie.json. It's possible for advanced users to update data directly by editing that data file.
 
 <box type="warning" seamless>
 
-Caution:
-If your changes to the data file makes its format invalid, Dormie will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.<br>
-Furthermore, certain edits can cause the Dormie to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
+Warning: If the data file is edited wrongly, there is no guarantee that Dormie will behave as expected.
+
 </box>
 
 ---
