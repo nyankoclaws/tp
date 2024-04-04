@@ -13,7 +13,7 @@ Dormie is a **desktop app for managing contacts, optimized for use via a Command
 
 ---
 
-## Command summary
+## Command Summary
 
 Action     | Format, Examples
 -----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -49,7 +49,7 @@ Type                                | What it means
 
 ---
 
-## Quick start
+## Quick Start
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
@@ -237,7 +237,7 @@ Furthermore, certain edits can cause the Dormie to behave in unexpected ways (e.
 
 ---
 
-## Known issues
+## Known Issues
 
 1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
 
