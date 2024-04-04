@@ -13,7 +13,7 @@ Dormie is a **desktop app for managing contacts, optimized for use via a Command
 
 ---
 
-## Command summary
+## Command Summary
 
 | Action     | Format, Examples                                                      |
 | ---------- | --------------------------------------------------------------------- |
@@ -24,7 +24,7 @@ Dormie is a **desktop app for managing contacts, optimized for use via a Command
 
 ---
 
-## Quick start
+## Quick Start
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
