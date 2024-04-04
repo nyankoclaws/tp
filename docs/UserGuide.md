@@ -18,13 +18,15 @@ Dormie is a **desktop app for managing contacts, optimized for use via a Command
 Action     | Format, Examples
 -----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 **Add**    | `add n/NAME r/ROOM_NUM​` <br> e.g., `add Alice Lim r/02-03`
-**Clear** | `clear`
+**Clear**  | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit**   | `edit INDEX [n/NAME] [r/ROOM_NUM​]​`<br> e.g.,`edit 1 n/Alex r/05-11`
 **Exit**   | `exit`
 **Find**   | `find KEYWORD`<br> e.g., `find Alice`
 **Help**   | `help`
 **List**   | `list`
+**Add Free Time**| `addTime INDEX ft/TIME`<br> e.g., `addTime 1 ft/Mon:0800-1200`
+**Delete Free Time**| `deleteTime INDEX ft/TIME`<br> e.g., `deleteTime 1 ft/Mon:0800-1200`
 **Who Is Free**| `whoisfree TIME`<br> e.g., `whoisfree Mon:0800`
 
 ---
