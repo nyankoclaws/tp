@@ -48,7 +48,7 @@ Field                                | Format
 -----------                          |----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Name                                 | Any non-empty String. <br> e.g. `Dormie`.
 Phone Number                         | Must contain 8 digits with no spacing. <br> e.g. `91234567`.
-Email                                | Must contain @ and .com. <br> eg:`dormie@example.com`. 
+Email                                | Must contain @ and .com. <br> eg:`dormie@example.com`.
 Room Number                          | {block}-{floor}-{room number}, where block and room number are at least 2 alphanumeric characters and floor is strictly 2 alphanumeric characters. <br> eg:`nw-12-12`.
 Telegram Handle                      | Can only contain case-insensitive letters A-Z, digits 0-9, and underscores, with a length between 5 and 32 characters, and it **should not** be blank. <br> Note: Do not include the `@` symbol in the input. <br> e.g `dormie_123`.
 Birthday                             | `dd/MM/yyyy`, `dd-MM-yyyy`, `yyyy-MM-dd`, `yyyy/MM/dd`. <br> `dd` is the date of the month, `MM` is the month, `YYYY` is the year. <br> e.g. **30/01/2024**, **30-01-2024**, **2024-01-30**, **2024/01/30** all represent 30 January 2024.
