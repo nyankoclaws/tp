@@ -110,7 +110,10 @@ class JsonAdaptedPerson {
         RoomNumber modelRoomNumber = null;
         if (roomNumber != null) {
             if (!RoomNumber.isValidRoomNumberWDate(roomNumber)) {
-                throw new IllegalValueException(RoomNumber.MESSAGE_CONSTRAINTS);
+                throw new IllegalValueException(RoomNumber.MESSAGE_CONSTRAINTS_DATE);
+            }
+            if (!RoomNumber.isValidDate(roomNumber)) {
+                throw new IllegalValueException(RoomNumber.MESSAGE_CONSTRAINTS_DATE_BEFORE);
             }
             modelRoomNumber = new RoomNumber(roomNumber, true);
         }
