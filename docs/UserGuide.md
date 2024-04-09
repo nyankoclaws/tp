@@ -17,10 +17,10 @@ Dormie is a **desktop app for managing contacts, optimized for use via a Command
 
 Action     | Format, Examples
 -----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-**Add**    | `add n/NAME p/PHONENUMBER` <br> e.g., `add n/Alice Lim p/91234567`
+**Add**    | `add n/NAME p/PHONE_NUMBER [e/EMAIL] [r/ROOM_NUMBER] [t/TELEGRAM_HANDLE] [b/BIRTHDAY] [ft/FREE_TIME]...` <br> e.g., `add n/Alice Lim p/91234567`
 **Clear**  | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit**   | `edit INDEX [n/NAME] [p/PHONENUMBER]`<br> e.g.,`edit 1 n/Alex p/98765432`
+**Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [r/ROOM_NUM] [t/TELEGRAM] [d/DORM_TAG] [ft/FREE_TIME_TAG]`<br> e.g.,`edit 1 n/Alex p/98765432`
 **Exit**   | `exit`
 **Find**   | `find KEYWORD`<br> e.g., `find Alice`
 **Help**   | `help`
@@ -46,12 +46,13 @@ Copying and Pasting from this User Guide | If you are using a PDF version of thi
 ### Format for Fields
 Field                                | Format
 -----------                          |----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-Name                                 | <br> e.g. 
-Phone Number                         | <br> e.g. 
-Email                                | <br> e.g. 
-Room Number                          | <br> e.g. 
-Telegram Handle                      | Can only contain case-insensitive letters A-Z, digits 0-9, and underscores, with a length between 5 and 32 characters, and it **should not** be blank. <br> Note: Do not include the `@` symbol in the input. <br> e.g.
+Name                                 | Any non-empty String. <br> e.g. `Dormie`.
+Phone Number                         | Must contain 8 digits with no spacing. <br> e.g. `91234567`.
+Email                                | Must contain @ and .com. <br> eg:`dormie@example.com`. 
+Room Number                          | {block}-{floor}-{room number}, where block and room number are at least 2 alphanumeric characters and floor is strictly 2 alphanumeric characters. <br> eg:`nw-12-12`.
+Telegram Handle                      | Can only contain case-insensitive letters A-Z, digits 0-9, and underscores, with a length between 5 and 32 characters, and it **should not** be blank. <br> Note: Do not include the `@` symbol in the input. <br> e.g `dormie_123`.
 Birthday                             | `dd/MM/yyyy`, `dd-MM-yyyy`, `yyyy-MM-dd`, `yyyy/MM/dd`. <br> `dd` is the date of the month, `MM` is the month, `YYYY` is the year. <br> e.g. **30/01/2024**, **30-01-2024**, **2024-01-30**, **2024/01/30** all represent 30 January 2024.
+Dorm Tag                             | Any non-empty String. <br> eg. `PGPR`.
 Free Time Tag                        | `DDD:HHmm-HHmm`. <br> `DDD` is from Mon-Sun, `HHmm` is 24 hour time format. <br> e.g. **Mon:1300-1400**.
 
 ### Searching for Keywords (Ctrl-F)
@@ -107,7 +108,7 @@ Free Time Tag                        | `DDD:HHmm-HHmm`. <br> `DDD` is from Mon-S
 ---
 
 ## Features
-### Adding a person: add
+### Adding a person: `add`
 
 Creates a new contact for a dorm mate.
 
@@ -118,69 +119,13 @@ Examples:
 - `add n/John Doe p/98765432 e/johnd@example.com r/sw-01-01 t/johnDoe b/12/12/2000 ft/Mon:1300-1400`
 - `add n/Jane Doe p/97826712 e/janed@example.com r/sw-02-02 t/janeDoe b/11/11/2001 ft/Mon:1000-1200 ft/Tue:1300-1400`
 
-### Add Free Time Tag
-Adds 1 or multiple specified `freeTimeTags`
+### Clearing all persons: `clear`
 
-Format: `addTime INDEX [ft/FREE_TIME_TAG]...`
+Clears all person records.
 
-Examples:
-- Single input: `addTime 1 ft/Mon:1300-1400`
-- Multiple input: `addTime 1 ft/Mon:1300-1400 ft/Tue:1300-1400`
+**WARNING!** After clearing all records, you will not be able to undo the action.
 
-Note:
-- As this is the first version, there is no functionality to merge overlapping free time tags yet.
-
-### Delete Free Time Tag
-Deletes 1 or multiple specified `freeTimeTags`
-
-Format: `deleteTime INDEX [ft/FREE_TIME_TAG]...`
-
-Examples:
-- Single input: `deleteTime 1 ft/Mon:1300-1400`
-- Multiple input: `deleteTime 1 ft/Mon:1300-1400 ft/Tue:1300-1400`
-
-Note:
-- As this is the first version, only free time tags that **exactly** match the interval(s) specified will be deleted.
-
-### Check who is free
-View all persons that are available on the specified day and time
-
-Format: `whoisfree DAY:TIME`
-- `DAY` is from Mon-Sun
-- `TIME` is 24-hour time format
-
-Example:
-- `whoisfree Mon:1300`
-
-### Listing all persons : list
-
-List all contacts and their details
-
-Format: `list`
-
-### Editing a person : edit
-
-Edits the specified fields of an existing person in Dormie.
-
-- Edit function will replace the specified field with the new input
-- Edits the person at the specified INDEX. The index refers to the index number shown in the displayed person list. The index must be a positive integer 1, 2, 3, …​
-- Existing values will be updated to the input values.
-- Minimum 1 parameter must be specified
-
-Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [r/ROOM_NUM] [t/TELEGRAM] [d/DORM_TAG] [ft/FREE_TIME_TAG]`
-
-Examples:
-- `edit 1 n/Alex r/01-05-11` Edits the name and room number of the 1st person to be Alex and 05-11 respectively.
-
-**Important Note**
-- No 2 people can share the same `phone number`.
-- If `freeTimeTags` are edited, the person's `freeTimeTags` will be replaced with the new set of `freeTimeTags`.
-- Example:
-    - Let Joe have a `freeTimeTag`:`Mon:1300-1400` and have the index 1:
-    - `edit 1 ft/`: Will delete the existing `freeTimeTags`
-    - `edit 1 ft/Tue:1300-1400 ft/Wed:1300-1400` Will replace the existing _Monday_ tag with the _Tuesday_ and _Wednesday_ tag.
-
-### Deleting a person : delete
+### Deleting a person : `delete`
 
 Deletes the specified person from Dormie.
 
@@ -193,6 +138,80 @@ Format: `delete INDEX`
 Examples:
 
 - `delete 2` deletes the 2nd person in Dormie.
+
+### Editing a person : `edit`
+
+Edits the specified fields of an existing person in Dormie.
+
+- Edit function will replace the specified field with the new input
+- Edits the person at the specified INDEX. The index refers to the index number shown in the displayed person list. The index must be a positive integer 1, 2, 3, …​
+- Existing values will be updated to the input values.
+- Minimum 1 parameter must be specified
+
+Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [r/ROOM_NUM] [t/TELEGRAM] [d/DORM_TAG] [ft/FREE_TIME_TAG]...`
+
+Examples:
+- `edit 1 n/Alex r/01-05-11` Edits the name and room number of the 1st person to be Alex and 05-11 respectively.
+
+### Close Dormie : `exit`
+
+Closes the Dormie application.
+
+### Filter the contact list by name : `find`
+
+View all persons with name containing the given keyword.
+
+Format: `find KEYWORD`
+
+### Provide more detail on existing commands : `help`
+
+Show a link to the User Guide.
+
+### Listing all persons : `list`
+
+List all contacts and their details
+
+### Adding Free Time Tag : `addTime`
+Adds 1 or multiple specified `freeTimeTags`
+
+Format: `addTime INDEX [ft/FREE_TIME_TAG]...`
+
+Examples:
+- Single input: `addTime 1 ft/Mon:1300-1400`
+- Multiple input: `addTime 1 ft/Mon:1300-1400 ft/Tue:1300-1400`
+
+Note:
+- As this is the first version, there is no functionality to merge overlapping free time tags yet.
+
+### Deleting Free Time Tag : `deleteTime`
+Deletes 1 or multiple specified `freeTimeTags`
+
+Format: `deleteTime INDEX [ft/FREE_TIME_TAG]...`
+
+Examples:
+- Single input: `deleteTime 1 ft/Mon:1300-1400`
+- Multiple input: `deleteTime 1 ft/Mon:1300-1400 ft/Tue:1300-1400`
+
+Note:
+- As this is the first version, only free time tags that **exactly** match the interval(s) specified will be deleted.
+
+### Checking who is free : `whoisfree`
+View all persons that are available on the specified day and time
+
+Format: `whoisfree DAY:TIME`
+- `DAY` is from Mon-Sun
+- `TIME` is 24-hour time format
+
+Example:
+- `whoisfree Mon:1300`
+
+**Important Note**
+- No 2 people can share the same `phone number`.
+- If `freeTimeTags` are edited, the person's `freeTimeTags` will be replaced with the new set of `freeTimeTags`.
+- Example:
+    - Let Joe have a `freeTimeTag`:`Mon:1300-1400` and have the index 1:
+    - `edit 1 ft/`: Will delete the existing `freeTimeTags`
+    - `edit 1 ft/Tue:1300-1400 ft/Wed:1300-1400` Will replace the existing _Monday_ tag with the _Tuesday_ and _Wednesday_ tag.
 
 ### Saving the data
 
