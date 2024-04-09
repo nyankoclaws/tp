@@ -38,10 +38,21 @@ Type                                | What it means
 `Code Block`                        | A line of command that can be entered into Dormie's input field. <br> e.g., `add n/John Doe p/98765432 e/johnd@example.com r/sw-01-01 t/johnDoe b/12/12/2000 ft/Mon:1300-1400`.
 Words in `UPPER_CASE`               | The parameters to be supplied by the user. <br> e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 \[optionalField\]                   | Items in square brackets are optional. <br> e.g `n/NAME [ft/FREETIMETAG]` can be used as `n/John Doe ft/Mon:1300-1400` or as `n/John Doe`.
-Free Time Tag format                | Free Time Tags are in the following format: `DDD:HHmm-HHmm`. <br> `DDD` is from Mon-Sun, `HHmm` is 24 hour time format <br> e.g. **Mon:1300-1400**.
+...                                 | Ellipsis mean that the field can be used 0, 1, or more times in a single command. <br> e.g `[ft/FREETIMETAG]...` means that the following commands are allowed `ft/Mon:1300-1400`, `ft/Mon:1300-1400 ft/Tue:1400-1600`.
 Order of Parameters                 | Parameters can be in any order. <br> e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 Extraneous Parameters               | Extraneous parameters for commands that do not take in parameters (such as `list`) will be ignored. <br> e.g. if the command specifies `list 123`, it will be interpreted as `list`.
 Copying and Pasting from this User Guide | If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
+
+### Format for Fields
+Field                                | Format
+-----------                          |----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Name                                 | <br> e.g. 
+Phone Number                         | <br> e.g. 
+Email                                | <br> e.g. 
+Room Number                          | <br> e.g. 
+Telegram Handle                      | Can only contain case-insensitive letters A-Z, digits 0-9, and underscores, with a length between 5 and 32 characters, and it **should not** be blank. <br> Note: Do not include the `@` symbol in the input. <br> e.g.
+Birthday                             | `dd/MM/yyyy`, `dd-MM-yyyy`, `yyyy-MM-dd`, `yyyy/MM/dd`. <br> `dd` is the date of the month, `MM` is the month, `YYYY` is the year. <br> e.g. **30/01/2024**, **30-01-2024**, **2024-01-30**, **2024/01/30** all represent 30 January 2024.
+Free Time Tag                        | `DDD:HHmm-HHmm`. <br> `DDD` is from Mon-Sun, `HHmm` is 24 hour time format. <br> e.g. **Mon:1300-1400**.
 
 ### Searching for Keywords (Ctrl-F)
 1. Press the Ctrl + F keys on your keyboard.
@@ -100,29 +111,36 @@ Copying and Pasting from this User Guide | If you are using a PDF version of thi
 
 Creates a new contact for a dorm mate.
 
-Format: `add n/NAME p/PHONE_NUMBER`
+Format: `add n/NAME p/PHONE_NUMBER [e/EMAIL] [r/ROOM_NUMBER] [t/TELEGRAM_HANDLE] [b/BIRTHDAY] [ft/FREE_TIME]...`
 
 Examples:
-
-- `add Alice Lim p/91234567`
+- `add n/Alice Lim p/91234567`
+- `add n/John Doe p/98765432 e/johnd@example.com r/sw-01-01 t/johnDoe b/12/12/2000 ft/Mon:1300-1400`
+- `add n/Jane Doe p/97826712 e/janed@example.com r/sw-02-02 t/janeDoe b/11/11/2001 ft/Mon:1000-1200 ft/Tue:1300-1400`
 
 ### Add Free Time Tag
 Adds 1 or multiple specified `freeTimeTags`
 
-Format: `addTime INDEX ft/FREE_TIME_TAG`
+Format: `addTime INDEX [ft/FREE_TIME_TAG]...`
 
 Examples:
 - Single input: `addTime 1 ft/Mon:1300-1400`
 - Multiple input: `addTime 1 ft/Mon:1300-1400 ft/Tue:1300-1400`
 
+Note:
+- As this is the first version, there is no functionality to merge overlapping free time tags yet.
+
 ### Delete Free Time Tag
 Deletes 1 or multiple specified `freeTimeTags`
 
-Format: `deleteTime INDEX ft/FREE_TIME_TAG`
+Format: `deleteTime INDEX [ft/FREE_TIME_TAG]...`
 
 Examples:
 - Single input: `deleteTime 1 ft/Mon:1300-1400`
 - Multiple input: `deleteTime 1 ft/Mon:1300-1400 ft/Tue:1300-1400`
+
+Note:
+- As this is the first version, only free time tags that **exactly** match the interval(s) specified will be deleted.
 
 ### Check who is free
 View all persons that are available on the specified day and time
@@ -152,16 +170,15 @@ Edits the specified fields of an existing person in Dormie.
 Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [r/ROOM_NUM] [t/TELEGRAM] [d/DORM_TAG] [ft/FREE_TIME_TAG]`
 
 Examples:
-
 - `edit 1 n/Alex r/01-05-11` Edits the name and room number of the 1st person to be Alex and 05-11 respectively.
 
 **Important Note**
+- No 2 people can share the same `phone number`.
 - If `freeTimeTags` are edited, the person's `freeTimeTags` will be replaced with the new set of `freeTimeTags`.
 - Example:
     - Let Joe have a `freeTimeTag`:`Mon:1300-1400` and have the index 1:
     - `edit 1 ft/`: Will delete the existing `freeTimeTags`
     - `edit 1 ft/Tue:1300-1400 ft/Wed:1300-1400` Will replace the existing _Monday_ tag with the _Tuesday_ and _Wednesday_ tag.
-
 
 ### Deleting a person : delete
 
