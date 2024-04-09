@@ -56,10 +56,10 @@ public class RoomNumber {
     public RoomNumber(String roomNumber, boolean flag) {
         requireNonNull(roomNumber);
         checkArgument(isValidRoomNumberWDate(roomNumber), MESSAGE_CONSTRAINTS_DATE);
+        checkArgument(isValidDate(roomNumber), MESSAGE_CONSTRAINTS_DATE_BEFORE);
         Matcher matcher = Pattern.compile(VALIDATION_REGEX_W_DATE).matcher(roomNumber);
         matcher.find();
         LocalDate date = LocalDate.parse(matcher.group(4));
-        checkArgument(isValidDate(date), MESSAGE_CONSTRAINTS_DATE);
         this.block = matcher.group(1);
         this.floor = matcher.group(2);
         this.roomNumber = matcher.group(3);
@@ -83,8 +83,11 @@ public class RoomNumber {
     /**
      * Returns true if a given date is before today.
      */
-    public static boolean isValidDate(LocalDate test) {
-        return !test.isAfter(LocalDate.now());
+    public static boolean isValidDate(String test) {
+        Matcher matcher = Pattern.compile(VALIDATION_REGEX_W_DATE).matcher(test);
+        matcher.find();
+        LocalDate date = LocalDate.parse(matcher.group(4));
+        return !date.isAfter(LocalDate.now());
     }
 
     /**
@@ -109,10 +112,7 @@ public class RoomNumber {
         }
 
         LocalDate firstRelease = FIRST_RESULT_RELEASE;
-        firstRelease = firstRelease.withYear(LocalDate.now().getYear());
-        if (firstRelease.isAfter(LocalDate.now())) {
-            firstRelease = firstRelease.minusYears(1);
-        }
+        firstRelease = firstRelease.withYear(lastRelease.getYear());
 
         if (!date.isBefore(firstRelease)) {
             return false;

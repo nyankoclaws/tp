@@ -61,14 +61,15 @@ public class RoomNumberTest {
 
     @Test
     public void isValidDate() {
+        String roomNum = "sw-01-01";
         LocalDate today = LocalDate.now();
-        assertTrue(RoomNumber.isValidDate(today));
+        assertTrue(RoomNumber.isValidDate(roomNum + " " + today.toString()));
 
         LocalDate yesterday = today.minusDays(1);
-        assertTrue(RoomNumber.isValidDate(yesterday));
+        assertTrue(RoomNumber.isValidDate(roomNum + " " + yesterday.toString()));
 
         LocalDate tomorrow = today.plusDays(1);
-        assertFalse(RoomNumber.isValidDate(tomorrow));
+        assertFalse(RoomNumber.isValidDate(roomNum + " " + tomorrow.toString()));
     }
 
     @Test
@@ -87,10 +88,7 @@ public class RoomNumberTest {
 
         // If updated on the firstResultRelease for this AY
         LocalDate date2 = LocalDate.parse("2020-04-05");
-        date2 = date2.withYear(LocalDate.now().getYear());
-        if (date2.isAfter(LocalDate.now())) {
-            date2 = date2.minusYears(1);
-        }
+        date2 = date2.withYear(date1.getYear());
         assertFalse(RoomNumber.isOutdated(date2));
         assertFalse((new RoomNumber("sw-01-01 " + date2.toString(), true)).isOutdated());
 
