@@ -11,6 +11,24 @@ Dormie is a **desktop app for managing contacts, optimized for use via a Command
 <!-- * Table of Contents -->
 <page-nav-print />
 
+## Using This User Guide
+### Command Format
+Type                                | What it means
+-----------                         |----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+`Code Block`                        | A line of command that can be entered into Dormie's input field. <br> e.g., `add n/John Doe p/98765432 e/johnd@example.com r/sw-01-01 t/johnDoe b/12/12/2000 ft/Mon:1300-1400`.
+Words in `UPPER_CASE`               | The parameters to be supplied by the user. <br> e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+\[optionalField\]                   | Items in square brackets are optional. <br> e.g `n/NAME [ft/FREETIMETAG]` can be used as `n/John Doe ft/Mon:1300-1400` or as `n/John Doe`.
+...                                 | Ellipsis mean that the field can be used 0, 1, or more times in a single command. <br> e.g `[ft/FREETIMETAG]...` means that the following commands are allowed `ft/Mon:1300-1400`, `ft/Mon:1300-1400 ft/Tue:1400-1600`.
+Order of Parameters                 | Parameters can be in any order. <br> e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+Extraneous Parameters               | Extraneous parameters for commands that do not take in parameters (such as `list`) will be ignored. <br> e.g. if the command specifies `list 123`, it will be interpreted as `list`.
+Copying and Pasting from this User Guide | If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
+
+### Searching for Keywords (Ctrl-F)
+1. Press the Ctrl + F keys on your keyboard.
+2. A search bar or dialog box should appear on your screen. A screenshot is shown below.
+   ![Screenshot of search bar](images/ctrl-F.png)
+3. Type the keyword or phrase you want to search for in the search bar and press enter.
+
 ---
 
 ## Command summary
@@ -31,19 +49,7 @@ Action     | Format, Examples
 
 ---
 
-## Using This User Guide
-### Command Format
-Type                                | What it means
------------                         |----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-`Code Block`                        | A line of command that can be entered into Dormie's input field. <br> e.g., `add n/John Doe p/98765432 e/johnd@example.com r/sw-01-01 t/johnDoe b/12/12/2000 ft/Mon:1300-1400`.
-Words in `UPPER_CASE`               | The parameters to be supplied by the user. <br> e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
-\[optionalField\]                   | Items in square brackets are optional. <br> e.g `n/NAME [ft/FREETIMETAG]` can be used as `n/John Doe ft/Mon:1300-1400` or as `n/John Doe`.
-...                                 | Ellipsis mean that the field can be used 0, 1, or more times in a single command. <br> e.g `[ft/FREETIMETAG]...` means that the following commands are allowed `ft/Mon:1300-1400`, `ft/Mon:1300-1400 ft/Tue:1400-1600`.
-Order of Parameters                 | Parameters can be in any order. <br> e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
-Extraneous Parameters               | Extraneous parameters for commands that do not take in parameters (such as `list`) will be ignored. <br> e.g. if the command specifies `list 123`, it will be interpreted as `list`.
-Copying and Pasting from this User Guide | If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
-
-### Format for Fields
+## Format for Fields
 Field                                | Format
 -----------                          |----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Name                                 | Any non-empty String. <br> e.g. `Dormie`.
@@ -55,11 +61,6 @@ Birthday                             | `dd/MM/yyyy`, `dd-MM-yyyy`, `yyyy-MM-dd`,
 Dorm Tag                             | Any non-empty String. <br> eg. `PGPR`.
 Free Time Tag                        | `DDD:HHmm-HHmm`. <br> `DDD` is from Mon-Sun, `HHmm` is 24 hour time format. <br> e.g. **Mon:1300-1400**.
 
-### Searching for Keywords (Ctrl-F)
-1. Press the Ctrl + F keys on your keyboard.
-2. A search bar or dialog box should appear on your screen. A screenshot is shown below.
-   ![Screenshot of search bar](images/ctrl-F.png)
-3. Type the keyword or phrase you want to search for in the search bar and press enter.
 ---
 
 ## Quick start
