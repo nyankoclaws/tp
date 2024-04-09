@@ -15,7 +15,6 @@
 * If you are interested in using Dormie, head over to the [_Quick Start_ section of the **User Guide**](Dormie_User_Guide.pdf).
 * If you are interested about developing Dormie, the [**Developer Guide**](DeveloperGuide.md) is a good place to start.
 
-    
 **Acknowledgements**
 
 * Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5)
