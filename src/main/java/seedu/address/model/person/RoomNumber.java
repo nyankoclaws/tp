@@ -15,7 +15,8 @@ import java.util.regex.Pattern;
 public class RoomNumber {
 
     public static final String MESSAGE_CONSTRAINTS = "Room numbers should be in the format: "
-            + "{block}-{floor}-{room number}";
+            + "{block}-{floor}-{room number}, where block and room number are at least 2 alphanumeric "
+            + "characters and floor is strictly 2 alphanumeric characters.";
     public static final String MESSAGE_CONSTRAINTS_DATE = "Dates for last modified should be in the format: "
             + "yyyy-mm-dd";
     public static final String MESSAGE_CONSTRAINTS_DATE_BEFORE = "Dates last modified should after today";
