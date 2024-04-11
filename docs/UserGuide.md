@@ -198,6 +198,10 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 - Only full words will be matched. eg.`Ale` will not match `Alex`.
 - Contacts with names that match at least one keyword will be returned. eg.keyword:`Yeoh` will return `Alex Yeoh`,`Bernice Yeoh`.
 
+Note:
+- Every time a `find` command is executed, Dormie displays all matching contacts from the original contact list (i.e., the one before any filtering is applied).
+- A common approach to view the original contact list after executing a `find` command is by using the `list` command.
+
 ### Provide more detail on existing commands : `help`
 
 Show a link to the User Guide.
