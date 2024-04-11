@@ -210,12 +210,12 @@ Show a link to the User Guide.
 
 List all contacts and their details.
 
-### Checking who is free : `whoisFree`
+### Checking who is free : `whoisfree`
 View all persons that are available on the specified day and time. Do note that the result is positive if and only if
 the specified time is within the range of a person's free time tag. The start of time range is inclusive, but the end of
-of time range is exclusive. For example, `whoisFree Mon:0800` will match `Mon:0800-0900`, but not `Mon:0700-0800`.
+of time range is exclusive. For example, `whoisfree Mon:0800` will match `Mon:0800-0900`, but not `Mon:0700-0800`.
 
-Format: `whoisFree DAY:TIME`
+Format: `whoisfree DAY:TIME`
 - `DAY` is from Mon-Sun
 - `TIME` is 24-hour time format
 
