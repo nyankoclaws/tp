@@ -48,7 +48,7 @@ Dormie is a **desktop app for managing contacts, optimized for use via a Command
 | **Find**              | `find KEYWORD`<br> e.g., `find Alice` <br> *only searches the name                                                                                                |
 | **Help**              | `help`                                                                                                                                                            |
 | **List**              | `list`                                                                                                                                                            |
-| **Who Is Free**       | `whoisfree TIME`<br> e.g., `whoisfree Mon:0800`                                                                                                                   |
+| **Who Is Free**       | `whoIsFree TIME`<br> e.g., `whoisfree Mon:0800`                                                                                                                   |
 
 ---
 
@@ -210,10 +210,12 @@ Show a link to the User Guide.
 
 List all contacts and their details.
 
-### Checking who is free : `whoisfree`
-View all persons that are available on the specified day and time
+### Checking who is free : `whoIsFree`
+View all persons that are available on the specified day and time. Do note that the result is positive if and only if
+the specified time is within the range of a person's free time tag. The start of time range is inclusive, but the end of
+of time range is exclusive. For example, `whoIsFree Mon:0800` will match `Mon:0800-0900`, but not `Mon:0700-0800`.
 
-Format: `whoisfree DAY:TIME`
+Format: `whoIsFree DAY:TIME`
 - `DAY` is from Mon-Sun
 - `TIME` is 24-hour time format
 
