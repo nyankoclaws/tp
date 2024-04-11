@@ -34,7 +34,7 @@ Hi, I’m Laraine, a year 2 Computer Science student. I like to wake up early to
 
 [[projects](https://larainelwx.wixsite.com/digitalportfolio)]
 [[github](http://github.com/larainezo)]
-[[portfolio]()]
+[[portfolio](team/larainezo.md)]
 
 * Role: Team Lead
 * Responsibilities: Overall project coordination, Assignment of tasks, Keep track of team members' progress
@@ -47,7 +47,7 @@ Hi, I’m Chee Xiang, a year 2 Computer Science student. I’m from a country at
 
 [[projects]()]
 [[github](http://github.com/PallonCX)]
-[[portfolio](team/johndoe.md)]
+[[portfolio]()]
 
 * Role: Scheduling and tracking
 * Responsibilities: Github Issue Tracker
@@ -73,7 +73,7 @@ I’m a Y2 CS & Psych double major. I like to sleep at least 8hrs :)
 
 [[projects]()]
 [[github](http://github.com/nyankoclaws)]
-[[portfolio]()]
+[[portfolio](team/nyankoclaws.md)]
 
 * Role: Code quality
 * Responsibilities: Gradle Stylecheck
