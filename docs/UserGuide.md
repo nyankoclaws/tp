@@ -13,12 +13,12 @@ Dormie is a **desktop app for managing contacts, optimized for use via a Command
 
 ## Using This User Guide
 ### Command Format
-Type                                | What it means
------------                         |----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-`Code Block`                        | A line of command that can be entered into Dormie's input field. <br> e.g., `add n/John Doe p/98765432 e/johnd@example.com r/sw-01-01 t/johnDoe b/12/12/2000 ft/Mon:1300-1400`.
-Words in `UPPER_CASE`               | The parameters to be supplied by the user. <br> e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
-\[optionalField\]                   | Items in square brackets are optional. <br> e.g `n/NAME [ft/FREETIMETAG]` can be used as `n/John Doe ft/Mon:1300-1400` or as `n/John Doe`.
-...                                 | Ellipsis mean that the field can be used 0, 1, or more times in a single command. <br> e.g `[ft/FREETIMETAG]...` means that the following commands are allowed `ft/Mon:1300-1400`, `ft/Mon:1300-1400 ft/Tue:1400-1600`.
+| Type                   | What it means                                                                                                                                                                                                           |
+|------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `Code Block`           | A line of command that can be entered into Dormie's input field. <br> e.g., `add n/John Doe p/98765432 e/johnd@example.com r/sw-01-01 t/johnDoe b/12/12/2000 ft/Mon:1300-1400`.                                         |
+| Words in `UPPER_CASE`  | The parameters to be supplied by the user. <br> e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.                                                                                      |
+| \[optionalField\]      | Items in square brackets are optional. <br> e.g `n/NAME [ft/FREETIMETAG]` can be used as `n/John Doe ft/Mon:1300-1400` or as `n/John Doe`.                                                                              |
+| ...                    | Ellipsis mean that the field can be used 0, 1, or more times in a single command. <br> e.g `[ft/FREETIMETAG]...` means that the following commands are allowed `ft/Mon:1300-1400`, `ft/Mon:1300-1400 ft/Tue:1400-1600`. |
 
 ### Searching for Keywords (Ctrl-F)
 1. Press the Ctrl + F keys on your keyboard.
@@ -36,33 +36,33 @@ Words in `UPPER_CASE`               | The parameters to be supplied by the user.
 
 ## Command summary
 
-Action     | Format, Examples
------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-**Add**    | `add n/NAME p/PHONE_NUMBER [e/EMAIL] [r/ROOM_NUMBER] [t/TELEGRAM_HANDLE] [b/BIRTHDAY] [d/DORM_TAG] [ft/FREE_TIME_TAG]...` <br> e.g., `add n/Alice Lim p/91234567`
-**Add Free Time**| `addTime INDEX ft/TIME`<br> e.g., `addTime 1 ft/Mon:0800-1200`
-**Clear**  | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Delete Free Time**| `deleteTime INDEX ft/TIME`<br> e.g., `deleteTime 1 ft/Mon:0800-1200`
-**Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [r/ROOM_NUMBER] [t/TELEGRAM] [d/DORM_TAG] [ft/FREE_TIME_TAG]...`<br> e.g.,`edit 1 n/Alex p/98765432`
-**Exit**   | `exit`
-**Find**   | `find KEYWORD`<br> e.g., `find Alice` <br> *only searches the name
-**Help**   | `help`
-**List**   | `list`
-**Who Is Free**| `whoisfree TIME`<br> e.g., `whoisfree Mon:0800`
+| Action                | Format, Examples                                                                                                                                                  |
+|-----------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**               | `add n/NAME p/PHONE_NUMBER [e/EMAIL] [r/ROOM_NUMBER] [t/TELEGRAM_HANDLE] [b/BIRTHDAY] [d/DORM_TAG] [ft/FREE_TIME_TAG]...` <br> e.g., `add n/Alice Lim p/91234567` |
+| **Add Free Time**     | `addTime INDEX ft/TIME`<br> e.g., `addTime 1 ft/Mon:0800-1200`                                                                                                    |
+| **Clear**             | `clear`                                                                                                                                                           |
+| **Delete**            | `delete INDEX`<br> e.g., `delete 3`                                                                                                                               |
+| **Delete Free Time**  | `deleteTime INDEX ft/TIME`<br> e.g., `deleteTime 1 ft/Mon:0800-1200`                                                                                              |
+| **Edit**              | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [r/ROOM_NUMBER] [t/TELEGRAM] [d/DORM_TAG] [ft/FREE_TIME_TAG]...`<br> e.g.,`edit 1 n/Alex p/98765432`              |
+| **Exit**              | `exit`                                                                                                                                                            |
+| **Find**              | `find KEYWORD`<br> e.g., `find Alice` <br> *only searches the name                                                                                                |
+| **Help**              | `help`                                                                                                                                                            |
+| **List**              | `list`                                                                                                                                                            |
+| **Who Is Free**       | `whoisfree TIME`<br> e.g., `whoisfree Mon:0800`                                                                                                                   |
 
 ---
 
 ## Format for Fields
-Field                                | Format
------------                          |----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-Name                                 | Can only contain alphanumeric characters and spaces in between. <br> e.g. `Dormie Tan`.
-Phone Number                         | Must contain only numbers, be 8 digits long, and must start with an 8 or 9.<br> All mobile numbers are assumed to be Singapore numbers, with an area code of (+65). <br> e.g. `91234567`.
-Email                                | Must be of the format local-part@domain and adhere to the following constraints:<br> 1. The local-part should only contain alphanumeric characters and these special characters, excluding the parentheses, (.). The local-part may not start or end with any special characters.<br> 2. This is followed by a '@' and then a domain name. The domain name is made up of domain labels separated by periods.<br> The domain name must:<br>     - end with a domain label at least 2 characters long<br>     - have each domain label start and end with alphanumeric characters<br>     - have each domain label consist of alphanumeric characters, separated only by periods, if any. <br> eg:`dormie@example.com`.
-Room Number                          | {block}-{floor}-{room number}, where block and room number are at least 2 alphanumeric characters and floor is strictly 2 alphanumeric characters. <br> eg:`nw-12-12`.
-Telegram Handle                      | Can only contain case-insensitive letters A-Z, digits 0-9, and underscores, with a length between 5 and 32 characters, and it **should not** be blank. <br> Note: Do not include the `@` symbol in the input. <br> e.g `dormie_123`.
-Birthday                             | `dd/MM/yyyy`, `dd-MM-yyyy`, `yyyy-MM-dd`, `yyyy/MM/dd`. <br> `dd` is the date of the month, `MM` is the month, `YYYY` is the year. <br> e.g. **30/01/2024**, **30-01-2024**, **2024-01-30**, **2024/01/30** all represent 30 January 2024.
-Dorm Tag                             | Any non-empty String that contains at least one non-whitespace character. <br> eg. `PGPR`.
-Free Time Tag                        | `DDD:HHmm-HHmm`. <br> `DDD` is from Mon-Sun, `HHmm` is 24 hour time format. <br> e.g. **Mon:1300-1400**.
+| Field            | Format                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+|------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Name             | Can only contain alphanumeric characters and spaces in between. <br> e.g. `Dormie Tan`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| Phone Number     | Must contain only numbers, be 8 digits long, and must start with an 8 or 9.<br> All mobile numbers are assumed to be Singapore numbers, with an area code of (+65). <br> e.g. `91234567`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| Email            | Must be of the format local-part@domain and adhere to the following constraints:<br> 1. The local-part should only contain alphanumeric characters and these special characters, excluding the parentheses, (.). The local-part may not start or end with any special characters.<br> 2. This is followed by a '@' and then a domain name. The domain name is made up of domain labels separated by periods.<br> The domain name must:<br>     - end with a domain label at least 2 characters long<br>     - have each domain label start and end with alphanumeric characters<br>     - have each domain label consist of alphanumeric characters, separated only by periods, if any. <br> eg:`dormie@example.com`. |
+| Room Number      | {block}-{floor}-{room number}, where block and room number are at least 2 alphanumeric characters and floor is strictly 2 alphanumeric characters. <br> eg:`nw-12-12`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| Telegram Handle  | Can only contain case-insensitive letters A-Z, digits 0-9, and underscores, with a length between 5 and 32 characters, and it **should not** be blank. <br> Note: Do not include the `@` symbol in the input. <br> e.g `dormie_123`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| Birthday         | `dd/MM/yyyy`, `dd-MM-yyyy`, `yyyy-MM-dd`, `yyyy/MM/dd`. <br> `dd` is the date of the month, `MM` is the month, `YYYY` is the year. <br> e.g. **30/01/2024**, **30-01-2024**, **2024-01-30**, **2024/01/30** all represent 30 January 2024.                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| Dorm Tag         | Any non-empty String that contains at least one non-whitespace character. <br> eg. `PGPR`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| Free Time Tag    | `DDD:HHmm-HHmm`. <br> `DDD` is from Mon-Sun, `HHmm` is 24 hour time format. <br> e.g. **Mon:1300-1400**.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
 
 ---
 
@@ -197,6 +197,10 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 - Only the names are searched.
 - Only full words will be matched. eg.`Ale` will not match `Alex`.
 - Contacts with names that match at least one keyword will be returned. eg.keyword:`Yeoh` will return `Alex Yeoh`,`Bernice Yeoh`.
+
+Note:
+- Every time a `find` command is executed, Dormie displays all matching contacts from the original contact list (i.e., the one before any filtering is applied).
+- A common approach to view the original contact list after executing a `find` command is by using the `list` command.
 
 ### Provide more detail on existing commands : `help`
 
