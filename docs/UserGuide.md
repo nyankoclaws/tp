@@ -48,7 +48,7 @@ Dormie is a **desktop app for managing contacts, optimized for use via a Command
 | **Find**              | `find KEYWORD`<br> e.g., `find Alice` <br> *only searches the name                                                                                                |
 | **Help**              | `help`                                                                                                                                                            |
 | **List**              | `list`                                                                                                                                                            |
-| **Who Is Free**       | `whoIsFree TIME`<br> e.g., `whoisfree Mon:0800`                                                                                                                   |
+| **Who Is Free**       | `whoIsFree TIME`<br> e.g., `whoIsFree Mon:0800`                                                                                                                   |
 
 ---
 
