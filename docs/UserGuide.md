@@ -45,7 +45,7 @@ Action     | Format, Examples
 **Delete Free Time**| `deleteTime INDEX ft/TIME`<br> e.g., `deleteTime 1 ft/Mon:0800-1200`
 **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [r/ROOM_NUMBER] [t/TELEGRAM] [d/DORM_TAG] [ft/FREE_TIME_TAG]...`<br> e.g.,`edit 1 n/Alex p/98765432`
 **Exit**   | `exit`
-**Find**   | `find KEYWORD`<br> e.g., `find Alice`
+**Find**   | `find KEYWORD`<br> e.g., `find Alice` <br> *only searches the name
 **Help**   | `help`
 **List**   | `list`
 **Who Is Free**| `whoisfree TIME`<br> e.g., `whoisfree Mon:0800`
@@ -55,13 +55,13 @@ Action     | Format, Examples
 ## Format for Fields
 Field                                | Format
 -----------                          |----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-Name                                 | Any non-empty String. <br> e.g. `Dormie`.
-Phone Number                         | Must contain 8 digits with no spacing. <br> e.g. `91234567`.
+Name                                 | Can only contain alphanumeric characters and spaces in between. <br> e.g. `Dormie Tan`.
+Phone Number                         | Must contain only numbers, be 8 digits long, and must start with an 8 or 9.<br> All mobile numbers are assumed to be Singapore numbers, with an area code of (+65). <br> e.g. `91234567`.
 Email                                | Must be of the format local-part@domain and adhere to the following constraints:<br> 1. The local-part should only contain alphanumeric characters and these special characters, excluding the parentheses, (.). The local-part may not start or end with any special characters.<br> 2. This is followed by a '@' and then a domain name. The domain name is made up of domain labels separated by periods.<br> The domain name must:<br>     - end with a domain label at least 2 characters long<br>     - have each domain label start and end with alphanumeric characters<br>     - have each domain label consist of alphanumeric characters, separated only by periods, if any. <br> eg:`dormie@example.com`.
 Room Number                          | {block}-{floor}-{room number}, where block and room number are at least 2 alphanumeric characters and floor is strictly 2 alphanumeric characters. <br> eg:`nw-12-12`.
 Telegram Handle                      | Can only contain case-insensitive letters A-Z, digits 0-9, and underscores, with a length between 5 and 32 characters, and it **should not** be blank. <br> Note: Do not include the `@` symbol in the input. <br> e.g `dormie_123`.
 Birthday                             | `dd/MM/yyyy`, `dd-MM-yyyy`, `yyyy-MM-dd`, `yyyy/MM/dd`. <br> `dd` is the date of the month, `MM` is the month, `YYYY` is the year. <br> e.g. **30/01/2024**, **30-01-2024**, **2024-01-30**, **2024/01/30** all represent 30 January 2024.
-Dorm Tag                             | Any non-empty String. <br> eg. `PGPR`.
+Dorm Tag                             | Any non-empty String that contains at least one non-whitespace character. <br> eg. `PGPR`.
 Free Time Tag                        | `DDD:HHmm-HHmm`. <br> `DDD` is from Mon-Sun, `HHmm` is 24 hour time format. <br> e.g. **Mon:1300-1400**.
 
 ---
@@ -176,7 +176,7 @@ Edits the specified fields of an existing person in Dormie.
 - Edit function will replace the specified field with the new input
 - Edits the person at the specified INDEX. The index refers to the index number shown in the displayed person list. The index must be a positive integer. eg. 1, 2, 3
 - Existing values will be updated to the input values.
-- Minimum 1 field must be specified. Eg. `n/NAME` is a field.
+- Minimum 1 field must be specified. eg. `n/NAME` is a field.
 
 Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [r/ROOM_NUMBER] [t/TELEGRAM] [d/DORM_TAG] [ft/FREE_TIME_TAG]...`
 
@@ -189,9 +189,14 @@ Closes the Dormie application.
 
 ### Filter the contact list by name : `find`
 
-View all persons with name containing the given keyword.
+View all contacts whose names contain the user input keyword/s.
 
-Format: `find KEYWORD`
+Format: `find KEYWORD [MORE_KEYWORDS]`
+- Command is case-insensitive. eg.`alex` will match `Alex`.
+- Order of keywords does not matter. eg.`Yeoh Alex` will match `Alex Yeoh`.
+- Only the names are searched.
+- Only full words will be matched. eg.`Ale` will not match `Alex`.
+- Contacts with names that match at least one keyword will be returned. eg.keyword:`Yeoh` will return `Alex Yeoh`,`Bernice Yeoh`.
 
 ### Provide more detail on existing commands : `help`
 
@@ -199,7 +204,7 @@ Show a link to the User Guide.
 
 ### Listing all persons : `list`
 
-List all contacts and their details
+List all contacts and their details.
 
 ### Checking who is free : `whoisfree`
 View all persons that are available on the specified day and time
