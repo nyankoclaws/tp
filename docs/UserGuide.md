@@ -6,8 +6,8 @@ pageNav: 3
 
 # Dormie User Guide
 
-Dormie is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Dormie can get your contact management tasks done faster than traditional GUI apps.
-
+## Purpose of Dormie
+Dormie is an application developed for college students living in dorms. It helps them connect with their dorm mates in a simple way. With Dormie, they can easily see when their friends are free, and keep track of their important dates and contact details. It makes organising social events less stressful and helps students stay connected with each other.
 <!-- * Table of Contents -->
 <page-nav-print />
 
