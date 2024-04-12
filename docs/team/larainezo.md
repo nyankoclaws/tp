@@ -24,6 +24,7 @@ Overall, the support from everyone in the team eventually allowed for the succes
 After three productive iterations, we successfully developed Dormie, a user-friendly application that empowers students to make the most of its features with an easy-to-follow user guide. Dormie now facilitates effortless and purposeful bonding within student dormitories.
 
 ## My contributions to the project
+**[Github Code Repository](https://github.com/AY2324S2-CS2103T-F11-4/tp)**
 ### Code contributed: [RepoSense link](https://nus-cs2103-ay2324s2.github.io/tp-dashboard/?search=laraine&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2024-02-23&tabOpen=true&tabType=authorship&tabAuthor=larainezo&tabRepo=AY2324S2-CS2103T-F11-4%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
 * **New Feature: Added the ability to add/remove freeTime tags.**
   * What it does: allows the user to add/remove freeTime tags for each contact.
