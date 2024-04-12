@@ -6,19 +6,19 @@ pageNav: 3
 
 # Dormie User Guide
 
-Dormie is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Dormie can get your contact management tasks done faster than traditional GUI apps.
-
+## Purpose of Dormie
+Dormie is an application developed for college students living in dorms. It helps them connect with their dorm mates in a simple way. With Dormie, they can easily see when their friends are free, and keep track of their important dates and contact details. It makes organising social events less stressful and helps students stay connected with each other.
 <!-- * Table of Contents -->
 <page-nav-print />
 
 ## Using This User Guide
 ### Command Format
-| Type                   | What it means                                                                                                                                                                                                           |
-|------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `Code Block`           | A line of command that can be entered into Dormie's input field. <br> e.g., `add n/John Doe p/98765432 e/johnd@example.com r/sw-01-01 t/johnDoe b/12/12/2000 ft/Mon:1300-1400`.                                         |
-| Words in `UPPER_CASE`  | The parameters to be supplied by the user. <br> e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.                                                                                      |
-| \[optionalField\]      | Items in square brackets are optional. <br> e.g `n/NAME [ft/FREETIMETAG]` can be used as `n/John Doe ft/Mon:1300-1400` or as `n/John Doe`.                                                                              |
-| ...                    | Ellipsis mean that the field can be used 0, 1, or more times in a single command. <br> e.g `[ft/FREETIMETAG]...` means that the following commands are allowed `ft/Mon:1300-1400`, `ft/Mon:1300-1400 ft/Tue:1400-1600`. |
+| Type                   | What it means                                                                                                                                                                                                                                                                                                                                                                               |
+|------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `Code Block`           | A line of command that can be entered into Dormie's input field. <br> e.g., `add n/John Doe p/98765432 e/johnd@example.com r/sw-01-01 t/johnDoe b/12/12/2000 ft/Mon:1300-1400`.                                                                                                                                                                                                             |
+| Words in `UPPER_CASE`  | The parameters to be supplied by the user. <br> e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.                                                                                                                                                                                                                                                          |
+| \[optionalField\]      | Items in square brackets are optional. <br> e.g `n/NAME [ft/FREETIMETAG]` can be used as `n/John Doe ft/Mon:1300-1400` or as `n/John Doe`.                                                                                                                                                                                                                                                  |
+| ...                    | Ellipsis mean that the field can be used 1, or more times in a single command. <br> e.g `ft/FREETIMETAG...` means that the following commands are allowed `ft/Mon:1300-1400`, `ft/Mon:1300-1400 ft/Tue:1400-1600`. <br> e.g `[ft/FREETIMETAG]...` means that the following parameters are allowed `ft/Mon:1300-1400`, `ft/Mon:1300-1400 ft/Tue:1400-1600`, or not specifying for free time. |
 
 ### Searching for Keywords (Ctrl-F)
 1. Press the Ctrl + F keys on your keyboard.
@@ -126,7 +126,7 @@ Examples:
 ### Adding Free Time Tag : `addTime`
 Adds 1 or multiple specified `freeTimeTags`
 
-Format: `addTime INDEX [ft/FREE_TIME_TAG]...`
+Format: `addTime INDEX ft/FREE_TIME_TAG...`
 
 Examples:
 - Single input: `addTime 1 ft/Mon:1300-1400`
@@ -134,6 +134,7 @@ Examples:
 
 Note:
 - As this is the first version, there is no functionality to merge overlapping free time tags yet.
+- The command will only add the user input free time tags that the specified contact does not have.
 
 ### Clearing all persons: `clear`
 
@@ -160,7 +161,7 @@ Note:
 ### Deleting Free Time Tag : `deleteTime`
 Deletes 1 or multiple specified `freeTimeTags`
 
-Format: `deleteTime INDEX [ft/FREE_TIME_TAG]...`
+Format: `deleteTime INDEX ft/FREE_TIME_TAG...`
 
 Examples:
 - Single input: `deleteTime 1 ft/Mon:1300-1400`
@@ -168,6 +169,7 @@ Examples:
 
 Note:
 - As this is the first version, only free time tags that **exactly** match the interval(s) specified will be deleted.
+- The command will only delete the user input free time tags that the specified person has.
 
 ### Editing a person : `edit`
 
