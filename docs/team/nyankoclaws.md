@@ -12,7 +12,7 @@ Dormie is an application which revolutionises the way students manage and enhanc
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2324s2.github.io/tp-dashboard/?search=nyankoclaws&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2024-02-23&tabOpen=true&tabType=authorship&tabAuthor=nyankoclaws&tabRepo=AY2324S2-CS2103T-F11-4%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
 * **New Feature**: Added the ability to use different functions for front and back end data entry.
   * What it does: Allows  developer to use separate functions for front and back end data inputs.
-  * Justification: This feature allows the adoption of addtional attributes in backend data storage which are transparent to the user. 
+  * Justification: This feature allows the adoption of addtional attributes in backend data storage which are transparent to the user.
   * Highlights: The implementation was challenging as it required changes to existing command and storage files. It also required the reworking of test cases for a signficiant amount of the repo.
   * Data entry separation: [\#95](https://github.com/AY2324S2-CS2103T-F11-4/tp/pull/95)
 * **New Feature**: Added an outdated indicator for room number.

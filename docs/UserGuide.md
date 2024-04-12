@@ -70,26 +70,26 @@ Dormie is a **desktop app for managing contacts, optimized for use via a Command
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-    - MacOS: [Java 11](https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html)
-    - Windows: [Java 11](https://www.azul.com/downloads/?version=java-11-lts&os=macos&architecture=arm-64-bit&package=jdk-fx#zulu)
+   - MacOS: [Java 11](https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html)
+   - Windows: [Java 11](https://www.azul.com/downloads/?version=java-11-lts&os=macos&architecture=arm-64-bit&package=jdk-fx#zulu)
 
 1. Download the latest `dormie.jar` from [here](https://github.com/AY2324S2-CS2103T-F11-4/tp/releases).
 
 1. Create a new _Home Folder_ you want Dormie to permanently reside in.
 
-    - Move Dormie into the _Home Folder_
-    - This is where Dormie and all it's supporting data will be stored
+   - Move Dormie into the _Home Folder_
+   - This is where Dormie and all it's supporting data will be stored
 
 1. Open a command terminal (`Terminal` for MacOS, or `Windows Terminal` for Windows)
 
-    - MacOS:
-        1. Right click the _Home Folder_
-        2. Left click `Services`
-        3. Then, click `New Terminal at Folder`
-    - Windows:
-        1. Navigate into the _Home Folder_
-        2. Right click anywhere inside the _Home Folder_
-        3. Left click `Open in Windows Terminal`
+   - MacOS:
+      1. Right click the _Home Folder_
+      2. Left click `Services`
+      3. Then, click `New Terminal at Folder`
+   - Windows:
+      1. Navigate into the _Home Folder_
+      2. Right click anywhere inside the _Home Folder_
+      3. Left click `Open in Windows Terminal`
 
 1. Paste this Command into the new terminal window `java -jar dormie.jar` and press enter.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
@@ -98,13 +98,13 @@ Dormie is a **desktop app for managing contacts, optimized for use via a Command
 1. Type the command in the command box and press Enter to execute it.<br>
    Quick Tutorial:
 
-    - `add n/John Doe p/98765432 ` : Adds a contact named `John Doe` to Dormie with the specified phone number
+   - `add n/John Doe p/98765432 ` : Adds a contact named `John Doe` to Dormie with the specified phone number
 
-    - `find John` : Finds a contact with `John` in his name.
+   - `find John` : Finds a contact with `John` in his name.
 
-    - `delete 1` : Deletes the 1st contact shown in the current list.
+   - `delete 1` : Deletes the 1st contact shown in the current list.
 
-    - `list` : Lists all contacts again.
+   - `list` : Lists all contacts again.
 
 1. Refer to [Features](#features) below for details of each command
    or to [Command Summary](#command-summary) for a summary of the commands.
@@ -224,9 +224,9 @@ Example:
 - No 2 people can share the same `PHONE_NUMBER`, `EMAIL`, or  `TELEGRAM_HANDLE`.
 - If `freeTimeTags` are edited, the person's `freeTimeTags` will be replaced with the new set of `freeTimeTags`.
 - Example:
-    - Let Joe have a `freeTimeTag`:`Mon:1300-1400` and have the index 1:
-    - `edit 1 ft/`: Will delete the existing `freeTimeTags`
-    - `edit 1 ft/Tue:1300-1400 ft/Wed:1300-1400` Will replace the existing _Monday_ tag with the _Tuesday_ and _Wednesday_ tag.
+   - Let Joe have a `freeTimeTag`:`Mon:1300-1400` and have the index 1:
+   - `edit 1 ft/`: Will delete the existing `freeTimeTags`
+   - `edit 1 ft/Tue:1300-1400 ft/Wed:1300-1400` Will replace the existing _Monday_ tag with the _Tuesday_ and _Wednesday_ tag.
 
 ### Saving the data
 

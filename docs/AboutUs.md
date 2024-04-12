@@ -21,7 +21,7 @@ Hi, I am Donavon, currently a Year 2 Computer Science student. I enjoy boulderin
 
 [[projects]()]
 [[github](https://github.com/donwong2308)]
-[[portfolio]()]
+[[portfolio](team/donwong2308.md)]
 
 * Role: Testing
 * Responsibilities: Exception handling, Assertions
@@ -47,7 +47,7 @@ Hi, I’m Chee Xiang, a year 2 Computer Science student. I’m from a country at
 
 [[projects]()]
 [[github](http://github.com/PallonCX)]
-[[portfolio]()]
+[[portfolio](team/palloncx.md)]
 
 * Role: Scheduling and tracking
 * Responsibilities: Github Issue Tracker
@@ -60,7 +60,7 @@ Hi, I’m Wei Hao, a year 2 Computer Science Student. I’m from Malaysia. I pla
 
 [[projects]()]
 [[github](http://github.com/JustWeiHao)]
-[[portfolio]()]
+[[portfolio](team/justweihao.md)]
 
 * Role: Deliverables and deadlines
 * Responsibilities: Ensure project deliverables are done on time and in the right format

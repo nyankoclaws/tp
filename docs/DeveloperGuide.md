@@ -1,7 +1,7 @@
 ---
-  layout: default.md
-  title: "Developer Guide"
-  pageNav: 3
+layout: default.md
+title: "Developer Guide"
+pageNav: 3
 ---
 
 # Dormie Developer Guide
@@ -178,10 +178,7 @@ The implementation consists of two main classes: `Tag` and `FreeTimeTag`.
 - The constructor ensures that the provided tag name meets the required format.
 - Additional methods such as `isValidTagName` validate the tag name against the defined regex pattern.
 
-#### Operations
-[TBC]
-
-### \[Proposed\] Undo/redo feature
+### Add Free Time Command
 
 #### Implementation
 
@@ -201,23 +198,74 @@ Step 2. The user executes `add n/Jane …​` to add a new person. The `add` com
 
 Step 3. The user now wants to add another free time for a friend, and does so by executing the `addTime [index] ft/Wed:1000-1100` command. The `addTime` command, after successfully passing the parser, will retrieve the current FreeTimeTags HashSet. It will then append, in order of day, the new free time to the HashSet. That is, the new free time 1000-1100 on Wednesday will be appended just after timings that fall before Wednesday 1000.
 
+Note: The user can add multiple free times at the same time by using multiple `ft/` flags in the command. An example is `addTime [index] ft/Wed:1000-1100 ft/Thu:1200-1400...`. The current code implementation will loop through the freeTime HashSet n times, with n being the number of free time tags to be added.
 </box>
 
-The following sequence diagram shows how an undo operation goes through the `Logic` component:
+The following sequence diagram shows how an addFreeTime operation goes through the `Logic` component:
 
 <puml src="diagrams/AddFreeTimeSequenceDiagram-Logic.puml" alt="AddFreeTimeSequenceDiagram-Logic" />
 
+#### Design Considerations:
+
+**Aspect: How add free time executes:**
+
+* **Alternative 1 (current implementation):** Append to HashSet in order.
+    * Pros: Easy to visualise in GUI.
+    * Cons: Additional time to loop through current HashSet to append in the current position.
+
+* **Alternative 2:** Append to end of HashSet
+    * Pros: Easy to implement because the new free time can just be appended at the end of the HashSet.
+    * Cons: Difficult to visualise in GUI (free time in Monday may appear after Tuesday's).
+
+#### Future enhancement for this feature:
+* **Merge overlapping free time intervals**
+    * Currently, the code appends the new time tag to the HashSet if the time tag is not already present. To improve user experience, it could be useful to merge time tags that have overlapping time intervals.
+
+### Delete Free Time Command
+
+#### Implementation
+
+The delete free time mechanism is a version of the `addFreeTimeCommand`. Instead of adding free time tags to the contact's freeTimeTags HashSet, the `DeleteTimeCommand` removes tags that match the requested tag from the current freeTimeTags hashset.
+
+Given below is an example usage scenario and how the delete free time mechanism behaves at each step.
+
+Step 1. The user has launched the application and added a new person called Jane using the add command `add n/Jane …​`.
+
+Step 2. Then, the user adds free time to Jane's freeTimeTags HashSet using the command `addTime [index of Jane] ft/Wed:1000-1100`.
+
+Step 3. However, the user realises a mistake has been made and needs to remove the recently added free time. The user can do so using the command  `deleteTime [index of Jane] ft/Wed:1000-1100`.
+
+Note: The user can delete multiple free times at the same time by using multiple `ft/` flags in the command. An example is `deleteTime [index] ft/Wed:1000-1100 ft/Thu:1200-1400...`. The current code implementation will loop through the freeTime HashSet n times, with n being the number of free time tags to be deleted.
+</box>
+
+#### Design Considerations:
+
+**Aspect: How delete free time executes:**
+
+* **Alternative 1 (current implementation):** Delete from HashSet only if time interval exactly matches a current free time in the freeTimeTags HashSet. For example, `deleteTime [index] ft/Wed:1000-1100` will delete the `Wed:1000-1100` free time tag, but not the `Wed:1000-1200` free time tag.
+    * Pros: Causes fewer bugs and the main functionality is still met.
+    * Cons: User input will need to accurately match the free time tag to be deleted.
+
+* **Alternative 2:** Delete from the HashSet and
+    * Pros: More convenient if the user wants to delete multiple free times at once. For example, `deleteTime [index] ft/Wed:1000-1200` will delete the `Wed:1000-1100` and `Wed:1100-1200` free time tags.
+    * Cons: Could introduce more bugs that are more challenging to resolve in a short period of time (Given the current time constraints).
+
+#### Future enhancement for this feature:
+* **Delete in-between free time intervals**
+    * Currently, the code deletes the new time tag from the HashSet if the time tag interval matches exactly with the input.
+    * To improve user experience, it could be useful to be able to delete free times that fall within an interval of a current free time tag. This will also mean that the remaining intervals will be split into 2 separate freeTimeTags.
+    * For example, an initial freeTimeTag could be `Mon:1000-1400`. Calling `deleteTime [index] ft/Mon:1100-1200` will result in the new freeTimeTags `Mon:1000-1100` and `Mon:1200-1400`.
 #### Design considerations:
 
 **Aspect: How add free time executes:**
 
 * **Alternative 1 (current choice):** Append to HashSet in order.
-  * Pros: Easy to visualise in GUI.
-  * Cons: Additional time to loop through current HashSet to append in the current position.
+    * Pros: Easy to visualise in GUI.
+    * Cons: Additional time to loop through current HashSet to append in the current position.
 
 * **Alternative 2:** Append to end of HashSet
-  * Pros: Easy to implement because the new free time can just be appended at the end of the HashSet.
-  * Cons: Difficult to visualise in GUI (free time in Monday may appear after Tuesday's).
+    * Pros: Easy to implement because the new free time can just be appended at the end of the HashSet.
+    * Cons: Difficult to visualise in GUI (free time in Monday may appear after Tuesday's).
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -238,9 +286,9 @@ The following sequence diagram shows how an undo operation goes through the `Log
 **Target user profile**:
 
 * Jim is an undergraduate student enrolled in NUS College and wants to network with his batchmates who stay in the
-same dorm as him.
+  same dorm as him.
 * He likes to interact with students from other floors. Every year, the students will change rooms and new students
-will come in as well.
+  will come in as well.
 * When unsure of his work, he tends to look for his peers for help.
 * Jim also enjoys celebrating milestones, especially birthdays.
 
@@ -395,15 +443,15 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-   1. Download the jar file and copy into an empty folder
+    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+    1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
 1. Saving window preferences
 
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
+    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
 1. _{ more test cases …​ }_
@@ -412,9 +460,9 @@ testers are expected to do more *exploratory* testing.
 
 1. Adding a person
 
-   1. Prerequisites: Open the application
+    1. Prerequisites: Open the application
 
-      Expected: Similar to previous.
+       Expected: Similar to previous.
 
 1. _{ more test cases …​ }_
 
@@ -422,16 +470,16 @@ testers are expected to do more *exploratory* testing.
 
 1. Deleting a person while all persons are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+    1. Test case: `delete 1`<br>
+       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+    1. Test case: `delete 0`<br>
+       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
+    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
 
 1. _{ more test cases …​ }_
 
@@ -439,8 +487,8 @@ testers are expected to do more *exploratory* testing.
 
 1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-   1. _{ explain how the room number formatting requires dates }_
-   1. _{ tbc }_
+    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+    1. _{ explain how the room number formatting requires dates }_
+    1. _{ tbc }_
 
 1. _{ more test cases …​ }_
