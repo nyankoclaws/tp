@@ -25,7 +25,8 @@ public class Messages {
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
     public static final String MESSAGE_DUPLICATE_FIELDS =
             "Multiple values specified for the following single-valued field(s): ";
-    public static final String MESSAGE_EMPTY_FREE_TIME_FOR_DELETE = "The person has no free time to be deleted.";
+    public static final String MESSAGE_NO_MATCHING_FREE_TIME =
+            "No matching free time to be deleted for the chosen person.";
 
     /**
      * Returns an error message indicating the duplicate prefixes.

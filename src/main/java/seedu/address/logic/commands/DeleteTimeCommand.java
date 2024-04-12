@@ -83,10 +83,7 @@ public class DeleteTimeCommand extends Command {
         Set<FreeTimeTag> freeTimeTags = personToEdit.getTags();
         Set<FreeTimeTag> updatedFreeTimeTags = new HashSet<>();
 
-        if (freeTimeTags.isEmpty()) {
-            throw new CommandException(Messages.MESSAGE_EMPTY_FREE_TIME_FOR_DELETE);
-        }
-
+        // Case 1: No free time are specified
         if (editPersonDescriptor.getTags() == null) {
             throw new CommandException(Messages.MESSAGE_NO_FREETIME_SPECIFIED);
         }
@@ -105,6 +102,12 @@ public class DeleteTimeCommand extends Command {
             }
         }
 
+        // Case 2: None of the specified free time(s) match any of the person's free time
+        if (freeTimeTags.size() == updatedFreeTimeTags.size()) {
+            throw new CommandException(Messages.MESSAGE_NO_MATCHING_FREE_TIME);
+        }
+
+        // Case 3: At least one of the specified free time(s) match any of the person's free time
         Name updatedName = personToEdit.getName();
         Phone updatedPhone = personToEdit.getPhone();
         Email updatedEmail = personToEdit.getEmail();
