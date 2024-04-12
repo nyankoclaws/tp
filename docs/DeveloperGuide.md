@@ -17,7 +17,7 @@ _{ list here sources of all reused/adapted ideas, code, documentation, and third
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Setting Up, Getting Started**
+## **Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
@@ -65,7 +65,7 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
 
 The sections below give more details of each component.
 
-### UI Component
+### UI component
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
 
@@ -82,7 +82,7 @@ The `UI` component,
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
 
-### Logic Component
+### Logic component
 
 **API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
 
@@ -115,7 +115,7 @@ How the parsing works:
 * When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
-### Model Component
+### Model component
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
 <puml src="diagrams/ModelClassDiagram.puml" width="450" />
@@ -137,7 +137,7 @@ The `Model` component,
 </box>
 
 
-### Storage Component
+### Storage component
 
 **API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
@@ -148,7 +148,7 @@ The `Storage` component,
 * inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
-### Common Classes
+### Common classes
 
 Classes used by multiple components are in the `seedu.addressbook.commons` package.
 
@@ -158,7 +158,7 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### **Free Time Tag Feature**
+### **Free TIme Tag Feature**
 #### Implementation
 The implementation consists of two main classes: `Tag` and `FreeTimeTag`.
 
@@ -255,10 +255,21 @@ Note: The user can delete multiple free times at the same time by using multiple
     * Currently, the code deletes the new time tag from the HashSet if the time tag interval matches exactly with the input.
     * To improve user experience, it could be useful to be able to delete free times that fall within an interval of a current free time tag. This will also mean that the remaining intervals will be split into 2 separate freeTimeTags.
     * For example, an initial freeTimeTag could be `Mon:1000-1400`. Calling `deleteTime [index] ft/Mon:1100-1200` will result in the new freeTimeTags `Mon:1000-1100` and `Mon:1200-1400`.
+#### Design considerations:
+
+**Aspect: How add free time executes:**
+
+* **Alternative 1 (current choice):** Append to HashSet in order.
+    * Pros: Easy to visualise in GUI.
+    * Cons: Additional time to loop through current HashSet to append in the current position.
+
+* **Alternative 2:** Append to end of HashSet
+    * Pros: Easy to implement because the new free time can just be appended at the end of the HashSet.
+    * Cons: Difficult to visualise in GUI (free time in Monday may appear after Tuesday's).
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Documentation, Logging, Testing, Configuration, Dev-ops**
+## **Documentation, logging, testing, configuration, dev-ops**
 
 * [Documentation guide](Documentation.md)
 * [Testing guide](Testing.md)
@@ -270,7 +281,7 @@ Note: The user can delete multiple free times at the same time by using multiple
 
 ## **Appendix: Requirements**
 
-### Product Scope
+### Product scope
 
 **Target user profile**:
 
@@ -285,7 +296,7 @@ Note: The user can delete multiple free times at the same time by using multiple
 He will be able to add many personal details to the contacts as well. It is optimized to search for contacts quickly.
 It will also include settings to create a custom look for the application.
 
-### User Stories
+### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
@@ -322,7 +333,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | student living in dorm                                               | export contact details as a .csv file                                | I can save and share the contacts in a backup location                                          |
 | `*`      | as a student living in dorm with an existing contacts data file      | import contact details from a .csv file                              | I can duplicate contacts into another copy of the application on another device                 |
 
-### Use Cases
+### Use cases
 
 (For all use cases below, the **System** is the `Dormie` and the **Actor** is the `user`, unless specified otherwise)
 
@@ -428,7 +439,7 @@ testers are expected to do more *exploratory* testing.
 
 </box>
 
-### Launch and Shutdown
+### Launch and shutdown
 
 1. Initial launch
 
@@ -445,9 +456,6 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-<<<<<<< HEAD
-### Deleting a Person
-=======
 ### Adding a person
 
 1. Adding a person
@@ -459,7 +467,6 @@ testers are expected to do more *exploratory* testing.
 1. _{ more test cases …​ }_
 
 ### Deleting a person
->>>>>>> origin/update-DG
 
 1. Deleting a person while all persons are being shown
 
@@ -476,11 +483,7 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-<<<<<<< HEAD
-### Saving Data
-=======
 ### Saving data to JSON
->>>>>>> origin/update-DG
 
 1. Dealing with missing/corrupted data files
 
