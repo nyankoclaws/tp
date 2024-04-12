@@ -211,7 +211,7 @@ Show a link to the User Guide.
 List all contacts and their details.
 
 ### Checking who is free : `whoisfree`
-View all persons that are available on the specified day and time
+View all persons that are available on the specified day and time.
 
 Format: `whoisfree DAY:TIME`
 - `DAY` is from Mon-Sun
