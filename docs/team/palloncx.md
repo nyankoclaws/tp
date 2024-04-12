@@ -20,7 +20,7 @@ Given below are my contributions to the project.
 * **Project management**:
   * Managed releases `v1.1` - `v1.2.1` (3 releases) on GitHub
 * **Enhancements to features**:
-  * Wrote additional tests for various class [\#98](https://github.com/AY2324S2-CS2103T-F11-4/tp/pull/98) 
+  * Wrote additional tests for various class [\#98](https://github.com/AY2324S2-CS2103T-F11-4/tp/pull/98)
   * Disallowed duplicate prefix for fields in certain commands [\#113](https://github.com/AY2324S2-CS2103T-F11-4/tp/pull/113)
   * Enable assertion for the project [\#90](https://github.com/AY2324S2-CS2103T-F11-4/tp/pull/90)
 * **Documentation**:
