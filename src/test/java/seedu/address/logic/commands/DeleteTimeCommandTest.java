@@ -8,7 +8,6 @@ import static seedu.address.logic.commands.CommandTestUtil.DESC_DELETE_TIME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_FREE_TIME_TAG_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_FREE_TIME_TAG_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
@@ -79,7 +78,7 @@ public class DeleteTimeCommandTest {
      * Edit filtered list where valid free time is specified
      */
     @Test
-    public void execute_newFreeTime_success() {
+    public void execute_newFreeTime_failure() {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
         Index outOfBoundIndex = INDEX_FIRST_PERSON;
         // ensures that outOfBoundIndex is still in bounds of address book list
@@ -90,17 +89,16 @@ public class DeleteTimeCommandTest {
 
         Person editedPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
 
-        String expectedMessage = String.format(DeleteTimeCommand.MESSAGE_DELETE_FREETIME_SUCCESS,
-                Messages.format(editedPerson));
+        String expectedMessage = Messages.MESSAGE_NO_MATCHING_FREE_TIME;
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
 
-        assertCommandSuccess(deleteTimeCommand, model, expectedMessage, expectedModel);
+        assertCommandFailure(deleteTimeCommand, model, expectedMessage);
     }
 
     @Test
-    public void execute_newMultipleFreeTime_success() {
+    public void execute_newMultipleFreeTime_failure() {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
         Index outOfBoundIndex = INDEX_FIRST_PERSON;
         // ensures that outOfBoundIndex is still in bounds of address book list
@@ -112,13 +110,12 @@ public class DeleteTimeCommandTest {
 
         Person editedPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
 
-        String expectedMessage = String.format(DeleteTimeCommand.MESSAGE_DELETE_FREETIME_SUCCESS,
-                Messages.format(editedPerson));
+        String expectedMessage = Messages.MESSAGE_NO_MATCHING_FREE_TIME;
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
 
-        assertCommandSuccess(deleteTimeCommand, model, expectedMessage, expectedModel);
+        assertCommandFailure(deleteTimeCommand, model, expectedMessage);
     }
 
     @Test
