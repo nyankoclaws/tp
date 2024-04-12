@@ -116,7 +116,7 @@ class FreeTimeTag extends Tag {
 {static} +isValidTagName(String): boolean
 }
 
-Person "1" *-- "*" FreeTime
+Person "1" *-- "*" FreeTimeTag
 
 class Name {
 +value: String
