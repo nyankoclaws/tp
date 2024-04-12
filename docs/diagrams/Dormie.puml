@@ -31,22 +31,6 @@ class UserPrefs {
 
 ReadOnlyUserPrefs <|.. UserPrefs
 
-interface ReadOnlyAddressBook {
-+getPersonList(): ObservableList<Person>
-}
-
-class AddressBook {
--persons: UniquePersonList
-
-+setPersons(List<Person>)
-+resetData(ReadOnlyAddressBook)
-+addPerson(Person)
-+hasPerson(Person): boolean
-+setPerson(target: Person, editedPerson: Person)
-}
-
-ReadOnlyAddressBook <|.. AddressBook
-
 interface Model {
 +PREDICATE_SHOW_ALL_PERSONS: Predicate<Person>
 
@@ -67,6 +51,21 @@ class ModelManager {
 
 Model <|.. ModelManager
 
+interface ReadOnlyAddressBook {
++getPersonList(): ObservableList<Person>
+}
+
+class AddressBook {
+-persons: UniquePersonList
+
++setPersons(List<Person>)
++resetData(ReadOnlyAddressBook)
++addPerson(Person)
++hasPerson(Person): boolean
++setPerson(target: Person, editedPerson: Person)
+}
+
+ReadOnlyAddressBook <|.. AddressBook
 
 class Person {
 -name: Name
@@ -80,11 +79,31 @@ class Person {
 +equals(Object): boolean
 }
 
-class FreeTime {
+AddressBook "1" *-- "*" Person : contains
+
+abstract class Tag {
++tagName: String
+
+{abstract} +equals(Object) : boolean
+{abstract} +hashCode() : int
+{abstract} +toString() : String
+}
+
+class DormTag extends Tag {
+{static} +isValidTagName(String) : boolean
+}
+
+class FreeTime extends Tag {
 -day: String
 -startTime: String
 -endTime: String
+
+
+{static} +isValidTimeInterval(String) : boolean
+{static} +isValidTagName(String) : boolean
 }
+
+Person "1" *-- "*" FreeTime
 
 class RoomNumber {
 -block: String
@@ -92,15 +111,14 @@ class RoomNumber {
 -roomNumber: String
 -lastModified: LocalDate
 
-+isValidRoomNumber(String): boolean
-+isValidRoomNumberWDate(String): boolean
-+isValidDate(String): boolean
+{static} +isValidRoomNumber(String): boolean
+{static} +isValidRoomNumberWDate(String): boolean
+{static} +isValidDate(String): boolean
 +isOutdated(): boolean
 +toString(): String
 +toStringWDate(): String
 }
 
-Person "1" *-- "*" FreeTime
 Person "1" *-- "1" RoomNumber
 
 interface Storage  {
@@ -183,8 +201,5 @@ class Prefix {
 
 class Messages {
 }
-
-AddressBook "1" *-- "*" Person : contains
-
 
 @enduml
