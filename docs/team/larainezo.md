@@ -11,7 +11,6 @@ Given below are my contributions to the project.
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2324s2.github.io/tp-dashboard/?search=laraine&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2024-02-23&tabOpen=true&tabType=authorship&tabAuthor=larainezo&tabRepo=AY2324S2-CS2103T-F11-4%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
 * **New Feature**: Added the ability to add/remove freeTime tags.
-  <<<<<<< HEAD
   * What it does: allows the user to add/remove freeTime tags for each contact.
   * Justification: This feature improves the product significantly because different contacts can have changing free time and the app should provide a convenient way to modify them.
   * Highlights: The implementation was challenging as it required changes to existing add/edit contact commands and modifications to data structures (i.e. HashSet).
@@ -59,4 +58,3 @@ Given below are my contributions to the project.
     * Added implementation details of the `deleteTime` feature. [\#231](https://github.com/AY2324S2-CS2103T-F11-4/tp/pull/231)
 * **Community**:
   * PRs reviewed (with non-trivial review comments): [\#78](https://github.com/AY2324S2-CS2103T-F11-4/tp/pull/78
->>>>>>> origin/update-DG
