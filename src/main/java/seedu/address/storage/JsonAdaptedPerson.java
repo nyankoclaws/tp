@@ -128,8 +128,14 @@ class JsonAdaptedPerson {
 
         Birthday modelBirthday = null;
         if (birthday != null) {
-            if (!Birthday.isValidBirthday(birthday)) {
+            if (!Birthday.isValidBirthdayFormat(birthday)) {
                 throw new IllegalValueException(Birthday.MESSAGE_CONSTRAINTS);
+            }
+            if (!Birthday.isValidBirthdayValue(birthday)) {
+                throw new IllegalValueException(Birthday.INVALID_DATE);
+            }
+            if (Birthday.isBirthdayFuture(birthday)) {
+                throw new IllegalValueException(Birthday.FUTURE_DATE);
             }
             modelBirthday = new Birthday(birthday);
         }
