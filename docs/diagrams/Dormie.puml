@@ -10,39 +10,13 @@ interface Logic {
 +setGuiSettings(GuiSettings)
 }
 
-interface ReadOnlyAddressBook {
-+getPersonList(): ObservableList<Person>
+class LogicManager implements Logic {
 }
+
 
 interface ReadOnlyUserPrefs {
 +getGuiSettings(): GuiSettings
 +getAddressBookFilePath(): Path
-}
-
-interface Model {
-+PREDICATE_SHOW_ALL_PERSONS: Predicate<Person>
-
-+hasPerson(Person): boolean
-+deletePerson(Person)
-+addPerson(Person)
-+removePerson(Person)
-+getPersonList(): ObservableList<Person>
-+setPerson(target: Person, editedPerson: Person)
-}
-
-interface Storage  {
-+readUserPrefs(): Optional<UserPrefs>
-+saveUserPrefs(ReadOnlyUserPrefs)
-+getAddressBookFilePath(): Path
-+readAddressBook():Optional<ReadOnlyAddressBook>
-saveAddressBook(ReadOnlyAddressBook)
-}
-
-class ModelManager {
--logger: Logger
--addressBook: AddressBook
--userPrefs: UserPrefs
--filteredPersons: FilteredList<Person>
 }
 
 class UserPrefs {
@@ -55,6 +29,12 @@ class UserPrefs {
 +getAddressBookFilePath(): Path
 }
 
+ReadOnlyUserPrefs <|.. UserPrefs
+
+interface ReadOnlyAddressBook {
++getPersonList(): ObservableList<Person>
+}
+
 class AddressBook {
 -persons: UniquePersonList
 
@@ -65,9 +45,27 @@ class AddressBook {
 +setPerson(target: Person, editedPerson: Person)
 }
 
-Model <|.. ModelManager
-ReadOnlyUserPrefs <|.. UserPrefs
 ReadOnlyAddressBook <|.. AddressBook
+
+interface Model {
++PREDICATE_SHOW_ALL_PERSONS: Predicate<Person>
+
++hasPerson(Person): boolean
++deletePerson(Person)
++addPerson(Person)
++removePerson(Person)
++getPersonList(): ObservableList<Person>
++setPerson(target: Person, editedPerson: Person)
+}
+
+class ModelManager {
+-logger: Logger
+-addressBook: AddressBook
+-userPrefs: UserPrefs
+-filteredPersons: FilteredList<Person>
+}
+
+Model <|.. ModelManager
 
 
 class Person {
@@ -104,6 +102,14 @@ class RoomNumber {
 
 Person "1" *-- "*" FreeTime
 Person "1" *-- "1" RoomNumber
+
+interface Storage  {
++readUserPrefs(): Optional<UserPrefs>
++saveUserPrefs(ReadOnlyUserPrefs)
++getAddressBookFilePath(): Path
++readAddressBook():Optional<ReadOnlyAddressBook>
+saveAddressBook(ReadOnlyAddressBook)
+}
 
 class CommandException extends Exception {
 }
@@ -174,11 +180,6 @@ class ParserUtil {
 class Prefix {
 }
 
-interface Logic {
-}
-
-class LogicManager implements Logic {
-}
 
 class Messages {
 }
