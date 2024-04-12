@@ -1,7 +1,6 @@
 {
   "baseUrl": "",
   "titlePrefix": "Dormie",
-  "titleSuffix": "AddressBook Level-3",
   "faviconPath": "images/dormie.png",
   "style": {
     "codeTheme": "light"
