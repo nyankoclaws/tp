@@ -71,7 +71,6 @@ class Person {
 -name: Name
 -phone: Phone
 -email: Email
--telegram: Telegram
 
 +isSamePerson(Person): boolean
 +equals(Object): boolean
@@ -87,6 +86,14 @@ class Birthday {
 }
 
 Person "1" *-- "1" Birthday
+
+class Email {
++value: String
+
+{static} +isValidEmail(String): boolean
+}
+
+Person "1" *-- "1" Email
 
 abstract class Tag {
 +tagName: String
@@ -129,6 +136,14 @@ class RoomNumber {
 }
 
 Person "1" *-- "1" RoomNumber
+
+class Telegram {
++value: String
+
+{static} +isValidTelegram(String): boolean
+}
+
+Person "1" *-- "1" Telegram
 
 interface Storage  {
 +readUserPrefs(): Optional<UserPrefs>
