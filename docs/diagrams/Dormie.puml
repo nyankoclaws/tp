@@ -68,9 +68,6 @@ class AddressBook {
 ReadOnlyAddressBook <|.. AddressBook
 
 class Person {
--name: Name
--phone: Phone
--email: Email
 
 +isSamePerson(Person): boolean
 +equals(Object): boolean
@@ -109,7 +106,7 @@ class DormTag extends Tag {
 
 Person "1" *-- "1" DormTag
 
-class FreeTime extends Tag {
+class FreeTimeTag extends Tag {
 -day: String
 -startTime: String
 -endTime: String
@@ -120,6 +117,22 @@ class FreeTime extends Tag {
 }
 
 Person "1" *-- "*" FreeTime
+
+class Name {
++value: String
+
+{static} +isValidName(String): boolean
+}
+
+Person "1" *-- "1" Name
+
+class Phone {
++value: String
+
+{static} +isValidPhone(String): boolean
+}
+
+Person "1" *-- "1" Phone
 
 class RoomNumber {
 -block: String
