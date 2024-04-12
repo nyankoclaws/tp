@@ -74,7 +74,6 @@ class Person {
 -name: Name
 -phone: Phone
 -email: Email
--roomNumber: RoomNumber
 -telegram: Telegram
 -birthday: Birthday
 -dorm: Dorm
@@ -88,6 +87,23 @@ class FreeTime {
 -startTime: String
 -endTime: String
 }
+
+class RoomNumber {
+-block: String
+-floor: String
+-roomNumber: String
+-lastModified: LocalDate
+
++isValidRoomNumber(String): boolean
++isValidRoomNumberWDate(String): boolean
++isValidDate(String): boolean
++isOutdated(): boolean
++toString(): String
++toStringWDate(): String
+}
+
+Person "1" *-- "*" FreeTime
+Person "1" *-- "1" RoomNumber
 
 class CommandException extends Exception {
 }
@@ -168,7 +184,6 @@ class Messages {
 }
 
 AddressBook "1" *-- "*" Person : contains
-Person "1" *-- "*" FreeTime
 
 
 @enduml
