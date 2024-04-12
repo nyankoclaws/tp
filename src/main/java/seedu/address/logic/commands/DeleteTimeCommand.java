@@ -31,11 +31,14 @@ public class DeleteTimeCommand extends Command {
 
     public static final String COMMAND_WORD = "deleteTime";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes a free time to the person identified "
-            + "by the index number used in the displayed person list. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes a free time from the person identified "
+            + "by the index number used in the displayed person list. \n"
+            + "Parameters: INDEX (must be a positive integer) "
+            + PREFIX_FREETIMETAG + "FREE TIME TAG...\n"
+            + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_FREETIMETAG + "Mon:1300-1400";
 
-    public static final String MESSAGE_DELETE_FREETIME_SUCCESS = "Deleted free time to person: %1$s";
+    public static final String MESSAGE_DELETE_FREETIME_SUCCESS = "Deleted free time from person: %1$s";
 
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;
@@ -77,6 +80,13 @@ public class DeleteTimeCommand extends Command {
             throws CommandException {
         assert personToEdit != null;
 
+        Set<FreeTimeTag> freeTimeTags = personToEdit.getTags();
+        Set<FreeTimeTag> updatedFreeTimeTags = new HashSet<>();
+
+        if (freeTimeTags.isEmpty()) {
+            throw new CommandException(Messages.MESSAGE_EMPTY_FREE_TIME_FOR_DELETE);
+        }
+
         if (editPersonDescriptor.getTags() == null) {
             throw new CommandException(Messages.MESSAGE_NO_FREETIME_SPECIFIED);
         }
@@ -86,9 +96,6 @@ public class DeleteTimeCommand extends Command {
         if (deleteFreeTimeTags == null) {
             throw new CommandException(Messages.MESSAGE_NO_FREETIME_SPECIFIED);
         }
-
-        Set<FreeTimeTag> freeTimeTags = personToEdit.getTags();
-        Set<FreeTimeTag> updatedFreeTimeTags = new HashSet<>();
 
         if (freeTimeTags != null) {
             for (FreeTimeTag freeTimeTag : freeTimeTags) {
