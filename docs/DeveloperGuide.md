@@ -217,10 +217,6 @@ The following sequence diagram shows how an addFreeTime operation goes through t
     * Pros: Easy to implement because the new free time can just be appended at the end of the HashSet.
     * Cons: Difficult to visualise in GUI (free time in Monday may appear after Tuesday's).
 
-#### Future enhancement for this feature:
-* **Merge overlapping free time intervals**
-    * Currently, the code appends the new time tag to the HashSet if the time tag is not already present. To improve user experience, it could be useful to merge time tags that have overlapping time intervals.
-
 ### Delete Free Time Command
 
 #### Implementation
@@ -250,11 +246,6 @@ Note: The user can delete multiple free times at the same time by using multiple
     * Pros: More convenient if the user wants to delete multiple free times at once. For example, `deleteTime [index] ft/Wed:1000-1200` will delete the `Wed:1000-1100` and `Wed:1100-1200` free time tags.
     * Cons: Could introduce more bugs that are more challenging to resolve in a short period of time (Given the current time constraints).
 
-#### Future enhancement for this feature:
-* **Delete in-between free time intervals**
-    * Currently, the code deletes the new time tag from the HashSet if the time tag interval matches exactly with the input.
-    * To improve user experience, it could be useful to be able to delete free times that fall within an interval of a current free time tag. This will also mean that the remaining intervals will be split into 2 separate freeTimeTags.
-    * For example, an initial freeTimeTag could be `Mon:1000-1400`. Calling `deleteTime [index] ft/Mon:1100-1200` will result in the new freeTimeTags `Mon:1000-1100` and `Mon:1200-1400`.
 #### Design considerations:
 
 **Aspect: How add free time executes:**
@@ -492,3 +483,68 @@ testers are expected to do more *exploratory* testing.
     1. _{ tbc }_
 
 1. _{ more test cases …​ }_
+
+## **Appendix: Planned Enhancements**
+
+Test size: 5
+
+1. **Enable cross day free time interval:**
+   * Currently, a free time interval can only be specified based on a single day. There is no way to specify a free time interval that spans multiple day.
+   * To improve user experience, it could be useful to enable cross day free time interval, such as `Mon:2000-Tue:0800`.
+
+2. **Enable free time interval merging:**
+   * Currently, a person can have overlapping free time intervals.
+     * For example, a person can have free time intervals of `Mon:1000-1200` and `Mon:1100-1300`, or `Mon:2000-2359` and `Tue:0000-0800`.
+   * To improve user experience, it could be useful to merge free time tags that have overlapping time intervals.
+     * For example, `Mon:1000-1200` and `Mon:1100-1300` can be combined as `Mon:1000-1300`.
+     * For example, `Mon:2000-2359` and `Tue:0000-0800` can be combined as `Mon:2000-Tue:0800`.
+   * The merging process could be done when new free time tag is added to the person, e.g. via `add` command, `addTime` command, or `edit` command.
+
+3. **Delete free time within an interval:**
+   * Additionally, it could be useful to be able to delete free times that fall within a time interval, e.g. via `deleteTime` command.
+   * For example, an initial freeTimeTag could be `Mon:1000-1400`. Executing `deleteTime INDEX ft/Mon:1100-1200` will result in the new freeTimeTags `Mon:1000-1100` and `Mon:1200-1400`.
+
+4. **Allow more flexibility in command prefixes:**
+   * Currently, the command prefixes are case-sensitive.
+     * For example, `n/` is the prefix for "name" parameter, but `N/` is not acceptable by the command parser.
+   * It may provide more convenience to user by disabling case sensitivity for prefixes. For example, allowing `n/` and `N/` as the prefix for "name" parameter.
+
+5. **Supporting more forms of name:**
+   * Currently, only name form that consist of alphanumeric characters and spaces in between is allowed.
+   * It may improve the diversity of the application, by supporting name in different forms, including names in different languages and names that contain non-alphanumeric symbols.
+
+6. **Supporting more forms of room number:**
+   * Currently, the room number format is {block}-{floor}-{room number}, where block and room number are at least 2 alphanumeric characters and floor is strictly 2 alphanumeric characters. E.g. `nw-12-12`.
+   * To accommodate more room number format, it will be good to change the minimum length of block and room number as 1.
+
+7. **Allow more flexibility in free time tag format:**
+   * Currently, free time tag only accept forms of `DDD:HHmm-HHmm`, e.g. `Mon:1200-1300`.
+   * It may provide more convenience to user by disabling case sensitivity on the day part, e.g. allowing `mon:1000-1200`, `Mon:1000-1200`, `MON:1000-1200`.
+
+8. **Support more accurate free time:**
+   * A person may not always be free for the same time interval every week. For example, a person can be free at `Mon:1000-1200` for every odd week of the semester, and busy at the time for every even week of the semester.
+   * A possible solution is to specify actual date as part of the free time interval, e.g. `01/01:Mon:1000-1200`.
+     * Pros: It provides more customizable user experience.
+     * Cons: It requires users to have detailed schedule information of a person in their contact list, where the person may not be willing to disclose. It also requires users to provide more complicated parameters, which is more troublesome and error-prone.
+   * Another possible solution is to host the application online, and allow user to specify their own free times. 
+     * Pros: User may connect to the real-time state of another user, and able to view the real-time updated free time of others.
+     * Cons: More changes may need to be done on the application, and the developer team will need to re-evaluate the necessity of certain commands. 
+       * For example, users may not need to manually input and record the detail of others, as they only need to update their own profile, and others can view the real-time state of it. 
+       * Hence, some commands e.g. `addTime`, `deleteTime`, and `edit`, are no longer applicable to the application.
+     
+9. **Make error messages more specific:**
+   * When user provides a command with invalid format, some error messages are too general. 
+     * For example, when executing `add n/Alice d/pgpr`, the error messages will suggest that the command format is invalid, and display the correct format together with a usage example. 
+     * In this case, the command is invalid as some mandatory parameters are omitted, but new users may not expect that some parameters are mandatory.
+   * Hence, error messages can be enhanced to be more specific, such that user can easily identify the reason of command failure.
+
+10. **Make the `whoisfree` command to search for a range of time:**
+    * When user perform a `whoisfree` command, it might be useful to ascertain that a person would be free for the whole duration.
+    * For example, `whoisfree Mon:1200-1400` will display all person that are free for the time interval.
+
+11. **Allow `edit` command to clear optional field:**
+    * Currently, the `edit` command cannot clear the value of some optional fields (i.e. email, room number, telegram handle, birthday, dorm tag).
+    * It will be useful to allow this, as the optional field, as its name suggests, should be able to take no value.
+
+
+
