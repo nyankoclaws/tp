@@ -126,7 +126,7 @@ Examples:
 ### Adding Free Time Tag : `addTime`
 Adds 1 or multiple specified `freeTimeTags`
 
-Format: `addTime INDEX [ft/FREE_TIME_TAG]...`
+Format: `addTime INDEX ft/FREE_TIME_TAG...`
 
 Examples:
 - Single input: `addTime 1 ft/Mon:1300-1400`
@@ -134,6 +134,7 @@ Examples:
 
 Note:
 - As this is the first version, there is no functionality to merge overlapping free time tags yet.
+- The command will only add the user input free time tags that the specified contact does not have.
 
 ### Clearing all persons: `clear`
 
@@ -168,6 +169,7 @@ Examples:
 
 Note:
 - As this is the first version, only free time tags that **exactly** match the interval(s) specified will be deleted.
+- The command will only delete the user input free time tags that the specified person has.
 
 ### Editing a person : `edit`
 

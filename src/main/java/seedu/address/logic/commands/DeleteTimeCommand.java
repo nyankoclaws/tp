@@ -95,6 +95,9 @@ public class DeleteTimeCommand extends Command {
         }
 
         if (freeTimeTags != null) {
+            if (deleteFreeTimeTags.isEmpty()) {
+                throw new CommandException(FreeTimeTag.MESSAGE_CONSTRAINTS);
+            }
             for (FreeTimeTag freeTimeTag : freeTimeTags) {
                 if (!deleteFreeTimeTags.contains(freeTimeTag)) {
                     updatedFreeTimeTags.add(freeTimeTag);
