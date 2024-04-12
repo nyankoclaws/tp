@@ -27,6 +27,8 @@ public class Messages {
             "Multiple values specified for the following single-valued field(s): ";
     public static final String MESSAGE_NO_MATCHING_FREE_TIME =
             "No matching free time to be deleted for the chosen person.";
+    public static final String MESSAGE_NO_NEW_FREE_TIME =
+            "No new free time to be added for the chosen person.";
 
     /**
      * Returns an error message indicating the duplicate prefixes.
