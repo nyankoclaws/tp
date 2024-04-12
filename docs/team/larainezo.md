@@ -51,12 +51,12 @@ Given below are my contributions to the project.
   * Added logging for actions performed on contact [\#92](https://github.com/AY2324S2-CS2103T-F11-4/tp/pull/92)
 * **Documentation**:
   * User Guide:
-    * Added documentation for the features `addTime` and `deleteTime`
+    * Added documentation for the features `addTime` and `deleteTime`. [\#221](https://github.com/AY2324S2-CS2103T-F11-4/tp/pull/221)
     * Added instructions on how to use the documentation [\#129](https://github.com/AY2324S2-CS2103T-F11-4/tp/pull/129)
     * Did cosmetic tweaks to existing documentation of features [\#139](https://github.com/AY2324S2-CS2103T-F11-4/tp/pull/139)
   * Developer Guide:
     * Added implementation details of the `addTime` feature. [\#87](https://github.com/AY2324S2-CS2103T-F11-4/tp/pull/87)
-    * Added implementation details of the `deleteTime` feature.
+    * Added implementation details of the `deleteTime` feature. [\#231](https://github.com/AY2324S2-CS2103T-F11-4/tp/pull/231)
 * **Community**:
   * PRs reviewed (with non-trivial review comments): [\#78](https://github.com/AY2324S2-CS2103T-F11-4/tp/pull/78
 >>>>>>> origin/update-DG
