@@ -7,7 +7,7 @@ title: "Laraine's Project Portfolio Page"
 
 ## Project Overview
 ![Image of Dormie](../images/Ui.png)
-Dormie is an application developed for college students living in dorms. It helps them connect with their dorm mates in a simple way. With Dormie, they can easily see when their friends are free, and keep track of their important dates and contact details. It makes organising social events less stressful and helps students stay connected with each other.
+<br>Dormie is an application developed for college students living in dorms. It helps them connect with their dorm mates in a simple way. With Dormie, they can easily see when their friends are free, and keep track of their important dates and contact details. It makes organising social events less stressful and helps students stay connected with each other.
 
 ## Technical Details
 Developed with Java and JavaFX, the application employs object-oriented classes to maintain code consistency and organization.
