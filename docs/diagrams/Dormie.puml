@@ -72,14 +72,21 @@ class Person {
 -phone: Phone
 -email: Email
 -telegram: Telegram
--birthday: Birthday
--dorm: Dorm
 
 +isSamePerson(Person): boolean
 +equals(Object): boolean
 }
 
 AddressBook "1" *-- "*" Person : contains
+
+class Birthday {
++value: LocalDate
+
+{static} +isValidBirthday(String): boolean
++isBirthday(): boolean
+}
+
+Person "1" *-- "1" Birthday
 
 abstract class Tag {
 +tagName: String
@@ -90,8 +97,10 @@ abstract class Tag {
 }
 
 class DormTag extends Tag {
-{static} +isValidTagName(String) : boolean
+{static} +isValidTagName(String): boolean
 }
+
+Person "1" *-- "1" DormTag
 
 class FreeTime extends Tag {
 -day: String
@@ -99,8 +108,8 @@ class FreeTime extends Tag {
 -endTime: String
 
 
-{static} +isValidTimeInterval(String) : boolean
-{static} +isValidTagName(String) : boolean
+{static} +isValidTimeInterval(String): boolean
+{static} +isValidTagName(String): boolean
 }
 
 Person "1" *-- "*" FreeTime
