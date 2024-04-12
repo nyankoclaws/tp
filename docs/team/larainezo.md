@@ -4,7 +4,6 @@ title: "Laraine's Project Portfolio Page"
 ---
 
 # Project: Dormie
-![Image of Dormie](../images/Dormie.png)
 
 ## Project Overview
 ![Image of Dormie](../images/Ui.png)
