@@ -64,7 +64,7 @@ public class FreeTimeTag extends Tag implements Comparable<FreeTimeTag> {
         String start = time[0];
         String end = time[1];
         String currentTimeStamp = currentTime.substring(4);
-        return currentTimeStamp.compareTo(start) >= 0 && currentTimeStamp.compareTo(end) <= 0;
+        return currentTimeStamp.compareTo(start) >= 0 && currentTimeStamp.compareTo(end) < 0;
     }
 
     @Override

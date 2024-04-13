@@ -17,12 +17,13 @@ public class FreeTimeTagTest {
     public void isContained() {
         FreeTimeTag freeTimeTag = new FreeTimeTag("Mon:0700-0900");
 
-        assertTrue(freeTimeTag.isContained("Mon:0700")); // On time
-        assertTrue(freeTimeTag.isContained("Mon:0800")); // In between
-        assertTrue(freeTimeTag.isContained("Mon:0900")); // On time
+        assertTrue(freeTimeTag.isContained("Mon:0700")); // On start time
+        assertTrue(freeTimeTag.isContained("Mon:0701")); // Near start
+        assertTrue(freeTimeTag.isContained("Mon:0859")); // Near end
 
+        assertFalse(freeTimeTag.isContained("Mon:0659")); // Earlier than start
         assertFalse(freeTimeTag.isContained("Tue:0700")); // Different day
-        assertFalse(freeTimeTag.isContained("Mon:0659")); // Earlier time
+        assertFalse(freeTimeTag.isContained("Mon:0900")); // On end time
         assertFalse(freeTimeTag.isContained("Mon:0901")); // Later time
     }
     @Test
