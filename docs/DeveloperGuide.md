@@ -486,7 +486,7 @@ testers are expected to do more *exploratory* testing.
 
 ## **Appendix: Planned Enhancements**
 
-Test size: 5
+Team size: 5
 
 1. **Enable cross day free time interval:**
    * Currently, a free time interval can only be specified based on a single day. There is no way to specify a free time interval that spans multiple day.
