@@ -13,7 +13,7 @@ pageNav: 3
 
 ## **Acknowledgements**
 
-_{ list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well }_
+ _[Codium](https://www.codium.ai/) - Used by [donwong2308](https://github.com/donwong2308) to autocomplete code in some parts of FreeTimeTag and FreeTimeTagTest._
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -285,7 +285,7 @@ Note: The user can delete multiple free times at the same time by using multiple
 
 **Target user profile**:
 
-* Jim is an undergraduate student enrolled in NUS College and wants to network with his batchmates who stay in the
+* Jim is an undergraduate student enrolled in NUS College and wants to network with students who stay in the
   same dorm as him.
 * He likes to interact with students from other floors. Every year, the students will change rooms and new students
   will come in as well.
@@ -300,38 +300,34 @@ It will also include settings to create a custom look for the application.
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                                              | I can …​                                                             | So that …​                                                                                      |
-|----------|----------------------------------------------------------------------|----------------------------------------------------------------------|-------------------------------------------------------------------------------------------------|
-| `* * *`  | student who just started living in dorm                              | create a new contact                                                 | I can remember the particulars of a new dorm mate                                               |
-| `* * *`  | student living in dorm                                               | choose to specify the room number upon contact creation              | I do not need to update my dorm mate’s room number separately                                   |
-| `* * *`  | student living in dorm                                               | choose to specify the birthday upon contact creation                 | I do not need to update my dorm mate’s birthday separately                                      |
-| `* * *`  | student living in dorm                                               | delete a contact                                                     | I can stay updated on who no longer resides in the dorm                                         |
-| `* * *`  | student living in dorm                                               | edit a contact’s name                                                | I can change the name if it was initially created incorrectly or the name has been changed      |
-| `* * *`  | student living in dorm                                               | edit a contact’s room number                                         | I can stay updated if my dorm mate changes room                                                 |
-| `* * *`  | student living in dorm                                               | view all contacts                                                    | I can keep track of how to find my dorm mates if I need their help AND remember their birthdays |
-| `* *`    | student living in dorm                                               | view allowed commands when the application launches                  | I am aware of what functions I can use in the application                                       |
-| `* *`    | student living in dorm                                               | get autocomplete when typing commands                                | I can quickly give my commands                                                                  |
-| `* *`    | student living in dorm with many contacts                            | search a contact by name                                             | I can quickly find details of my dorm mates                                                     |
-| `* *`    | student living in dorm with many contacts                            | search a contact by dorm room number                                 | I can find where are my dorm mates                                                              |
-| `* *`    | student living in dorm with many contacts                            | search a contact by birthday                                         | I know whose birthday is in which month                                                         |
-| `* *`    | student living in dorm with many contacts                            | filter contacts by name / dorm room number / birthday                | I can quickly find details of my dorm mates                                                     |
-| `* *`    | student living in dorm                                               | add a profile picture for each contact                               | I can recognise and identify the contact person                                                 |
-| `* *`    | student living in dorm                                               | add telegram link for each contact                                   | I can contact them on telegram / In case they do not want to disclose their phone number        |
-| `* *`    | student living in dorm                                               | add Instagram link for each contact                                  | I can get updates as to what my friends are up to                                               |
-| `* *`    | student living in dorm                                               | add Linkedin link for each contact                                   | I can get updates on my friend’s career progress                                                |
-| `* *`    | student living in dorm                                               | add Facebook link for each contact                                   | I can get updates as to what my friends are up to                                               |
-| `*`      | student living in dorm                                               | add personal website link for each contact                           | I can get a sense of different types of portfolios which my batch mates may have                |
-| `*`      | student living in dorm                                               | sync room updated room numbers across multiple users (decentralised) | I can just update my room number and not worry about other user’s room numbers                  |
-| `*`      | student living in dorm who has many events planned with dorm friends | sync events across calendars (decentralised using event codes)       | I can find other students to go to events with                                                  |
-| `*`      | student living in dorm with many contacts                            | filter by non-graduated students / by student year number            | I can find people who are still students                                                        |
-| `*`      | student living in dorm who has many events planned with dorm friends | view my upcoming events                                              | I can plan for them accordingly                                                                 |
-| `*`      | student living in dorm who has many events planned with dorm friends | view upcoming birthdays                                              | I can plan for them accordingly / wish them happy birthday                                      |
-| `*`      | student who just started living in dorm                              | type help to get a list of all commands and how to use them          | I can find the command I want to use                                                            |
-| `*`      | student living in dorm                                               | toggle between dark and light mode                                   | I can make my view of the application more comfortable to the eye                               |
-| `*`      | student living in dorm                                               | apply custom background / colour scheme by hex codes                 | I can personalise the application to my liking                                                  |
-| `*`      | student who just started living in dorm                              | add my personal details - name, room number, birthday                | I can have notifications addressed to me                                                        |
-| `*`      | student living in dorm                                               | export contact details as a .csv file                                | I can save and share the contacts in a backup location                                          |
-| `*`      | as a student living in dorm with an existing contacts data file      | import contact details from a .csv file                              | I can duplicate contacts into another copy of the application on another device                 |
+| Priority | As a …​                                   | I can …​                                                             | So that …​                                                                                      |
+|----------|-------------------------------------------|----------------------------------------------------------------------|-------------------------------------------------------------------------------------------------|
+| `* * *`  | student who just started living in dorm   | create a new contact                                                 | I can remember the particulars of a new dorm mate                                               |
+| `* * *`  | student living in dorm                    | choose to specify the room number upon contact creation              | I do not need to update my dorm mate’s room number separately                                   |
+| `* * *`  | student living in dorm                    | choose to specify the birthday upon contact creation                 | I do not need to update my dorm mate’s birthday separately                                      |
+| `* * *`  | student living in dorm                    | delete a contact                                                     | I can stay updated on who no longer resides in the dorm                                         |
+| `* * *`  | student living in dorm                    | edit a contact’s name                                                | I can change the name if it was initially created incorrectly or the name has been changed      |
+| `* * *`  | student living in dorm                    | edit a contact’s room number                                         | I can stay updated if my dorm mate changes room                                                 |
+| `* * *`  | student living in dorm                    | view all contacts                                                    | I can keep track of how to find my dorm mates if I need their help AND remember their birthdays |
+| `* *`    | student living in dorm                    | add when my friends are free                                         | I can remember when my friends are available                                                    |
+| `* *`    | student living in dorm                    | view which of my friends are free at a certain time                  | I know who I can ask to meet for leisure or work                                                |
+| `* *`    | student living in dorm                    | update when my friends are free                                      | I ensure that the free times stored are accurate                                                |
+| `* *`    | new user of this application              | view allowed commands when the application launches                  | I am aware of what functions I can use in the application                                       |
+| `* *`    | user exploring this application           | get autocomplete when typing commands                                | I can quickly give my commands                                                                  |
+| `* *`    | student living in dorm with many contacts | search a contact by name                                             | I can quickly find details of my dorm mates                                                     |
+| `* *`    | student living in dorm with many contacts | filter contacts by dorm room number                                  | I can find where are my dorm mates                                                              |
+| `* *`    | student living in dorm with many contacts | search a contact by birthday                                         | I know whose birthday is in which month                                                         |
+| `* *`    | student living in dorm                    | add a profile picture for each contact                               | I can recognise and identify the contact person                                                 |
+| `* *`    | student living in dorm                    | add telegram handle for each contact                                 | I can contact them on telegram as an alternative to their phone number                          |
+| `*`      | student living in dorm                    | sync room updated room numbers across multiple users (decentralised) | I can just update my room number and not worry about other user’s room numbers                  |
+| `*`      | student living in dorm who enjoys events  | add upcoming events                                                  | I can remember what events are coming up                                                        |
+| `*`      | student living in dorm who enjoys events  | view upcoming events                                                 | I can plan for them accordingly                                                                 |
+| `*`      | student living in dorm who enjoys events  | view upcoming birthdays                                              | I can plan a celebration and wish them happy birthday                                           |
+| `*`      | new user of this application              | type help to get a list of all commands and how to use them          | I can find the command I want to use                                                            |
+| `*`      | user exploring this application           | toggle between dark and light mode                                   | I can make my view of the application more comfortable to the eye                               |
+| `*`      | user exploring this application           | apply custom background                                              | I can personalise the application to my liking                                                  |
+| `*`      | expert user of this application           | export contact details as a .csv file                                | I can save and share the contacts in a backup location                                          |
+| `*`      | expert user of this application           | import contact details from a .csv file                              | I can duplicate contacts into another copy of the application on another device                 |
 
 ### Use cases
 
@@ -419,12 +415,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Command**: A text-based instruction given to the application to perform a specific task.
 * **Telegram**: A messaging app.
 * **Telegram handle**: A unique identifier for a user in Telegram.
-* **Instagram**: A social media platform.
-* **Instagram handle**: A unique identifier for a user in Instagram.
-* **Facebook**: A social media platform.
-* **Facebook handle**: A unique identifier for a user in Facebook.
-* **LinkedIn**: A professional networking platform.
-* **LinkedIn Link**: The link to the profile of a user in LinkedIn.
 
 --------------------------------------------------------------------------------------------------------------------
 
