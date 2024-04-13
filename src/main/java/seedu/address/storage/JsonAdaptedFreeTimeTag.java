@@ -40,7 +40,7 @@ class JsonAdaptedFreeTimeTag {
      * @throws IllegalValueException if there were any data constraints violated in the adapted tag.
      */
     public FreeTimeTag toModelType() throws IllegalValueException {
-        if (!FreeTimeTag.isValidTagName(freeTimeTagName)) {
+        if (!FreeTimeTag.isValidTagName(freeTimeTagName) || !FreeTimeTag.isValidTimeInterval(freeTimeTagName)) {
             throw new IllegalValueException(FreeTimeTag.MESSAGE_CONSTRAINTS);
         }
         return new FreeTimeTag(freeTimeTagName);

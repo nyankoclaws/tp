@@ -37,6 +37,7 @@ public class AddPersonFreeTimeDescriptorBuilder {
      */
     public AddPersonFreeTimeDescriptorBuilder withFreeTimeTags(String... freeTimeTags) {
         Set<FreeTimeTag> tagSet = Stream.of(freeTimeTags).map(FreeTimeTag::new).collect(Collectors.toSet());
+        descriptor.getTags();
         descriptor.setTags(tagSet);
         return this;
     }

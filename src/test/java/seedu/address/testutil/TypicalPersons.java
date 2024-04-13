@@ -30,7 +30,7 @@ public class TypicalPersons {
     public static final Person ALICE = new PersonBuilder().withName("Alice Pauline")
             .withRoomNumber("nw-12-12 2023-10-21").withTelegram("alicePauline").withBirthday("23/12/1990")
             .withEmail("alice@example.com").withPhone("94351253").withDormTag("PGPR")
-            .withFreeTimeTags("Mon:1000-1400").build();
+            .withFreeTimeTags("Mon:1000-1200").build();
     // Room number not present
     public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
             .withTelegram("bensonMeier").withBirthday("25/02/2001")

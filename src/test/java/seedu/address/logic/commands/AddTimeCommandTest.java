@@ -5,9 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_ADD_TIME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_ADD_TIME_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_FREE_TIME_TAG_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_FREE_TIME_TAG_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
@@ -75,28 +75,25 @@ public class AddTimeCommandTest {
     }
 
     /**
-     * Edit filtered list where valid free time is specified
+     * Edit filtered list where valid duplicate free time is specified
      */
     @Test
-    public void execute_newFreeTime_success() {
+    public void execute_newDuplicateFreeTime_failure() {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
-        Index outOfBoundIndex = INDEX_FIRST_PERSON;
         // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getPersonList().size());
+        assertTrue(INDEX_FIRST_PERSON.getZeroBased() < model.getAddressBook().getPersonList().size());
 
-        AddTimeCommand addTimeCommand = new AddTimeCommand(outOfBoundIndex,
-                new AddPersonFreeTimeDescriptorBuilder().withFreeTimeTags(VALID_FREE_TIME_TAG_BOB).build());
-
+        AddTimeCommand addTimeCommand = new AddTimeCommand(INDEX_FIRST_PERSON,
+                new AddPersonFreeTimeDescriptorBuilder().withFreeTimeTags(VALID_FREE_TIME_TAG_AMY).build());
 
         Person editedPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
 
-        String expectedMessage = String.format(AddTimeCommand.MESSAGE_ADD_FREETIME_SUCCESS,
-                Messages.format(editedPerson));
+        String expectedMessage = Messages.MESSAGE_NO_NEW_FREE_TIME;
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
 
-        assertCommandSuccess(addTimeCommand, model, expectedMessage, expectedModel);
+        assertCommandFailure(addTimeCommand, model, expectedMessage);
     }
 
     @Test

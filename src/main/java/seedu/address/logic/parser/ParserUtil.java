@@ -146,6 +146,7 @@ public class ParserUtil {
     /**
      * Parses a {@code String tag} into a {@code Tag}.
      * Leading and trailing whitespaces will be trimmed.
+     * Also checks free time tag validity
      *
      * @throws ParseException if the given {@code tag} is invalid.
      */
@@ -154,6 +155,9 @@ public class ParserUtil {
         String trimmedTag = tag.trim();
         if (!FreeTimeTag.isValidTagName(trimmedTag)) {
             throw new ParseException(FreeTimeTag.MESSAGE_CONSTRAINTS);
+        }
+        if (!FreeTimeTag.isValidTimeInterval(trimmedTag)) {
+            throw new ParseException(FreeTimeTag.MESSAGE_INVALID_TIME_INTERVAL);
         }
         return new FreeTimeTag(trimmedTag);
     }

@@ -41,8 +41,6 @@ public class DeleteTimeCommandParser implements Parser<DeleteTimeCommand> {
 
         EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
 
-        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_FREETIMETAG);
-
         parseFreeTimeTagsForEdit(argMultimap.getAllValues(PREFIX_FREETIMETAG)).ifPresent(editPersonDescriptor::setTags);
 
         return new DeleteTimeCommand(index, editPersonDescriptor);

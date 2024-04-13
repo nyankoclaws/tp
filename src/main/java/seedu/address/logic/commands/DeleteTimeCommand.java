@@ -31,11 +31,14 @@ public class DeleteTimeCommand extends Command {
 
     public static final String COMMAND_WORD = "deleteTime";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes a free time to the person identified "
-            + "by the index number used in the displayed person list. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes a free time from the person identified "
+            + "by the index number used in the displayed person list. \n"
+            + "Parameters: INDEX (must be a positive integer) "
+            + PREFIX_FREETIMETAG + "FREE TIME TAG...\n"
+            + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_FREETIMETAG + "Mon:1300-1400";
 
-    public static final String MESSAGE_DELETE_FREETIME_SUCCESS = "Deleted free time to person: %1$s";
+    public static final String MESSAGE_DELETE_FREETIME_SUCCESS = "Deleted free time from person: %1$s";
 
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;
@@ -77,38 +80,37 @@ public class DeleteTimeCommand extends Command {
             throws CommandException {
         assert personToEdit != null;
 
+        Set<FreeTimeTag> freeTimeTags = personToEdit.getTags();
+        Set<FreeTimeTag> updatedFreeTimeTags = new HashSet<>();
+
+        // Case 1: No free time are specified
         if (editPersonDescriptor.getTags() == null) {
             throw new CommandException(Messages.MESSAGE_NO_FREETIME_SPECIFIED);
         }
 
-        FreeTimeTag freeTimeTag = editPersonDescriptor.getTags().toArray(new FreeTimeTag[1])[0];
+        Set<FreeTimeTag> deleteFreeTimeTags = editPersonDescriptor.getTags();
 
-        if (freeTimeTag == null) {
+        if (deleteFreeTimeTags == null) {
             throw new CommandException(Messages.MESSAGE_NO_FREETIME_SPECIFIED);
         }
 
-        Set<FreeTimeTag> freeTimeTags = personToEdit.getTags();
-
-        Set<FreeTimeTag> updatedTags = new HashSet<>();
-
-        if (freeTimeTags.size() > 0) {
-            String trimmedFreeTimeTag = freeTimeTag.toString().substring(1, freeTimeTag.toString().length() - 1);
-            String day = trimmedFreeTimeTag.substring(0, 3);
-            Integer newStart = Integer.parseInt(trimmedFreeTimeTag.substring(4, 8));
-            Integer newEnd = Integer.parseInt(trimmedFreeTimeTag.substring(9, 13));
-
-            for (FreeTimeTag tag : freeTimeTags) {
-                String trimmedTag = tag.toString().substring(1, tag.toString().length() - 1);
-                Integer currentStart = Integer.parseInt(trimmedTag.substring(4, 8));
-                Integer currentEnd = Integer.parseInt(trimmedTag.substring(9, 13));
-
-                if (!(trimmedTag.substring(0, 3).equals(day)) || !(newStart.equals(currentStart))
-                        || !(newEnd.equals(currentEnd))) {
-                    updatedTags.add(tag);
+        if (freeTimeTags != null) {
+            if (deleteFreeTimeTags.isEmpty()) {
+                throw new CommandException(FreeTimeTag.MESSAGE_CONSTRAINTS);
+            }
+            for (FreeTimeTag freeTimeTag : freeTimeTags) {
+                if (!deleteFreeTimeTags.contains(freeTimeTag)) {
+                    updatedFreeTimeTags.add(freeTimeTag);
                 }
             }
         }
 
+        // Case 2: None of the specified free time(s) match any of the person's free time
+        if (freeTimeTags.size() == updatedFreeTimeTags.size()) {
+            throw new CommandException(Messages.MESSAGE_NO_MATCHING_FREE_TIME);
+        }
+
+        // Case 3: At least one of the specified free time(s) match any of the person's free time
         Name updatedName = personToEdit.getName();
         Phone updatedPhone = personToEdit.getPhone();
         Email updatedEmail = personToEdit.getEmail();
@@ -118,7 +120,7 @@ public class DeleteTimeCommand extends Command {
         DormTag updatedDormTag = personToEdit.getDormTag();
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedRoomNumber, updatedTelegram,
-                updatedBirthday, updatedDormTag, updatedTags);
+                updatedBirthday, updatedDormTag, updatedFreeTimeTags);
     }
 
     @Override
