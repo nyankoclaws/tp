@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_BIRTHDAY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DORMTAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_FREETIMETAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -31,6 +32,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.RoomNumber;
 import seedu.address.model.person.Telegram;
+import seedu.address.model.tag.DormTag;
 import seedu.address.model.tag.FreeTimeTag;
 
 /**
@@ -50,6 +52,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_ROOMNUMBER + "ROOM NUMBER] "
             + "[" + PREFIX_TELEGRAM + "TELEGRAM] "
             + "[" + PREFIX_BIRTHDAY + "BIRTHDAY] "
+            + "[" + PREFIX_DORMTAG + "DORM] "
             + "[" + PREFIX_FREETIMETAG + "FREE TIME]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
@@ -58,7 +61,8 @@ public class EditCommand extends Command {
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited person: %1$s";
     public static final String MESSAGE_MULTIEDIT_FAIL = "%1$s cannot be edited for multiple persons at once.";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_PERSON = "A person with same phone, email, or telegram, "
+            + "has already exists in the address book.";
 
     private final Set<Index> indices;
     private final EditPersonDescriptor editPersonDescriptor;
@@ -126,10 +130,11 @@ public class EditCommand extends Command {
         RoomNumber updatedRoomNumber = editPersonDescriptor.getRoomNumber().orElse(personToEdit.getRoomNumber());
         Telegram updatedTelegram = editPersonDescriptor.getTelegram().orElse(personToEdit.getTelegram());
         Birthday updatedBirthday = editPersonDescriptor.getBirthday().orElse(personToEdit.getBirthday());
+        DormTag updatedDormTag = editPersonDescriptor.getDormTag().orElse(personToEdit.getDormTag());
         Set<FreeTimeTag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedRoomNumber, updatedTelegram,
-                updatedBirthday, updatedTags);
+                updatedBirthday, updatedDormTag, updatedTags);
     }
 
     @Override
@@ -171,6 +176,7 @@ public class EditCommand extends Command {
         private RoomNumber roomNumber;
         private Telegram telegram;
         private Birthday birthday;
+        private DormTag dormTag;
         private Set<FreeTimeTag> tags;
         public EditPersonDescriptor() {}
 
@@ -185,6 +191,7 @@ public class EditCommand extends Command {
             setRoomNumber(toCopy.roomNumber);
             setTelegram(toCopy.telegram);
             setBirthday(toCopy.birthday);
+            setDormTag(toCopy.dormTag);
             setTags(toCopy.tags);
         }
 
@@ -192,7 +199,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, roomNumber, telegram, birthday, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, roomNumber, telegram, birthday, dormTag, tags);
         }
 
         public void setName(Name name) {
@@ -243,6 +250,14 @@ public class EditCommand extends Command {
             return Optional.ofNullable(birthday);
         }
 
+        public void setDormTag(DormTag dormTag) {
+            this.dormTag = dormTag;
+        }
+
+        public Optional<DormTag> getDormTag() {
+            return Optional.ofNullable(dormTag);
+        }
+
         /**
          * Sets {@code tags} to this object's {@code tags}.
          * A defensive copy of {@code tags} is used internally.
@@ -278,6 +293,7 @@ public class EditCommand extends Command {
                     && Objects.equals(roomNumber, otherEditPersonDescriptor.roomNumber)
                     && Objects.equals(telegram, otherEditPersonDescriptor.telegram)
                     && Objects.equals(birthday, otherEditPersonDescriptor.birthday)
+                    && Objects.equals(dormTag, otherEditPersonDescriptor.dormTag)
                     && Objects.equals(tags, otherEditPersonDescriptor.tags);
         }
 
@@ -291,6 +307,7 @@ public class EditCommand extends Command {
                     .add("telegram", telegram)
                     .add("birthday", birthday)
                     .add("freeTimeTags", tags)
+                    .add("dormTag", dormTag)
                     .toString();
         }
     }

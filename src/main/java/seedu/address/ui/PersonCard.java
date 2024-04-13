@@ -1,15 +1,12 @@
 package seedu.address.ui;
 
-import java.util.Comparator;
-
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.person.Person;
-
-
 
 /**
  * An UI component that displays information of a {@code Person}.
@@ -47,7 +44,13 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label email;
     @FXML
-    private FlowPane freeTimeTags;
+    private FlowPane dormTag;
+    @FXML
+    private FlowPane tags;
+    @FXML
+    private ImageView birthdayIcon;
+    @FXML
+    private ImageView changeRoomNumberIcon;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to
@@ -61,11 +64,19 @@ public class PersonCard extends UiPart<Region> {
         phone.setText(person.getPhone().value);
 
         roomNumber.setText(person.getRoomNumber() != null ? person.getRoomNumber().toString() : "");
-        telegram.setText(person.getTelegram() != null ? person.getTelegram().value : "");
+        telegram.setText(person.getTelegram() != null ? "@" + person.getTelegram().value : "");
         birthday.setText(person.getBirthday() != null ? String.valueOf(person.getBirthday()) : "");
         email.setText(person.getEmail() != null ? person.getEmail().value : "");
+
+        if (person.getDormTag() != null) {
+            dormTag.getChildren().add(new Label(person.getDormTag().tagName));
+        }
+
         person.getTags().stream()
-                .sorted(Comparator.comparing(freeTag -> freeTag.tagName))
-                .forEach(freeTag -> freeTimeTags.getChildren().add(new Label(freeTag.tagName)));
+                .sorted()
+                .forEach(freeTag -> tags.getChildren().add(new Label(freeTag.tagName)));
+
+        birthdayIcon.setVisible(person.getBirthday() != null ? person.getBirthday().isBirthday() : false);
+        changeRoomNumberIcon.setVisible(person.getRoomNumber() != null ? person.getRoomNumber().isOutdated() : false);
     }
 }

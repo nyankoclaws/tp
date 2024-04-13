@@ -12,6 +12,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.RoomNumber;
 import seedu.address.model.person.Telegram;
+import seedu.address.model.tag.DormTag;
 import seedu.address.model.tag.FreeTimeTag;
 
 /**
@@ -40,6 +41,7 @@ public class EditPersonDescriptorBuilder {
         descriptor.setRoomNumber(person.getRoomNumber());
         descriptor.setTelegram(person.getTelegram());
         descriptor.setBirthday(person.getBirthday());
+        descriptor.setDormTag(person.getDormTag());
         descriptor.setTags(person.getTags());
     }
 
@@ -88,6 +90,14 @@ public class EditPersonDescriptorBuilder {
      */
     public EditPersonDescriptorBuilder withBirthday(String birthday) {
         descriptor.setBirthday(new Birthday(birthday));
+        return this;
+    }
+
+    /**
+     * Sets the {@code DormTag} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withDormTag(String dormTag) {
+        descriptor.setDormTag(new DormTag(dormTag));
         return this;
     }
 

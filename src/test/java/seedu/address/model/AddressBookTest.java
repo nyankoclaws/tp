@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_BIRTHDAY_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ROOMNUMBER_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ROOMNUMBER_BOB_W_DATE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TELEGRAM_BOB;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
@@ -47,7 +47,7 @@ public class AddressBookTest {
     @Test
     public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
         // Two persons with the same identity fields
-        Person editedAlice = new PersonBuilder(ALICE).withRoomNumber(VALID_ROOMNUMBER_BOB)
+        Person editedAlice = new PersonBuilder(ALICE).withRoomNumber(VALID_ROOMNUMBER_BOB_W_DATE)
                 .withTelegram(VALID_TELEGRAM_BOB).withBirthday(VALID_BIRTHDAY_BOB).build();
         List<Person> newPersons = Arrays.asList(ALICE, editedAlice);
         AddressBookStub newData = new AddressBookStub(newPersons);
@@ -74,7 +74,7 @@ public class AddressBookTest {
     @Test
     public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
         addressBook.addPerson(ALICE);
-        Person editedAlice = new PersonBuilder(ALICE).withRoomNumber(VALID_ROOMNUMBER_BOB)
+        Person editedAlice = new PersonBuilder(ALICE).withRoomNumber(VALID_ROOMNUMBER_BOB_W_DATE)
                 .withTelegram(VALID_TELEGRAM_BOB).withBirthday(VALID_BIRTHDAY_BOB).build();
         assertTrue(addressBook.hasPerson(editedAlice));
     }

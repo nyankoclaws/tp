@@ -10,6 +10,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.RoomNumber;
 import seedu.address.model.person.Telegram;
+import seedu.address.model.tag.DormTag;
 import seedu.address.model.tag.FreeTimeTag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -21,9 +22,10 @@ public class PersonBuilder {
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
-    public static final String DEFAULT_ROOMNUMBER = "sw-01-01";
+    public static final String DEFAULT_ROOMNUMBER = "sw-01-01 2023-10-20";
     public static final String DEFAULT_TELEGRAM = "amyBee";
     public static final String DEFAULT_BIRTHDAY = "01/01/2000";
+    public static final String DEFAULT_DORMTAG = "PGPR";
 
     private Name name;
     private Phone phone;
@@ -31,6 +33,7 @@ public class PersonBuilder {
     private RoomNumber roomNumber;
     private Telegram telegram;
     private Birthday birthday;
+    private DormTag dormTag;
     private Set<FreeTimeTag> freeTimeTags;
 
     /**
@@ -39,10 +42,11 @@ public class PersonBuilder {
     public PersonBuilder() {
         name = new Name(DEFAULT_NAME);
         phone = new Phone(DEFAULT_PHONE);
-        email = new Email(DEFAULT_EMAIL);
-        roomNumber = new RoomNumber(DEFAULT_ROOMNUMBER);
-        telegram = new Telegram(DEFAULT_TELEGRAM);
-        birthday = new Birthday(DEFAULT_BIRTHDAY);
+        email = null;
+        roomNumber = null;
+        telegram = null;
+        birthday = null;
+        dormTag = null;
         freeTimeTags = new HashSet<>();
     }
 
@@ -56,6 +60,7 @@ public class PersonBuilder {
         roomNumber = personToCopy.getRoomNumber();
         telegram = personToCopy.getTelegram();
         birthday = personToCopy.getBirthday();
+        dormTag = personToCopy.getDormTag();
         freeTimeTags = new HashSet<>(personToCopy.getTags());
     }
 
@@ -71,7 +76,7 @@ public class PersonBuilder {
      * Sets the {@code RoomNumber} of the {@code Person} that we are building.
      */
     public PersonBuilder withRoomNumber(String roomNumber) {
-        this.roomNumber = new RoomNumber(roomNumber);
+        this.roomNumber = new RoomNumber(roomNumber, true);
         return this;
     }
 
@@ -108,6 +113,14 @@ public class PersonBuilder {
     }
 
     /**
+     * Sets the {@code DormTag} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withDormTag(String dormTag) {
+        this.dormTag = new DormTag(dormTag);
+        return this;
+    }
+
+    /**
      * Sets the {@code FreeTimeTag} of the {@code Person} that we are building.
      */
     public PersonBuilder withFreeTimeTags(String ... freeTime) {
@@ -116,7 +129,7 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(name, phone, email, roomNumber, telegram, birthday, freeTimeTags);
+        return new Person(name, phone, email, roomNumber, telegram, birthday, dormTag, freeTimeTags);
     }
 
 }

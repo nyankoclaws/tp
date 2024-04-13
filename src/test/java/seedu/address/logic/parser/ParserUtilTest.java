@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
@@ -14,6 +15,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.RoomNumber;
 import seedu.address.model.person.Telegram;
+import seedu.address.model.tag.FreeTimeTag;
 
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
@@ -188,5 +190,40 @@ public class ParserUtilTest {
         String emailWithWhitespace = WHITESPACE + VALID_EMAIL + WHITESPACE;
         Email expectedEmail = new Email(VALID_EMAIL);
         assertEquals(expectedEmail, ParserUtil.parseEmail(emailWithWhitespace));
+    }
+
+    @Test
+    public void testParseFreeTimeTag_validTag() {
+        String validTag = "Mon:0900-1700";
+        try {
+            FreeTimeTag freeTimeTag = ParserUtil.parseFreeTimeTag(validTag);
+            assertEquals(validTag.trim(), freeTimeTag.tagName);
+        } catch (ParseException e) {
+            fail("Valid tag should not throw ParseException");
+        }
+    }
+
+    @Test
+    public void testParseFreeTimeTag_invalidTagName() {
+        String invalidTag = "Invalid Tag";
+        try {
+            ParserUtil.parseFreeTimeTag(invalidTag);
+            fail("Expected ParseException was not thrown");
+        } catch (ParseException e) {
+            assertEquals("Free Time Tag should be Mon-Sun:HHmm-HHmm (24hr format)",
+                    FreeTimeTag.MESSAGE_CONSTRAINTS);
+        }
+    }
+
+    @Test
+    public void testParseFreeTimeTag_invalidTimeInterval() {
+        String invalidTag = "Mon:2300-1700";
+        try {
+            ParserUtil.parseFreeTimeTag(invalidTag);
+            fail("Expected ParseException was not thrown");
+        } catch (ParseException e) {
+            assertEquals("Start time should be earlier than End time",
+                    FreeTimeTag.MESSAGE_INVALID_TIME_INTERVAL);
+        }
     }
 }

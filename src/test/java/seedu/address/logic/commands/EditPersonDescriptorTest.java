@@ -63,6 +63,7 @@ public class EditPersonDescriptorTest {
                 + editPersonDescriptor.getRoomNumber().orElse(null) + ", telegram="
                 + editPersonDescriptor.getTelegram().orElse(null) + ", birthday="
                 + editPersonDescriptor.getBirthday().orElse(null) + ", freeTimeTags="
+                + editPersonDescriptor.getDormTag().orElse(null) + ", dormTag="
                 + editPersonDescriptor.getTags().orElse(null) + "}";
         assertEquals(expected, editPersonDescriptor.toString());
     }

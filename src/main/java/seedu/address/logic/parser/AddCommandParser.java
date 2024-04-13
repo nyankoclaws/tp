@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_BIRTHDAY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DORMTAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_FREETIMETAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -22,6 +23,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.RoomNumber;
 import seedu.address.model.person.Telegram;
+import seedu.address.model.tag.DormTag;
 import seedu.address.model.tag.FreeTimeTag;
 
 /**
@@ -38,7 +40,7 @@ public class AddCommandParser implements Parser<AddCommand> {
 
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ROOMNUMBER,
-                        PREFIX_TELEGRAM, PREFIX_BIRTHDAY, PREFIX_FREETIMETAG);
+                        PREFIX_TELEGRAM, PREFIX_BIRTHDAY, PREFIX_DORMTAG, PREFIX_FREETIMETAG);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PHONE)
                 || !argMultimap.getPreamble().isEmpty()) {
@@ -46,7 +48,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         }
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ROOMNUMBER,
-                PREFIX_TELEGRAM);
+                PREFIX_TELEGRAM, PREFIX_BIRTHDAY, PREFIX_DORMTAG);
 
         // Mandatory fields
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
@@ -65,10 +67,13 @@ public class AddCommandParser implements Parser<AddCommand> {
         Optional<String> birthdayText = argMultimap.getValue(PREFIX_BIRTHDAY);
         Birthday birthday = birthdayText.isPresent() ? ParserUtil.parseBirthday(birthdayText.get()) : null;
 
+        Optional<String> dormTagText = argMultimap.getValue(PREFIX_DORMTAG);
+        DormTag dormTag = dormTagText.isPresent() ? ParserUtil.parseDormTag(dormTagText.get()) : null;
+
         Optional<String> freeTimeTagText = argMultimap.getValue(PREFIX_FREETIMETAG);
         Set<FreeTimeTag> freeTimeTags = ParserUtil.parseFreeTimeTags(argMultimap.getAllValues(PREFIX_FREETIMETAG));
 
-        Person person = new Person(name, phone, email, roomNumber, telegram, birthday, freeTimeTags);
+        Person person = new Person(name, phone, email, roomNumber, telegram, birthday, dormTag, freeTimeTags);
         return new AddCommand(person);
     }
 

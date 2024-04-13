@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_BIRTHDAY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DORMTAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_FREETIMETAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -32,16 +33,20 @@ public class CommandTestUtil {
 
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";
-    public static final String VALID_PHONE_AMY = "11111111";
-    public static final String VALID_PHONE_BOB = "22222222";
+    public static final String VALID_PHONE_AMY = "91111111";
+    public static final String VALID_PHONE_BOB = "92222222";
     public static final String VALID_EMAIL_AMY = "amy@example.com";
     public static final String VALID_EMAIL_BOB = "bob@example.com";
     public static final String VALID_ROOMNUMBER_AMY = "sw-01-01";
     public static final String VALID_ROOMNUMBER_BOB = "nw-02-02";
+    public static final String VALID_ROOMNUMBER_AMY_W_DATE = "sw-01-01 2023-10-21";
+    public static final String VALID_ROOMNUMBER_BOB_W_DATE = "nw-02-02 2023-10-21";
     public static final String VALID_TELEGRAM_AMY = "amyBee";
     public static final String VALID_TELEGRAM_BOB = "bobChoo";
     public static final String VALID_BIRTHDAY_AMY = "01/01/2000";
     public static final String VALID_BIRTHDAY_BOB = "02/02/2000";
+    public static final String VALID_DORM_TAG_AMY = "PGPR";
+    public static final String VALID_DORM_TAG_BOB = "UTR";
     public static final String VALID_FREE_TIME_TAG_AMY = "Mon:1000-1200";
     public static final String VALID_FREE_TIME_TAG_BOB = "Wed:1400-2000";
 
@@ -57,6 +62,8 @@ public class CommandTestUtil {
     public static final String TELEGRAM_DESC_BOB = " " + PREFIX_TELEGRAM + VALID_TELEGRAM_BOB;
     public static final String BIRTHDAY_DESC_AMY = " " + PREFIX_BIRTHDAY + VALID_BIRTHDAY_AMY;
     public static final String BIRTHDAY_DESC_BOB = " " + PREFIX_BIRTHDAY + VALID_BIRTHDAY_BOB;
+    public static final String DORM_TAG_DESC_AMY = " " + PREFIX_DORMTAG + VALID_DORM_TAG_AMY;
+    public static final String DORM_TAG_DESC_BOB = " " + PREFIX_DORMTAG + VALID_DORM_TAG_BOB;
     public static final String FREE_TIME_TAG_DESC_AMY = " " + PREFIX_FREETIMETAG + VALID_FREE_TIME_TAG_AMY;
     public static final String FREE_TIME_TAG_DESC_BOB = " " + PREFIX_FREETIMETAG + VALID_FREE_TIME_TAG_BOB;
 
@@ -66,6 +73,7 @@ public class CommandTestUtil {
     public static final String INVALID_ROOMNUMBER_DESC = " " + PREFIX_ROOMNUMBER; // empty string not allowed for room
     public static final String INVALID_TELEGRAM_DESC = " " + PREFIX_TELEGRAM; // empty string not allowed for telegram
     public static final String INVALID_BIRTHDAY_DESC = " " + PREFIX_BIRTHDAY; // empty string not allowed for birthday
+    public static final String INVALID_DORM_TAG_DESC = " " + PREFIX_DORMTAG; // empty string not allowed for dorm tag
     public static final String INVALID_FREE_TIME_TAG_DESC = " "
             + PREFIX_FREETIMETAG; // empty string not allowed for free time tag
 
@@ -89,10 +97,12 @@ public class CommandTestUtil {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withRoomNumber(VALID_ROOMNUMBER_AMY)
                 .withTelegram(VALID_TELEGRAM_AMY).withBirthday(VALID_BIRTHDAY_AMY)
+                .withDormTag(VALID_DORM_TAG_AMY)
                 .withFreeTimeTags(VALID_FREE_TIME_TAG_AMY).build();
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withRoomNumber(VALID_ROOMNUMBER_BOB)
                 .withTelegram(VALID_TELEGRAM_BOB).withBirthday(VALID_BIRTHDAY_BOB)
+                .withDormTag(VALID_DORM_TAG_BOB)
                 .withFreeTimeTags(VALID_FREE_TIME_TAG_BOB).build();
     }
 

@@ -4,13 +4,15 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_BIRTHDAY_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DORM_TAG_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_FREE_TIME_TAG_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ROOMNUMBER_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ROOMNUMBER_BOB_W_DATE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TELEGRAM_BOB;
+import static seedu.address.testutil.TypicalNewPersons.BOB;
 import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.BOB;
 
 import org.junit.jupiter.api.Test;
 
@@ -19,31 +21,51 @@ import seedu.address.testutil.PersonBuilder;
 public class PersonTest {
 
     @Test
-    public void isSamePerson() {
-        // same object -> returns true
+    public void isSamePerson_trueCases_assertTrue() {
+        // same object
         assertTrue(ALICE.isSamePerson(ALICE));
 
-        // null -> returns false
+        // all attributes same
+        Person sameAlice = new PersonBuilder(ALICE).build();
+        assertTrue(ALICE.isSamePerson(sameAlice));
+
+        // same phone, all other attributes different
+        Person editedPhoneAlice = new PersonBuilder(ALICE).withPhone(VALID_PHONE_BOB).build();
+        assertTrue(BOB.isSamePerson(editedPhoneAlice));
+
+        // same email, all other attributes different
+        Person editedEmailAlice = new PersonBuilder(ALICE).withEmail(VALID_EMAIL_BOB).build();
+        assertTrue(BOB.isSamePerson(editedEmailAlice));
+
+        // same telegram, all other attributes different
+        Person editedTelegramAlice = new PersonBuilder(ALICE).withTelegram(VALID_TELEGRAM_BOB).build();
+        assertTrue(BOB.isSamePerson(editedTelegramAlice));
+    }
+
+    @Test
+    public void isSamePerson_falseCases_assertFalse() {
+        // null
         assertFalse(ALICE.isSamePerson(null));
 
-        // same name, all other attributes different -> returns true
-        Person editedAlice = new PersonBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
-                .withRoomNumber(VALID_ROOMNUMBER_BOB).withTelegram(VALID_TELEGRAM_BOB)
-                .withBirthday(VALID_BIRTHDAY_BOB).build();
-        assertTrue(ALICE.isSamePerson(editedAlice));
+        // same name, all other attributes different
+        Person editedNameAlice = new PersonBuilder(ALICE).withName(VALID_NAME_BOB).build();
+        assertFalse(BOB.isSamePerson(editedNameAlice));
 
-        // different name, all other attributes same -> returns false
-        editedAlice = new PersonBuilder(ALICE).withName(VALID_NAME_BOB).build();
-        assertFalse(ALICE.isSamePerson(editedAlice));
+        // same birthday, all other attributes different
+        Person editedBirthdayAlice = new PersonBuilder(ALICE).withBirthday(VALID_BIRTHDAY_BOB).build();
+        assertFalse(BOB.isSamePerson(editedBirthdayAlice));
 
-        // name differs in case, all other attributes same -> returns false
-        Person editedBob = new PersonBuilder(BOB).withName(VALID_NAME_BOB.toLowerCase()).build();
-        assertFalse(BOB.isSamePerson(editedBob));
+        // same room number, all other attributes different
+        Person editedRoomNumberAlice = new PersonBuilder(ALICE).withRoomNumber(VALID_ROOMNUMBER_BOB_W_DATE).build();
+        assertFalse(BOB.isSamePerson(editedRoomNumberAlice));
 
-        // name has trailing spaces, all other attributes same -> returns false
-        String nameWithTrailingSpaces = VALID_NAME_BOB + " ";
-        editedBob = new PersonBuilder(BOB).withName(nameWithTrailingSpaces).build();
-        assertFalse(BOB.isSamePerson(editedBob));
+        // same dorm, all other attributes different
+        Person editedDormAlice = new PersonBuilder(ALICE).withDormTag(VALID_DORM_TAG_BOB).build();
+        assertFalse(BOB.isSamePerson(editedDormAlice));
+
+        // same free time, all other attributes different
+        Person editedFreeTimeAlice = new PersonBuilder(ALICE).withFreeTimeTags(VALID_FREE_TIME_TAG_BOB).build();
+        assertFalse(BOB.isSamePerson(editedFreeTimeAlice));
     }
 
     @Test
@@ -77,7 +99,7 @@ public class PersonTest {
         assertFalse(ALICE.equals(editedAlice));
 
         // different room number -> returns false
-        editedAlice = new PersonBuilder(ALICE).withRoomNumber(VALID_ROOMNUMBER_BOB).build();
+        editedAlice = new PersonBuilder(ALICE).withRoomNumber(VALID_ROOMNUMBER_BOB_W_DATE).build();
         assertFalse(ALICE.equals(editedAlice));
     }
 
@@ -90,6 +112,7 @@ public class PersonTest {
                 ALICE.getRoomNumber(),
                 ALICE.getTelegram(),
                 ALICE.getBirthday(),
+                ALICE.getDormTag(),
                 ALICE.getTags());
         assertFalse(ALICE.equals(aliceCopyWithoutEmail));
         assertFalse(aliceCopyWithoutEmail.equals(ALICE));
@@ -101,6 +124,7 @@ public class PersonTest {
                 null,
                 ALICE.getTelegram(),
                 ALICE.getBirthday(),
+                ALICE.getDormTag(),
                 ALICE.getTags());
         assertFalse(ALICE.equals(aliceCopyWithoutRoomNumber));
         assertFalse(aliceCopyWithoutRoomNumber.equals(ALICE));
@@ -112,6 +136,7 @@ public class PersonTest {
                 ALICE.getRoomNumber(),
                 null,
                 ALICE.getBirthday(),
+                ALICE.getDormTag(),
                 ALICE.getTags());
         assertFalse(ALICE.equals(aliceCopyWithoutTelegram));
         assertFalse(aliceCopyWithoutTelegram.equals(ALICE));
@@ -123,6 +148,7 @@ public class PersonTest {
                 ALICE.getRoomNumber(),
                 ALICE.getTelegram(),
                 null,
+                ALICE.getDormTag(),
                 ALICE.getTags());
         assertFalse(ALICE.equals(aliceCopyWithoutBirthday));
         assertFalse(aliceCopyWithoutBirthday.equals(ALICE));
@@ -131,8 +157,9 @@ public class PersonTest {
     @Test
     public void toStringMethod() {
         String expected = Person.class.getCanonicalName() + "{name=" + ALICE.getName() + ", phone=" + ALICE.getPhone()
-                + ", tags=[[Mon:1000-1400]]" + ", email=" + ALICE.getEmail() + ", roomNumber=" + ALICE.getRoomNumber()
-                + ", telegram=" + ALICE.getTelegram() + ", birthday=" + ALICE.getBirthday() + "}";
+                + ", tags=" + ALICE.getTags() + ", email=" + ALICE.getEmail() + ", roomNumber=" + ALICE.getRoomNumber()
+                + ", telegram=" + ALICE.getTelegram() + ", birthday=" + ALICE.getBirthday()
+                + ", dormTag=" + ALICE.getDormTag() + "}";
         assertEquals(expected, ALICE.toString());
     }
 }

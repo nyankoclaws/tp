@@ -15,13 +15,18 @@ import java.util.regex.Pattern;
 public class RoomNumber {
 
     public static final String MESSAGE_CONSTRAINTS = "Room numbers should be in the format: "
-            + "{block}-{floor}-{room number}";
+            + "{block}-{floor}-{room number}, where block and room number are at least 2 alphanumeric "
+            + "characters and floor is strictly 2 alphanumeric characters.";
+    public static final String MESSAGE_CONSTRAINTS_DATE = "Dates for last modified should be in the format: "
+            + "yyyy-mm-dd";
+    public static final String MESSAGE_CONSTRAINTS_DATE_BEFORE = "Dates last modified should after today";
 
     /*
      * The first character of the room number must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
     public static final String VALIDATION_REGEX = "(\\w{2,})-(\\w{2})-(\\w{2,})";
+    public static final String VALIDATION_REGEX_W_DATE = "(\\w{2,})-(\\w{2})-(\\w{2,}) (\\d{4}-\\d{2}-\\d{2})";
 
     // Ignore the year, it will be updated
     private static final LocalDate FIRST_RESULT_RELEASE = LocalDate.parse("2020-04-05");
@@ -34,18 +39,32 @@ public class RoomNumber {
 
     /**
      * Constructs an {@code RoomNumber}.
+     * Sets lastModified date to today.
      *
      * @param roomNumber A valid room number.
      */
     public RoomNumber(String roomNumber) {
+        this(roomNumber == null ? null : roomNumber + " " + LocalDate.now().toString(), true);
+    }
+
+    /**
+     * Constructs an {@code RoomNumber}.
+     * For backend use, allowing lastModified dates
+     *
+     * @param roomNumber A valid room number with lastModified date.
+     * @param flag Indicator to process date from roomNumber.
+     */
+    public RoomNumber(String roomNumber, boolean flag) {
         requireNonNull(roomNumber);
-        checkArgument(isValidRoomNumber(roomNumber), MESSAGE_CONSTRAINTS);
-        Matcher matcher = Pattern.compile(VALIDATION_REGEX).matcher(roomNumber);
+        checkArgument(isValidRoomNumberWDate(roomNumber), MESSAGE_CONSTRAINTS_DATE);
+        checkArgument(isValidDate(roomNumber), MESSAGE_CONSTRAINTS_DATE_BEFORE);
+        Matcher matcher = Pattern.compile(VALIDATION_REGEX_W_DATE).matcher(roomNumber);
         matcher.find();
+        LocalDate date = LocalDate.parse(matcher.group(4));
         this.block = matcher.group(1);
         this.floor = matcher.group(2);
         this.roomNumber = matcher.group(3);
-        lastModified = LocalDate.now();
+        this.lastModified = date;
     }
 
     /**
@@ -53,6 +72,23 @@ public class RoomNumber {
      */
     public static boolean isValidRoomNumber(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    /**
+     * Returns true if a given string is a valid room number with date.
+     */
+    public static boolean isValidRoomNumberWDate(String test) {
+        return test.matches(VALIDATION_REGEX_W_DATE);
+    }
+
+    /**
+     * Returns true if a given date is before today.
+     */
+    public static boolean isValidDate(String test) {
+        Matcher matcher = Pattern.compile(VALIDATION_REGEX_W_DATE).matcher(test);
+        matcher.find();
+        LocalDate date = LocalDate.parse(matcher.group(4));
+        return !date.isAfter(LocalDate.now());
     }
 
     /**
@@ -77,10 +113,7 @@ public class RoomNumber {
         }
 
         LocalDate firstRelease = FIRST_RESULT_RELEASE;
-        firstRelease = firstRelease.withYear(LocalDate.now().getYear());
-        if (firstRelease.isAfter(LocalDate.now())) {
-            firstRelease = firstRelease.minusYears(1);
-        }
+        firstRelease = firstRelease.withYear(lastRelease.getYear());
 
         if (!date.isBefore(firstRelease)) {
             return false;
@@ -92,6 +125,10 @@ public class RoomNumber {
     @Override
     public String toString() {
         return block + "-" + floor + "-" + roomNumber;
+    }
+
+    public String toStringWDate() {
+        return block + "-" + floor + "-" + roomNumber + " " + lastModified.toString();
     }
 
     @Override
