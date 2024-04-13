@@ -522,7 +522,7 @@ Team size: 5
    * Additionally, it could be useful to be able to delete free times that fall within a time interval, e.g. via `deleteTime` command.
    * For example, an initial freeTimeTag could be `Mon:1000-1400`. Executing `deleteTime INDEX ft/Mon:1100-1200` will result in the new freeTimeTags `Mon:1000-1100` and `Mon:1200-1400`.
 
-4. **Allow more flexibility in command prefixes:**
+4. **Make command prefixes case-insensitive:**
    * Currently, the command prefixes are case-sensitive.
      * For example, `n/` is the prefix for "name" parameter, but `N/` is not acceptable by the command parser.
    * It may provide more convenience to user by disabling case sensitivity for prefixes. For example, allowing `n/` and `N/` as the prefix for "name" parameter.
@@ -535,23 +535,18 @@ Team size: 5
    * Currently, the room number format is {block}-{floor}-{room number}, where block and room number are at least 2 alphanumeric characters and floor is strictly 2 alphanumeric characters. E.g. `nw-12-12`.
    * To accommodate more room number format, it will be good to change the minimum length of block and room number as 1.
 
-7. **Allow more flexibility in free time tag format:**
+7. **Make day format in free time tag case-insensitive:**
    * Currently, free time tag only accept forms of `DDD:HHmm-HHmm`, e.g. `Mon:1200-1300`.
    * It may provide more convenience to user by disabling case sensitivity on the day part, e.g. allowing `mon:1000-1200`, `Mon:1000-1200`, `MON:1000-1200`.
 
 8. **Support more accurate free time:**
-   * A person may not always be free for the same time interval every week. For example, a person can be free at `Mon:1000-1200` for every odd week of the semester, and busy at the time for every even week of the semester.
-   * A possible solution is to specify actual date as part of the free time interval, e.g. `01/01:Mon:1000-1200`.
-     * Pros: It provides more customizable user experience.
-     * Cons: It requires users to have detailed schedule information of a person in their contact list, where the person may not be willing to disclose. It also requires users to provide more complicated parameters, which is more troublesome and error-prone.
-   * Another possible solution is to host the application online, and allow user to specify their own free times. 
-     * Pros: User may connect to the real-time state of another user, and able to view the real-time updated free time of others.
-     * Cons: More changes may need to be done on the application, and the developer team will need to re-evaluate the necessity of certain commands. 
-       * For example, users may not need to manually input and record the detail of others, as they only need to update their own profile, and others can view the real-time state of it. 
-       * Hence, some commands e.g. `addTime`, `deleteTime`, and `edit`, are no longer applicable to the application.
+   * A person may not always be free for the same time interval every week. 
+     * For example, a person can be free at `Mon:1000-1200` for every odd week of the semester, and busy at the time for every even week of the semester.
+   * Hence, it will be useful for user to optionally specify an actual date as part of the free time interval, e.g. `01/01:Mon:1000-1200`.
+     * If the date is not specified, e.g. `Mon:1000-1200`, the free time tag should be interpreted as recurring weekly.
      
-9. **Make error messages more specific:**
-   * When user provides a command with invalid format, some error messages are too general. 
+9. **Make "Invalid command format" error messages more specific:**
+   * When user provides a command with invalid format, the "Invalid command format" error messages are too general. 
      * For example, when executing `add n/Alice d/pgpr`, the error messages will suggest that the command format is invalid, and display the correct format together with a usage example. 
      * In this case, the command is invalid as some mandatory parameters are omitted, but new users may not expect that some parameters are mandatory.
    * Hence, error messages can be enhanced to be more specific, such that user can easily identify the reason of command failure.
