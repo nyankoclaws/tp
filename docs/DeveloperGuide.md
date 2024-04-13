@@ -430,6 +430,24 @@ testers are expected to do more *exploratory* testing.
 
 </box>
 
+### Important note when performing manual testing
+
+When testing commands, testers are advised to begin with a valid command (i.e., a command with the correct format and parameters) 
+and then modify the command format slightly to check whether invalid cases are handled properly. 
+
+If there are multiple possible invalid parts in the given command, the error message may not address all of them at once. 
+Instead, the error messages will change (e.g., as a tester modifies the command to correct one of the invalid parts), 
+eventually guiding the user toward executing a correct command.
+
+For example, for a given command `deleteTime 1 2 ft/Mon:1300-1400`, there can be two possible invalid parts:
+1. `deleteTime` does not support multiple INDEX.
+2. `ft/Mon:1300-1400` does not match any free time tag of the chosen person.
+
+In this case, the error message shown will be "Invalid command format!", as `deleteTime` does not support multiple INDEX.
+After user modifies the command to match the given command format (e.g. executing `deleteTime 1 ft/Mon:1300-1400`),
+a new error message may be shown, which is "No matching free time to be deleted for the chosen person."
+And after user modifies the command accordingly to provide a matching free time, the command will execute successfully.
+
 ### Launch and shutdown
 
 1. Initial launch
