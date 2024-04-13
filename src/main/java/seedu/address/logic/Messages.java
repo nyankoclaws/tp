@@ -50,25 +50,11 @@ public class Messages {
                 .append("; Phone: ")
                 .append(person.getPhone());
 
-        if (person.getEmail() != null) {
-            builder.append("; Email: ").append(person.getEmail());
-        }
-
-        if (person.getRoomNumber() != null) {
-            builder.append("; Room Number: ").append(person.getRoomNumber());
-        }
-
-        if (person.getTelegram() != null) {
-            builder.append("; Telegram: ").append(person.getTelegram());
-        }
-
-        if (person.getBirthday() != null) {
-            builder.append("; Birthday: ").append(person.getBirthday());
-        }
-
-        if (person.getDormTag() != null) {
-            builder.append("; Dorm Tag: ").append(person.getDormTag());
-        }
+        formatHelper(builder, "; Email: ", person.getEmail());
+        formatHelper(builder, "; Room Number: ", person.getRoomNumber());
+        formatHelper(builder, "; Telegram: ", person.getTelegram());
+        formatHelper(builder, "; Birthday: ", person.getBirthday());
+        formatHelper(builder, "; Dorm Tag: ", person.getDormTag());
 
         if (!person.getTags().isEmpty()) {
             builder.append("; Free Time Tags: ");
@@ -76,6 +62,12 @@ public class Messages {
         }
 
         return builder.toString();
+    }
+
+    private static void formatHelper(StringBuilder builder, String prependString, Object field) {
+        if (field != null) {
+            builder.append(prependString).append(field);
+        }
     }
 
 }

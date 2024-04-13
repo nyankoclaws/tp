@@ -71,44 +71,14 @@ public class FreeTimeTag extends Tag implements Comparable<FreeTimeTag> {
     public int compareTo(FreeTimeTag other) {
         String trimmedThis = this.toString().substring(1, this.toString().length() - 1);
         String thisDay = trimmedThis.substring(0, 3);
-        Integer thisDayNum;
-        if (thisDay.equals("Mon")) {
-            thisDayNum = 1;
-        } else if (thisDay.equals("Tue")) {
-            thisDayNum = 2;
-        } else if (thisDay.equals("Wed")) {
-            thisDayNum = 3;
-        } else if (thisDay.equals("Thu")) {
-            thisDayNum = 4;
-        } else if (thisDay.equals("Fri")) {
-            thisDayNum = 5;
-        } else if (thisDay.equals("Sat")) {
-            thisDayNum = 6;
-        } else {
-            thisDayNum = 7;
-        }
+        Integer thisDayNum = chooseThisDayNum(thisDay);
         Integer thisStart = Integer.parseInt(trimmedThis.substring(4, 8));
         Integer thisEnd = Integer.parseInt(trimmedThis.substring(9, 13));
 
         String trimmedOther = other.toString().substring(1, other.toString().length() - 1);
         Integer otherStart = Integer.parseInt(trimmedOther.substring(4, 8));
         Integer otherEnd = Integer.parseInt(trimmedOther.substring(9, 13));
-        Integer otherDayNum;
-        if (trimmedOther.substring(0, 3).equals("Mon")) {
-            otherDayNum = 1;
-        } else if (trimmedOther.substring(0, 3).equals("Tue")) {
-            otherDayNum = 2;
-        } else if (trimmedOther.substring(0, 3).equals("Wed")) {
-            otherDayNum = 3;
-        } else if (trimmedOther.substring(0, 3).equals("Thu")) {
-            otherDayNum = 4;
-        } else if (trimmedOther.substring(0, 3).equals("Fri")) {
-            otherDayNum = 5;
-        } else if (trimmedOther.substring(0, 3).equals("Sat")) {
-            otherDayNum = 6;
-        } else {
-            otherDayNum = 7;
-        }
+        Integer otherDayNum = chooseOtherDayNum(trimmedOther);
 
         if (thisDayNum < otherDayNum) {
             return -1;
@@ -122,6 +92,42 @@ public class FreeTimeTag extends Tag implements Comparable<FreeTimeTag> {
             }
         } else {
             return 1;
+        }
+    }
+
+    private Integer chooseThisDayNum(String thisDay) {
+        if (thisDay.equals("Mon")) {
+            return 1;
+        } else if (thisDay.equals("Tue")) {
+            return 2;
+        } else if (thisDay.equals("Wed")) {
+            return 3;
+        } else if (thisDay.equals("Thu")) {
+            return 4;
+        } else if (thisDay.equals("Fri")) {
+            return 5;
+        } else if (thisDay.equals("Sat")) {
+            return 6;
+        } else {
+            return 7;
+        }
+    }
+
+    private Integer chooseOtherDayNum(String trimmedOther) {
+        if (trimmedOther.substring(0, 3).equals("Mon")) {
+            return 1;
+        } else if (trimmedOther.substring(0, 3).equals("Tue")) {
+            return 2;
+        } else if (trimmedOther.substring(0, 3).equals("Wed")) {
+            return 3;
+        } else if (trimmedOther.substring(0, 3).equals("Thu")) {
+            return 4;
+        } else if (trimmedOther.substring(0, 3).equals("Fri")) {
+            return 5;
+        } else if (trimmedOther.substring(0, 3).equals("Sat")) {
+            return 6;
+        } else {
+            return 7;
         }
     }
 

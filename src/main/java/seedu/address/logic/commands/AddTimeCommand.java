@@ -104,6 +104,14 @@ public class AddTimeCommand extends Command {
         }
 
         // Case 3: At least one new free time
+        return createdEditedPersonHelper(personToEdit, updatedFreeTimeTags);
+    }
+
+    /**
+     * Creates and returns a {@code Person} with the details of {@code personToEdit}
+     * with the updated free time tags {@code updatedFreeTimeTags}.
+     */
+    private static Person createdEditedPersonHelper(Person personToEdit, Set<FreeTimeTag> updatedFreeTimeTags) {
         Name updatedName = personToEdit.getName();
         Phone updatedPhone = personToEdit.getPhone();
         Email updatedEmail = personToEdit.getEmail();
