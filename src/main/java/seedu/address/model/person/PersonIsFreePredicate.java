@@ -29,7 +29,6 @@ public class PersonIsFreePredicate implements Predicate<Person> {
      */
     @Override
     public boolean test(Person person) {
-        requireNonNull(person);
         return person.getTags().stream().anyMatch(
                 tag -> tag.isContained(this.currentTime)
         );
