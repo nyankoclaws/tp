@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_FREETIMETAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
@@ -42,7 +41,7 @@ public class AddTimeCommand extends Command {
 
     public static final String MESSAGE_ADD_FREETIME_SUCCESS = "Added free time to person: %1$s";
 
-    private final Set<Index> indices;
+    private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;
 
     /**
@@ -53,41 +52,25 @@ public class AddTimeCommand extends Command {
         requireNonNull(index);
         requireNonNull(editPersonDescriptor);
 
-        this.indices = new HashSet<>();
-        this.indices.add(index);
-        this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
-    }
-
-    /**
-     * @param indices of the person in the filtered person list to edit
-     * @param editPersonDescriptor details to edit the person with
-     */
-    public AddTimeCommand(Set<Index> indices, EditPersonDescriptor editPersonDescriptor) {
-        requireNonNull(indices);
-        requireNonNull(editPersonDescriptor);
-
-        this.indices = indices;
-        this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
+        this.index = index;
+        this.editPersonDescriptor = editPersonDescriptor;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();
-        String res = "";
-        for (Index index : indices) {
-            if (index.getZeroBased() >= lastShownList.size()) {
-                throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-            }
 
-            Person personToEdit = lastShownList.get(index.getZeroBased());
-            Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
-
-            model.setPerson(personToEdit, editedPerson);
-            model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-            res = String.format("%s %s", res, Messages.format(editedPerson));
+        if (index.getZeroBased() >= lastShownList.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
-        return new CommandResult(String.format(MESSAGE_ADD_FREETIME_SUCCESS, res.trim()));
+
+        Person personToEdit = lastShownList.get(index.getZeroBased());
+        Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
+
+        model.setPerson(personToEdit, editedPerson);
+        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        return new CommandResult(String.format(MESSAGE_ADD_FREETIME_SUCCESS, Messages.format(editedPerson)));
     }
 
     /**
@@ -145,18 +128,14 @@ public class AddTimeCommand extends Command {
         }
 
         AddTimeCommand otherAddTimeCommand = (AddTimeCommand) other;
-        Object[] indicesArray = indices.toArray();
-        Object[] otherIndicesArray = otherAddTimeCommand.indices.toArray();
-        Arrays.sort(indicesArray);
-        Arrays.sort(otherIndicesArray);
-        return Arrays.equals(indicesArray, otherIndicesArray)
+        return index.equals(otherAddTimeCommand.index)
                 && editPersonDescriptor.equals(otherAddTimeCommand.editPersonDescriptor);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add("index", indices)
+                .add("index", index)
                 .add("editPersonDescriptor", editPersonDescriptor)
                 .toString();
     }
