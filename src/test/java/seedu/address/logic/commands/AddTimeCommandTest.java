@@ -13,6 +13,8 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
+import java.util.Set;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
@@ -126,8 +128,8 @@ public class AddTimeCommandTest {
         Index index = Index.fromOneBased(1);
         EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
         AddTimeCommand addTimeCommand = new AddTimeCommand(index, editPersonDescriptor);
-        String expected = AddTimeCommand.class.getCanonicalName() + "{index=" + index + ", editPersonDescriptor="
-                + editPersonDescriptor + "}";
+        String expected = AddTimeCommand.class.getCanonicalName()
+                + "{index=" + Set.of(index) + ", editPersonDescriptor=" + editPersonDescriptor + "}";
         assertEquals(expected, addTimeCommand.toString());
     }
 

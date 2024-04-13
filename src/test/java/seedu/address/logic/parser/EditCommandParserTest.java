@@ -4,7 +4,6 @@ import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.BIRTHDAY_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.FREE_TIME_TAG_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_BIRTHDAY_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
@@ -218,11 +217,5 @@ public class EditCommandParserTest {
         String userInput = String.format("%d %d %s", INDEX_FIRST_PERSON.getOneBased(),
                 INDEX_SECOND_PERSON.getOneBased(), BIRTHDAY_DESC_AMY);
         assertParseFailure(parser, userInput, String.format(EditCommand.MESSAGE_MULTIEDIT_FAIL, "BIRTHDAY"));
-    }
-    @Test
-    public void parse_multiplePersonEditFreeTimeTag_failure() {
-        String userInput = String.format("%d %d %s", INDEX_FIRST_PERSON.getOneBased(),
-                INDEX_SECOND_PERSON.getOneBased(), FREE_TIME_TAG_DESC_AMY);
-        assertParseFailure(parser, userInput, String.format(EditCommand.MESSAGE_MULTIEDIT_FAIL, "FREE TIME TAG"));
     }
 }

@@ -116,7 +116,8 @@ public class EditCommand extends Command {
             personsToEdit.add(personToEdit);
             editedPersons.add(editedPerson);
         }
-        for(int i = 0; i < personsToEdit.size(); i++) {
+
+        for (int i = 0; i < personsToEdit.size(); i++) {
             model.setPerson(personsToEdit.get(i), editedPersons.get(i));
             model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
             res = String.format("%s %s", res, Messages.format(editedPersons.get(i)));
