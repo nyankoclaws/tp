@@ -596,11 +596,25 @@ When `Default Person List` is mentioned, it refers the the default persons which
     Expected: No contact has free time tag deleted. Error is shown in the status message.<br>
     Status Message:<br>`No matching free time to be deleted for the chosen person.`
 
+### Finding persons Who are Free
+
+1. Finding persons Who are Free
+
+    1. Prerequisites: Open the application with the `Default Person List`.
+
+    1. Test case: `whoisfree Tue:0600`
+    Expected: No contacts are shown. Number of contacts are shown in the status message.<br>
+    Status Message:<br>`0 persons listed!`
+
+    1. Test case: `whoisfree Tue:060`
+    Expected: The shown contacts do not change. Error is shown in the status message.<br>
+    Status Message:<br>`Invalid command format! whoisfree: Finds all persons who are free given by the specified timestamp (case-insensitive) and displays them as a list with index numbers.Parameters: TIME STAMP`
+
 ### Saving and Loading data with JSON
 
 1. Dealing with missing/corrupted data files
 
-    1. Prerequisites: `data` folder with `dormie.json` in the same directory as `Dormie.jar`. Delete the data folder, relaunch the app and run the command `list` to get the default data file.
+    1. Prerequisites: `data` folder with default `dormie.json` in the same directory as `Dormie.jar`.
 
     1. Test case: Append a lone `(` to the end of a valid `dormie.json` file and launch `dormie.jar`.<br>
     Expected: Dormie loads with no contacts.
@@ -608,7 +622,16 @@ When `Default Person List` is mentioned, it refers the the default persons which
     1. Test case: Delete `dormie.json` file and launch `dormie.jar`.<br>
     Expected: Dormie loads with the default contact list.
 
-1. _{ more test cases …​ }_
+1. Editing Last Modified Date for Room Number
+
+    1. Prerequisites: `data` folder with default `dormie.json` in the same directory as `Dormie.jar`.
+
+    1. Test case: Append a lone `(` to the end of a valid `dormie.json` file and launch `dormie.jar`.<br>
+    Expected: Dormie loads with no contacts.
+
+    1. Test case: Delete `dormie.json` file and launch `dormie.jar`.<br>
+    Expected: Dormie loads with the default contact list.
+
 
 ## **Appendix: Effort**
 1. Free Time Functionality
