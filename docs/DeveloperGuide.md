@@ -557,7 +557,7 @@ To accommodate changes in a person's free time, we also created the `addTime` an
    * The main challenge faced in implementing this free time functionality was the proper adding and deleting of free time such that it can be easily searched when the `whoisfree` command is used. To overcome this, we focused on accuracy rather than efficiency, and decided to search the free time HashSet iteratively, although we understand that it could take up a bit more time.
 2. Icons
    * To enhance user experience, we aimed to incorporate icons that serve as visual cues to prompt users to update outdated dorm room numbers for contacts and to highlight contacts whose birthdays coincide with the current date.
-However, implementing this feature posed a challenge when testing if the icons will appear at the appropriate times, given the dynamic nature of dates within the application. To address this challenge, we adopted a solution involving the use of static dates for manual testing. By simulating specific dates, we were able to verify that the icons functioned as intended and appeared at the correct moments.
+   * However, implementing this feature posed a challenge when testing if the icons will appear at the appropriate times, given the dynamic nature of dates within the application. To address this challenge, we adopted a solution involving the use of static dates for manual testing. By simulating specific dates, we were able to verify that the icons functioned as intended and appeared at the correct moments.
 
 
 ## **Appendix: Planned Enhancements**
