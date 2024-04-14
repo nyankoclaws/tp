@@ -614,7 +614,7 @@ When `Default Person List` is mentioned, it refers the the default persons which
 
 1. Dealing with missing/corrupted data files
 
-    1. Prerequisites: `data` folder with default `dormie.json` in the same directory as `Dormie.jar`.
+    1. Prerequisites: `data` folder with default `dormie.json` in the same directory as `Dormie.jar`. To get this, delete the data file, open the app, run the command `list`, then close the app.
 
     1. Test case: Append a lone `(` to the end of a valid `dormie.json` file and launch `dormie.jar`.<br>
     Expected: Dormie loads with no contacts.
@@ -624,13 +624,15 @@ When `Default Person List` is mentioned, it refers the the default persons which
 
 1. Editing Last Modified Date for Room Number
 
-    1. Prerequisites: `data` folder with default `dormie.json` in the same directory as `Dormie.jar`.
+    1. Prerequisites: `data` folder with default `dormie.json` in the same directory as `Dormie.jar`. To get this, delete the data file, open the app, run the command `list`, then close the app.
 
-    1. Test case: Append a lone `(` to the end of a valid `dormie.json` file and launch `dormie.jar`.<br>
+    1. Test case: For the person with `name: "Alex Yeoh"`, replace `2024` with `2022`.<br>
+    Expected: Dormie loads the `Default Person List`, but `Alex Yeoh` has the indicator icon `calendar_alert`.
+
+    1. Test case: For the person with `name: "Bernice Yu"`, replace `2024` with `2026`.<br>
     Expected: Dormie loads with no contacts.
 
-    1. Test case: Delete `dormie.json` file and launch `dormie.jar`.<br>
-    Expected: Dormie loads with the default contact list.
+    1. The effects of the test cases above reflect the effects of last modified room number date on the validity of the data and the icon behaviour.
 
 
 ## **Appendix: Effort**
