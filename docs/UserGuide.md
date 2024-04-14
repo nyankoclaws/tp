@@ -245,6 +245,20 @@ If your changes to the data file makes its format invalid, Dormie will discard a
 Furthermore, certain edits can cause the Dormie to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </box>
 
+### Indicator icons
+#### Room Number Outdated 
+<img src="images/calendar_alert.png" alt="calendar_alert" width="24"/> 
+<br>
+Shows up next to a contact when room number might be outdated. Our system determines this to be the case when all the new dorm result postings are out, for room number entries modified before the previous result postings started coming out.
+
+For NUS, dorm result postings occur between 5th and 12th April every year. 
+
+#### Birthday
+<img src="images/birthday_cake.png" alt="birthday_cake" width="24"/>
+<br>
+Shows up next to a contact when the contact's birthday is today.
+
+
 ---
 
 ## FAQ
