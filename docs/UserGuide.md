@@ -249,14 +249,12 @@ Furthermore, certain edits can cause the Dormie to behave in unexpected ways (e.
 #### Room Number Outdated 
 <img src="images/calendar_alert.png" alt="calendar_alert" width="24"/> 
 <br>
-Shows up next to a contact when room number might be outdated. Our system determines this to be the case when all the new dorm result postings are out, for room number entries modified before the previous result postings started coming out.
-
-For NUS, dorm result postings occur between 5th and 12th April every year. 
+Shows up next to a contact when room number might be outdated. If a room number was last updated before the annual room assignments (which occur between April 5th and 12th), the alert appears. When you see this alert, it’s a good idea to check and update the room number if necessary.
 
 #### Birthday
 <img src="images/birthday_cake.png" alt="birthday_cake" width="24"/>
 <br>
-Shows up next to a contact when the contact's birthday is today.
+Shows up next to a contact when the contact's birthday is today. If the birthday icon shows up, it might be a good idea to wish your friend "Happy Birthday".
 
 
 ---
