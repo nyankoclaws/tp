@@ -101,7 +101,8 @@ public class EditCommandParser implements Parser<EditCommand> {
             editPersonDescriptor.setDormTag(ParserUtil.parseDormTag(argMultimap.getValue(PREFIX_DORMTAG).get()));
         }
 
-        parseFreeTimeTagsForEdit(argMultimap.getAllValues(PREFIX_FREETIMETAG)).ifPresent(editPersonDescriptor::setTags);
+        parseFreeTimeTagsForEdit(argMultimap.getAllValues(PREFIX_FREETIMETAG))
+                    .ifPresent(editPersonDescriptor::setTags);
 
         if (!editPersonDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);

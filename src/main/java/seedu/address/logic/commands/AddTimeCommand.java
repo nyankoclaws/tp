@@ -32,8 +32,7 @@ public class AddTimeCommand extends Command {
     public static final String COMMAND_WORD = "addTime";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a free time to the person identified "
-            + "by the index number used in the displayed person list. "
-            + PREFIX_FREETIMETAG + "Mon:1300-1400\n"
+            + "by the index number used in the displayed person list. \n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_FREETIMETAG + "Mon:1330-1400 "
             + PREFIX_FREETIMETAG + "Mon:1200-1300\n"
@@ -82,6 +81,7 @@ public class AddTimeCommand extends Command {
             throws CommandException {
         assert personToEdit != null;
 
+        // Case 1: No free time are specified
         if (editPersonDescriptor.getTags() == null) {
             throw new CommandException(Messages.MESSAGE_NO_FREETIME_SPECIFIED);
         }
@@ -93,12 +93,25 @@ public class AddTimeCommand extends Command {
         }
 
         Set<FreeTimeTag> oldFreeTimeTags = personToEdit.getTags();
-
         Set<FreeTimeTag> updatedFreeTimeTags = new HashSet<>();
 
         updatedFreeTimeTags.addAll(oldFreeTimeTags);
         updatedFreeTimeTags.addAll(newFreeTimeTags);
 
+        // Case 2: No new free time
+        if (oldFreeTimeTags.size() == updatedFreeTimeTags.size()) {
+            throw new CommandException(Messages.MESSAGE_NO_NEW_FREE_TIME);
+        }
+
+        // Case 3: At least one new free time
+        return createdEditedPersonHelper(personToEdit, updatedFreeTimeTags);
+    }
+
+    /**
+     * Creates and returns a {@code Person} with the details of {@code personToEdit}
+     * with the updated free time tags {@code updatedFreeTimeTags}.
+     */
+    private static Person createdEditedPersonHelper(Person personToEdit, Set<FreeTimeTag> updatedFreeTimeTags) {
         Name updatedName = personToEdit.getName();
         Phone updatedPhone = personToEdit.getPhone();
         Email updatedEmail = personToEdit.getEmail();

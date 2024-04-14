@@ -83,46 +83,30 @@ class JsonAdaptedPerson {
             freeTimeTagList.add(freeTimeTag.toModelType());
         }
 
-        if (name == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
-        }
-        if (!Name.isValidName(name)) {
-            throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
-        }
+        checkAndThrow(name == null, String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
+        checkAndThrow(!Name.isValidName(name), Name.MESSAGE_CONSTRAINTS);
         final Name modelName = new Name(name);
 
-        if (phone == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
-        }
-        if (!Phone.isValidPhone(phone)) {
-            throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
-        }
+        checkAndThrow(phone == null, String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
+        checkAndThrow(!Phone.isValidPhone(phone), Phone.MESSAGE_CONSTRAINTS);
         final Phone modelPhone = new Phone(phone);
 
         Email modelEmail = null;
         if (email != null) {
-            if (!Email.isValidEmail(email)) {
-                throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
-            }
+            checkAndThrow(!Email.isValidEmail(email), Email.MESSAGE_CONSTRAINTS);
             modelEmail = new Email(email);
         }
 
         RoomNumber modelRoomNumber = null;
         if (roomNumber != null) {
-            if (!RoomNumber.isValidRoomNumberWDate(roomNumber)) {
-                throw new IllegalValueException(RoomNumber.MESSAGE_CONSTRAINTS_DATE);
-            }
-            if (!RoomNumber.isValidDate(roomNumber)) {
-                throw new IllegalValueException(RoomNumber.MESSAGE_CONSTRAINTS_DATE_BEFORE);
-            }
+            checkAndThrow(!RoomNumber.isValidRoomNumberWDate(roomNumber), RoomNumber.MESSAGE_CONSTRAINTS_DATE);
+            checkAndThrow(!RoomNumber.isValidDate(roomNumber), RoomNumber.MESSAGE_CONSTRAINTS_DATE_BEFORE);
             modelRoomNumber = new RoomNumber(roomNumber, true);
         }
 
         Telegram modelTelegram = null;
         if (telegram != null) {
-            if (!Telegram.isValidTelegram(telegram)) {
-                throw new IllegalValueException(Telegram.MESSAGE_CONSTRAINTS);
-            }
+            checkAndThrow(!Telegram.isValidTelegram(telegram), Telegram.MESSAGE_CONSTRAINTS);
             modelTelegram = new Telegram(telegram);
         }
 
@@ -142,9 +126,7 @@ class JsonAdaptedPerson {
 
         DormTag modelDormTag = null;
         if (dormTag != null) {
-            if (!DormTag.isValidTagName(dormTag)) {
-                throw new IllegalValueException(DormTag.MESSAGE_CONSTRAINTS);
-            }
+            checkAndThrow(!DormTag.isValidTagName(dormTag), DormTag.MESSAGE_CONSTRAINTS);
             modelDormTag = new DormTag(dormTag);
         }
 
@@ -152,6 +134,12 @@ class JsonAdaptedPerson {
 
         return new Person(modelName, modelPhone, modelEmail, modelRoomNumber, modelTelegram, modelBirthday,
                 modelDormTag, modelFreeTimeTags);
+    }
+
+    private void checkAndThrow(boolean condition, String errorMessage) throws IllegalValueException {
+        if (condition) {
+            throw new IllegalValueException(errorMessage);
+        }
     }
 
 }
