@@ -641,9 +641,6 @@ Team size: 5
     * When user perform a `whoisfree` command, it might be useful to ascertain that a person would be free for the whole duration.
     * For example, `whoisfree Mon:1200-1400` will display all person that are free for the time interval.
 
-11. **Allow `edit` command to clear optional field:**
-    * Currently, the `edit` command cannot clear the value of some optional fields (i.e. email, room number, telegram handle, birthday, dorm tag).
-    * It will be useful to allow this, as the optional field, as its name suggests, should be able to take no value.
 
 
 
