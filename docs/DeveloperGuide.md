@@ -13,7 +13,7 @@ pageNav: 3
 
 ## **Acknowledgements**
 
- _[Codium](https://www.codium.ai/) - Used by [donwong2308](https://github.com/donwong2308) to autocomplete code in some parts of FreeTimeTag and FreeTimeTagTest._
+ _[Codium](https://www.codium.ai/) - Used by [donwong2308](https://github.com/donwong2308) to autocomplete code in some parts of `FreeTimeTag` and `FreeTimeTagTest`._
 
  _[GitHub Copilot Plugin](https://plugins.jetbrains.com/plugin/17718-github-copilot) - Used by [justweihao](https://github.com/justweihao) to autocomplete code in some parts of `Birthday`, `FreeTimeTagTest`, `FindFreePersonCommandParserTest`, `EditCommandParserTest`, `PersonIsFreePredicateTest`, `FindFreePersonCommandTest`, `EditCommandParser`, `BirthdayTest`, `FreeTimeTag`, and `FindByNameCommandTest`._
 
