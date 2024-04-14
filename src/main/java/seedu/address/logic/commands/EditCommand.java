@@ -63,7 +63,7 @@ public class EditCommand extends Command {
     public static final String MESSAGE_MULTIEDIT_FAIL = "%1$s cannot be edited for multiple persons at once.";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PERSON = "A person with same phone, email, or telegram, "
-            + "has already exists in the address book.";
+            + "has already exists in the Dormie.";
 
     private final Set<Index> indices;
     private final EditPersonDescriptor editPersonDescriptor;
@@ -109,8 +109,14 @@ public class EditCommand extends Command {
             Person personToEdit = lastShownList.get(index.getZeroBased());
             Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
 
-            if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
-                throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+            if (!personToEdit.equals(editedPerson)) {
+                if (model.getAddressBook()
+                        .getPersonList()
+                        .stream()
+                        .filter(person -> person != personToEdit)
+                        .anyMatch(editedPerson::isSamePerson)) {
+                    throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+                }
             }
 
             personsToEdit.add(personToEdit);
