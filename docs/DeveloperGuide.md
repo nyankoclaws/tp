@@ -561,13 +561,60 @@ When `Default Person List` is mentioned, it refers the the default persons which
 
     1. Prerequisites: Open the application with the `Default Person List`.
 
+    1. Test case: `Edit 1 n/Palex Yeoh`<br>
+    Expected: Contact, `Alex Yeoh`, is edited. Details of the edited contact shown in the status message.<br>
+    Status Message:<br>`Edited person: Palex Yeoh; Phone: 87438807; Email: alexyeoh@example.com; Room Number: 21-06-40; Telegram: alexYeoh; Birthday: 03 February 2000; Dorm Tag: [PGPR]; Free Time Tags: [Tue:0700-2100]`
 
+    1. Test case: `edit 1 p/hi`<br>
+    Expected: No contact is edited. Error is shown in the status message.<br>
+    Status Message:<br>`Phone numbers must contain only numbers, be 8 digits long, and must start with an 8 or 9.`
+
+
+### Editing Free Time Tags of a person
+
+1. Adding Free Time Tag to a person
+
+    1. Prerequisites: Open the application with the `Default Person List`.
+
+    1. Test case: `addTime 1 ft/Mon:0700-2100`<br>
+    Expected: Contact, `Alex Yeoh`, has free time tag `Mon:0700-2100` added. Details of the contact shown in the status message.<br>
+    Status Message:<br>`Added free time to person: Alex Yeoh; Phone: 87438807; Email: alexyeoh@example.com; Room Number: 21-06-40; Telegram: alexYeoh; Birthday: 03 February 2000; Dorm Tag: [PGPR]; Free Time Tags: [Mon:0700-2100][Tue:0700-2100]`
+
+    1. Test case: `addTime 1 ft/Monday:0700-2100`<br>
+    Expected: No contact has free time tag added. Error is shown in the status message.<br>
+    Status Message:<br>`Free Time Tag should be Mon-Sun:HHmm-HHmm (24hr format)`
+
+1. Removing Free Time Tag from a person
+
+    1. Prerequisites: Open the application with the `Default Person List`.
+
+    1. Test case: `deleteTime 1 ft/Tue:0700-2100`<br>
+    Expected: Contact, `Alex Yeoh`, has free time tag `Tue:0700-2100` deleted. Details of the contact shown in the status message.<br>
+    Status Message:<br>`Deleted free time from person: Alex Yeoh; Phone: 87438807; Email: alexyeoh@example.com; Room Number: 21-06-40; Telegram: alexYeoh; Birthday: 03 February 2000; Dorm Tag: [PGPR]`
+
+    1. Test case: `deleteTime 1 ft/Mon:0700-2100`<br>
+    Expected: No contact has free time tag deleted. Error is shown in the status message.<br>
+    Status Message:<br>`No matching free time to be deleted for the chosen person.`
+
+### Finding persons Who are Free
+
+1. Finding persons Who are Free
+
+    1. Prerequisites: Open the application with the `Default Person List`.
+
+    1. Test case: `whoisfree Tue:0600`<br>
+    Expected: No contacts are shown. Number of contacts are shown in the status message.<br>
+    Status Message:<br>`0 persons listed!`
+
+    1. Test case: `whoisfree Tue:060`<br>
+    Expected: The shown contacts do not change. Error is shown in the status message.<br>
+    Status Message:<br>`Invalid command format! whoisfree: Finds all persons who are free given by the specified timestamp (case-insensitive) and displays them as a list with index numbers.Parameters: TIME STAMP`
 
 ### Saving and Loading data with JSON
 
 1. Dealing with missing/corrupted data files
 
-    1. Prerequisites: `data` folder with `dormie.json` in the same directory as `Dormie.jar`. Delete the data folder, relaunch the app and run the command `list` to get the default data file.
+    1. Prerequisites: `data` folder with default `dormie.json` in the same directory as `Dormie.jar`. To get this, delete the data file, open the app, run the command `list`, then close the app.
 
     1. Test case: Append a lone `(` to the end of a valid `dormie.json` file and launch `dormie.jar`.<br>
     Expected: Dormie loads with no contacts.
@@ -575,7 +622,18 @@ When `Default Person List` is mentioned, it refers the the default persons which
     1. Test case: Delete `dormie.json` file and launch `dormie.jar`.<br>
     Expected: Dormie loads with the default contact list.
 
-1. _{ more test cases …​ }_
+1. Editing Last Modified Date for Room Number
+
+    1. Prerequisites: `data` folder with default `dormie.json` in the same directory as `Dormie.jar`. To get this, delete the data file, open the app, run the command `list`, then close the app.
+
+    1. Test case: For the person with `name: "Alex Yeoh"`, replace `2024` with `2022`.<br>
+    Expected: Dormie loads the `Default Person List`, but `Alex Yeoh` has the indicator icon `calendar_alert`.
+
+    1. Test case: For the person with `name: "Bernice Yu"`, replace `2024` with `2026`.<br>
+    Expected: Dormie loads with no contacts.
+
+    1. The effects of the test cases above reflect the effects of last modified room number date on the validity of the data and the icon behaviour.
+
 
 ## **Appendix: Effort**
 1. Free Time Functionality
