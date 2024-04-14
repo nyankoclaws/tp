@@ -50,6 +50,14 @@ public class AddCommandParser implements Parser<AddCommand> {
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ROOMNUMBER,
                 PREFIX_TELEGRAM, PREFIX_BIRTHDAY, PREFIX_DORMTAG);
 
+        Person person = parseHelperCreatePerson(argMultimap);
+        return new AddCommand(person);
+    }
+
+    /**
+     * Create a person with values in the given {@code ArgumentMultimap}.
+     */
+    private static Person parseHelperCreatePerson(ArgumentMultimap argMultimap) throws ParseException {
         // Mandatory fields
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
@@ -73,8 +81,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         Optional<String> freeTimeTagText = argMultimap.getValue(PREFIX_FREETIMETAG);
         Set<FreeTimeTag> freeTimeTags = ParserUtil.parseFreeTimeTags(argMultimap.getAllValues(PREFIX_FREETIMETAG));
 
-        Person person = new Person(name, phone, email, roomNumber, telegram, birthday, dormTag, freeTimeTags);
-        return new AddCommand(person);
+        return new Person(name, phone, email, roomNumber, telegram, birthday, dormTag, freeTimeTags);
     }
 
     /**

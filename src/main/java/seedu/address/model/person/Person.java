@@ -191,27 +191,19 @@ public class Person {
         sb.add("phone", phone);
         sb.add("tags", tags);
 
-        if (email != null) {
-            sb.add("email", email);
-        }
-
-        if (roomNumber != null) {
-            sb.add("roomNumber", roomNumber);
-        }
-
-        if (telegram != null) {
-            sb.add("telegram", telegram);
-        }
-
-        if (birthday != null) {
-            sb.add("birthday", birthday);
-        }
-
-        if (dormTag != null) {
-            sb.add("dormTag", dormTag);
-        }
+        toStringHelper(sb, "email", email);
+        toStringHelper(sb, "roomNumber", roomNumber);
+        toStringHelper(sb, "telegram", telegram);
+        toStringHelper(sb, "birthday", birthday);
+        toStringHelper(sb, "dormTag", dormTag);
 
         return sb.toString();
+    }
+
+    private void toStringHelper(ToStringBuilder sb, String prependString, Object field) {
+        if (field != null) {
+            sb.add(prependString, field);
+        }
     }
 
 }
