@@ -11,6 +11,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ROOMNUMBER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TELEGRAM;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
@@ -97,6 +98,8 @@ public class EditCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();
+        List<Person> personsToEdit = new ArrayList<>();
+        List<Person> editedPersons = new ArrayList<>();
         String res = "";
         for (Index index : indices) {
             if (index.getZeroBased() >= lastShownList.size()) {
@@ -110,9 +113,14 @@ public class EditCommand extends Command {
                 throw new CommandException(MESSAGE_DUPLICATE_PERSON);
             }
 
-            model.setPerson(personToEdit, editedPerson);
+            personsToEdit.add(personToEdit);
+            editedPersons.add(editedPerson);
+        }
+
+        for (int i = 0; i < personsToEdit.size(); i++) {
+            model.setPerson(personsToEdit.get(i), editedPersons.get(i));
             model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-            res = String.format("%s %s", res, Messages.format(editedPerson));
+            res = String.format("%s %s", res, Messages.format(editedPersons.get(i)));
         }
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, res.trim()));
     }

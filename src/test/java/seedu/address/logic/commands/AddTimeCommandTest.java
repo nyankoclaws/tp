@@ -126,8 +126,8 @@ public class AddTimeCommandTest {
         Index index = Index.fromOneBased(1);
         EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
         AddTimeCommand addTimeCommand = new AddTimeCommand(index, editPersonDescriptor);
-        String expected = AddTimeCommand.class.getCanonicalName() + "{index=" + index + ", editPersonDescriptor="
-                + editPersonDescriptor + "}";
+        String expected = AddTimeCommand.class.getCanonicalName()
+                + "{index=" + index + ", editPersonDescriptor=" + editPersonDescriptor + "}";
         assertEquals(expected, addTimeCommand.toString());
     }
 
