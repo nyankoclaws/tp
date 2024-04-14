@@ -6,6 +6,8 @@ import seedu.address.logic.parser.exceptions.ParseException;
 /**
  * Parses input arguments and creates a new FindCommand object
  */
+//@@author MightyCupcakes
+//Probably changed file name
 public abstract class FindCommandParser implements Parser<FindCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the FindCommand

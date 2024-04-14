@@ -13,6 +13,8 @@ import seedu.address.logic.commands.FindByNameCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 
+//@@author limmlingg
+//Changed file name, class name
 public class FindByNameCommandParserTest {
 
     private FindByNameCommandParser parser = new FindByNameCommandParser();
