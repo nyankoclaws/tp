@@ -495,6 +495,8 @@ After user modifies the command to match the given command format (e.g. executin
 a new error message may be shown, which is "No matching free time to be deleted for the chosen person."
 And after user modifies the command accordingly to provide a matching free time, the command will execute successfully.
 
+When `Default Person List` is mentioned, it refers the the default persons which appear when you launch the application without any data file. To get the `Default Person List`, delete the data folder, relaunch the app and run the command `list`.
+
 ### Launch and shutdown
 
 1. Initial launch
@@ -516,36 +518,60 @@ And after user modifies the command accordingly to provide a matching free time,
 
 1. Adding a person
 
-    1. Prerequisites: Open the application
+    1. Prerequisites: Open the application.
 
-       Expected: Similar to previous.
+    1. Test case: `add n/John Doe p/98765432 e/johnd@example.com r/sw-01-01 t/johnDoe b/12/12/2000 d/PGPR ft/Mon:1300-1400`<br>
+       Expected: Contact is added to the list. Details of the added contact shown in the status message.<br>
+       Status Message:<br>`New person added: John Doe; Phone: 98765432; Email: johnd@example.com; Room Number: sw-01-01; Telegram: johnDoe; Birthday: 12 December 2000; Dorm Tag: [PGPR]; Free Time Tags: [Mon:1300-1400]`
 
-1. _{ more test cases …​ }_
+    1. Test case: `add n/John Doe e/johnd@example.com r/sw-01-01 t/johnDoe b/12/12/2000 d/PGPR ft/Mon:1300-1400`<br>
+       Expected: No person is added. Error details shown in the status message.<br>
+       Status Message:<br>`Invalid command format! add: Adds a person to Dormie. Parameters: n/NAME p/PHONE [e/EMAIL] [r/ROOM NUMBER] [t/TELEGRAM] [b/BIRTHDAY] [d/DORM TAG] [ft/FREE TIME TAG]... Example: add n/John Doe p/98765432 e/johnd@example.com r/sw-01-01 t/johnDoe b/12/12/2000 d/PGPR ft/Mon:1300-1400`
 
 ### Deleting a person
 
 1. Deleting a person while all persons are being shown
 
-    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+    1. Prerequisites: Open the application with the `Default Person List`.
 
     1. Test case: `delete 1`<br>
-       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+       Expected: First contact, `Alex Yeoh`, is deleted from the list. Details of the deleted contact shown in the status message.<br>
+       Status Message:<br>`Deleted Person: Alex Yeoh; Phone: 87438807; Email: alexyeoh@example.com; Room Number: 21-06-40; Telegram: alexYeoh; Birthday: 03 February 2000; Dorm Tag: [PGPR]; Free Time Tags: [Tue:0700-2100]`
 
     1. Test case: `delete 0`<br>
-       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+       Expected: No person is deleted. Error details shown in the status message.<br>
+       Status Message:<br>`Invalid command format! delete: Deletes the person identified by the index number used in the displayed person list. Parameters: INDEX (must be a positive integer) Example: delete 1`
 
     1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
        Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+1. Deleting a person while some persons are being shown
 
-### Saving data to JSON
+    1. Prerequisites: Open the application with the `Default Person List`. Filter 1 person using the `find bernice` command.
+
+    1. Test case: `delete 1`<br>
+       Expected: First contact currently shown, `Bernice Yu`, is deleted from the list. Details of the deleted contact shown in the status message. Contact, `Bernice Yu`,  remains deleted when filter is removed using the `list` command.<br>
+       Status Message:<br>`Deleted Person: Bernice Yu; Phone: 99272758; Email: berniceyu@example.com; Room Number: 21-07-18; Telegram: berniceYu; Birthday: 21 February 1999; Dorm Tag: [PGPR]; Free Time Tags: [Tue:0700-2100]`
+
+### Editing a person
+
+1. Editing a person
+
+    1. Prerequisites: Open the application with the `Default Person List`.
+
+
+
+### Saving and Loading data with JSON
 
 1. Dealing with missing/corrupted data files
 
-    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-    1. _{ explain how the room number formatting requires dates }_
-    1. _{ tbc }_
+    1. Prerequisites: `data` folder with `dormie.json` in the same directory as `Dormie.jar`. Delete the data folder, relaunch the app and run the command `list` to get the default data file.
+
+    1. Test case: Append a lone `(` to the end of a valid `dormie.json` file and launch `dormie.jar`.<br>
+    Expected: Dormie loads with no contacts.
+
+    1. Test case: Delete `dormie.json` file and launch `dormie.jar`.<br>
+    Expected: Dormie loads with the default contact list.
 
 1. _{ more test cases …​ }_
 
