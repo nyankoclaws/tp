@@ -245,6 +245,18 @@ If your changes to the data file makes its format invalid, Dormie will discard a
 Furthermore, certain edits can cause the Dormie to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </box>
 
+### Indicator icons
+#### Room Number Outdated 
+<img src="images/calendar_alert.png" alt="calendar_alert" width="24"/> 
+<br>
+Shows up next to a contact when room number might be outdated. If a room number was last updated before the annual room assignments (which occur between April 5th and 12th), the alert appears. When you see this alert, it’s a good idea to check and update the room number if necessary.
+
+#### Birthday
+<img src="images/birthday_cake.png" alt="birthday_cake" width="24"/>
+<br>
+Shows up next to a contact when the contact's birthday is today. If the birthday icon shows up, it might be a good idea to wish your friend "Happy Birthday".
+
+
 ---
 
 ## FAQ
