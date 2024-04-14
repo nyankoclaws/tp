@@ -69,4 +69,22 @@ public class BirthdayTest {
         // different values -> returns false
         assertFalse(birthday.equals(new Birthday("01/02/2001")));
     }
+
+    @Test
+    public void isValidBirthdayFormat() {
+        // null birthday
+        assertThrows(NullPointerException.class, () -> Birthday.isValidBirthdayFormat(null));
+
+        // invalid birthday
+        assertFalse(Birthday.isValidBirthdayFormat("")); // empty string
+        assertFalse(Birthday.isValidBirthdayFormat(" ")); // spaces only
+        assertFalse(Birthday.isValidBirthdayFormat("12-12")); // missing year fields
+        assertFalse(Birthday.isValidBirthdayFormat("12-120-2024"));
+
+        // valid birthday
+        assertTrue(Birthday.isValidBirthdayFormat("12/12/2003"));
+        assertTrue(Birthday.isValidBirthdayFormat("29-02-2024"));
+        assertTrue(Birthday.isValidBirthdayFormat("2024/03/25"));
+        assertTrue(Birthday.isValidBirthdayFormat("2024-03-25"));
+    }
 }

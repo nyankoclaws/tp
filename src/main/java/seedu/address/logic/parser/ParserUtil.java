@@ -107,8 +107,14 @@ public class ParserUtil {
     public static Birthday parseBirthday(String birthday) throws ParseException {
         requireNonNull(birthday);
         String trimmedBirthday = birthday.trim();
-        if (!Birthday.isValidBirthday(trimmedBirthday)) {
+        if (!Birthday.isValidBirthdayFormat(trimmedBirthday)) {
             throw new ParseException(Birthday.MESSAGE_CONSTRAINTS);
+        }
+        if (!Birthday.isValidBirthdayValue(trimmedBirthday)) {
+            throw new ParseException(Birthday.INVALID_DATE);
+        }
+        if (Birthday.isBirthdayFuture(trimmedBirthday)) {
+            throw new ParseException(Birthday.FUTURE_DATE);
         }
         return new Birthday(trimmedBirthday);
     }
