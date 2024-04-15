@@ -248,17 +248,9 @@ Note: The user can delete multiple free times at the same time by using multiple
     * Pros: More convenient if the user wants to delete multiple free times at once. For example, `deleteTime [index] ft/Wed:1000-1200` will delete the `Wed:1000-1100` and `Wed:1100-1200` free time tags.
     * Cons: Could introduce more bugs that are more challenging to resolve in a short period of time (Given the current time constraints).
 
-#### Design considerations:
+The following sequence diagram shows how an addFreeTime operation goes through the `Logic` component:
 
-**Aspect: How add free time executes:**
-
-* **Alternative 1 (current choice):** Append to HashSet in order.
-    * Pros: Easy to visualise in GUI.
-    * Cons: Additional time to loop through current HashSet to append in the current position.
-
-* **Alternative 2:** Append to end of HashSet
-    * Pros: Easy to implement because the new free time can just be appended at the end of the HashSet.
-    * Cons: Difficult to visualise in GUI (free time in Monday may appear after Tuesday's).
+<puml src="diagrams/DeleteFreeTimeSequenceDiagram-Logic.puml" alt="DeleteFreeTimeSequenceDiagram-Logic" />
 
 --------------------------------------------------------------------------------------------------------------------
 
