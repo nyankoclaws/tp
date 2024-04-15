@@ -50,7 +50,7 @@ The bulk of the app's work is done by the following four components:
 
 [**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
 
-**How the architecture components interact with each other**
+**How the Architecture Components Interact with Each Other**
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
 
@@ -69,13 +69,13 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java).
 
 <puml src="diagrams/UiClassDiagram.puml" alt="Structure of the UI Component"/>
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml).
 
 The `UI` component,
 
@@ -128,7 +128,7 @@ The `Model` component,
 * stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
 * stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
-* does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
+* does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components).
 
 <box type="info" seamless>
 
@@ -148,7 +148,7 @@ The `Model` component,
 The `Storage` component,
 * can save both address book data and user preference data in JSON format, and read them back into corresponding objects.
 * inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
-* depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
+* depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`).
 
 ### Common classes
 
@@ -270,10 +270,10 @@ The following sequence diagram shows how an addFreeTime operation goes through t
 
 **Target user profile**:
 
-* an undergraduate student staying in a dorm
-* wants to network with other students who stay in the same dorm as him
-* often looks for his dorm friends to hang out or do some work
-* enjoys celebrating milestones such as birthdays
+* An undergraduate student staying in a dorm.
+* The undergraduate student wants to network with other students who stay in the same dorm as him.
+* He often looks for his dorm friends to hang out or do some work.
+* He also enjoys celebrating milestones such as birthdays.
 
 **Value proposition**: Jim will be able to create and update student contacts quickly. 
 He will be able to store important dorm details in his contacts. 
@@ -283,44 +283,44 @@ He can also schedule meetups with peers with more convenience.
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                   | I can …​                                                | So that …​                                                                                 |
-|----------|-------------------------------------------|---------------------------------------------------------|--------------------------------------------------------------------------------------------|
-| `* * *`  | student who just started living in dorm   | create a new contact                                    | I can remember the particulars of a new dorm mate                                          |
-| `* * *`  | student living in dorm                    | choose to specify the room number upon contact creation | I do not need to update my dorm mate’s room number separately                              |
-| `* * *`  | student living in dorm                    | choose to specify the birthday upon contact creation    | I do not need to update my dorm mate’s birthday separately                                 |
-| `* * *`  | student living in dorm                    | delete a contact                                        | I can stay updated on who no longer resides in the dorm                                    |
-| `* * *`  | student living in dorm                    | edit a contact’s name                                   | I can change the name if it was initially created incorrectly or the name has been changed |
-| `* * *`  | student living in dorm                    | edit a contact’s phone number                           | I can stay updated if my dorm mate changes phone numbers                                   |
-| `* * *`  | student living in dorm                    | view all contacts                                       | I can have an overview of all my dorm mates easily                                         |
-| `* *`    | student living in dorm                    | add when my contacts are free                           | I can remember when my dorm mates are available                                            |
-| `* *`    | student living in dorm                    | view which of my friends are free at a certain time     | I know who I can ask to meet for leisure or work                                           |
-| `* *`    | student living in dorm                    | update when my friends are free                         | I ensure that the free times stored are accurate                                           |
-| `* *`    | new user of this application              | view allowed commands when the application launches     | I am aware of what functions I can use in the application                                  |
-| `* *`    | user exploring this application           | get autocomplete when typing commands                   | I can quickly give my commands                                                             |
-| `* *`    | student living in dorm with many contacts | search a contact by name                                | I can quickly find details of my dorm mates                                                |
-| `* *`    | student living in dorm with many contacts | filter contacts by dorm room number                     | I can find where are my dorm mates                                                         |
-| `* *`    | student living in dorm with many contacts | search a contact by birthday                            | I know whose birthday is in which month                                                    |
-| `* *`    | student living in dorm                    | add a profile picture for each contact                  | I can recognise and identify my dorm mates                                                 |
-| `* *`    | student living in dorm                    | add a telegram handle for each contact                  | I can contact them on telegram as an alternative to their phone number                     |
-| `*`      | student living in dorm who enjoys events  | add upcoming events                                     | I can remember what events are coming up                                                   |
-| `*`      | student living in dorm who enjoys events  | view upcoming events                                    | I can plan for them accordingly                                                            |
-| `*`      | student living in dorm who enjoys events  | view upcoming birthdays                                 | I can plan a celebration and wish them happy birthday                                      |
-| `*`      | new user of this application              | enter a command to get help for using this application  | I can find the command I want to use                                                       |
-| `*`      | user exploring this application           | toggle between dark and light mode                      | I can make my view of the application more comfortable to the eye                          |
-| `*`      | user exploring this application           | apply custom background                                 | I can personalise the application to my liking                                             |
-| `*`      | expert user of this application           | export contact details                                  | I can save and share the contacts in a backup location                                     |
-| `*`      | expert user of this application           | import contact details                                  | I can duplicate contacts into another copy of the application on another device            |
+| Priority | As a …​                                   | I can …​                                                | So that …​                                                                                  |
+|----------|-------------------------------------------|---------------------------------------------------------|---------------------------------------------------------------------------------------------|
+| `* * *`  | student who just started living in dorm   | create a new contact                                    | I can remember the particulars of a new dorm mate.                                          |
+| `* * *`  | student living in dorm                    | choose to specify the room number upon contact creation | I do not need to update my dorm mate’s room number separately.                              |
+| `* * *`  | student living in dorm                    | choose to specify the birthday upon contact creation    | I do not need to update my dorm mate’s birthday separately.                                 |
+| `* * *`  | student living in dorm                    | delete a contact                                        | I can stay updated on who no longer resides in the dorm.                                    |
+| `* * *`  | student living in dorm                    | edit a contact’s name                                   | I can change the name if it was initially created incorrectly or the name has been changed. |
+| `* * *`  | student living in dorm                    | edit a contact’s phone number                           | I can stay updated if my dorm mate changes phone numbers.                                   |
+| `* * *`  | student living in dorm                    | view all contacts                                       | I can have an overview of all my dorm mates easily.                                         |
+| `* *`    | student living in dorm                    | add when my contacts are free                           | I can remember when my dorm mates are available.                                            |
+| `* *`    | student living in dorm                    | view which of my friends are free at a certain time     | I know who I can ask to meet for leisure or work.                                           |
+| `* *`    | student living in dorm                    | update when my friends are free                         | I ensure that the free times stored are accurate.                                           |
+| `* *`    | new user of this application              | view allowed commands when the application launches     | I am aware of what functions I can use in the application.                                  |
+| `* *`    | user exploring this application           | get autocomplete when typing commands                   | I can quickly give my commands.                                                             |
+| `* *`    | student living in dorm with many contacts | search a contact by name                                | I can quickly find details of my dorm mates.                                                |
+| `* *`    | student living in dorm with many contacts | filter contacts by dorm room number                     | I can find where are my dorm mates.                                                         |
+| `* *`    | student living in dorm with many contacts | search a contact by birthday                            | I know whose birthday is in which month.                                                    |
+| `* *`    | student living in dorm                    | add a profile picture for each contact                  | I can recognise and identify my dorm mates.                                                 |
+| `* *`    | student living in dorm                    | add a telegram handle for each contact                  | I can contact them on telegram as an alternative to their phone number.                     |
+| `*`      | student living in dorm who enjoys events  | add upcoming events                                     | I can remember what events are coming up.                                                   |
+| `*`      | student living in dorm who enjoys events  | view upcoming events                                    | I can plan for them accordingly.                                                            |
+| `*`      | student living in dorm who enjoys events  | view upcoming birthdays                                 | I can plan a celebration and wish them happy birthday.                                      |
+| `*`      | new user of this application              | enter a command to get help for using this application  | I can find the command I want to use.                                                       |
+| `*`      | user exploring this application           | toggle between dark and light mode                      | I can make my view of the application more comfortable to the eye.                          |
+| `*`      | user exploring this application           | apply custom background                                 | I can personalise the application to my liking.                                             |
+| `*`      | expert user of this application           | export contact details                                  | I can save and share the contacts in a backup location.                                     |
+| `*`      | expert user of this application           | import contact details                                  | I can duplicate contacts into another copy of the application on another device.            |
 
 ### Use cases
 
-(For all use cases below, the **System** is the `Dormie` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `Dormie` and the **Actor** is the `user`, unless specified otherwise.)
 
 **Use case: Add a contact**
 
 **MSS**
 
 1.  User launches Dormie.
-2.  User enters details to add a contact
+2.  User enters details to add a contact.
 3.  Dormie adds the contact
 
     Use case ends.
@@ -337,10 +337,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to list contacts
-2.  Dormie shows a list of contacts
-3.  User requests to delete a specific contact in the list
-4.  Dormie deletes the contact
+1.  User requests to list contacts.
+2.  Dormie shows a list of contacts.
+3.  User requests to delete a specific contact in the list.
+4.  Dormie deletes the contact.
 
     Use case ends.
 
@@ -366,10 +366,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to list contacts
-2.  Dormie shows a list of contacts
-3.  User requests to edit a specific contact's name in the list
-4.  Dormie updates the contact with new edited name
+1.  User requests to list contacts.
+2.  Dormie shows a list of contacts.
+3.  User requests to edit a specific contact's name in the list.
+4.  Dormie updates the contact with new edited name.
 
     Use case ends.
 
@@ -401,10 +401,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to list contacts
-2.  Dormie shows a list of contacts
-3.  User requests to add a free time tag for a specific contact's name in the list
-4.  Dormie updates the contact with a new free time tag
+1.  User requests to list contacts.
+2.  Dormie shows a list of contacts.
+3.  User requests to add a free time tag for a specific contact's name in the list.
+4.  Dormie updates the contact with a new free time tag.
 
     Use case ends.
 
@@ -448,8 +448,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, MacOS
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Mainstream OS**: Windows, Linux, Unix, MacOS.
+* **Private contact detail**: A contact detail that is not meant to be shared with others.
 * **GUI**: Graphical User Interface, the visual interface through which users interact with the application.
 * **Performance**: The speed at which the application responds to user input.
 * **Command**: A text-based instruction given to the application to perform a specific task.
@@ -493,7 +493,7 @@ When `Default Person List` is mentioned, it refers the the default persons which
 
 1. Initial launch
 
-    1. Download the jar file and copy into an empty folder
+    1. Download the jar file and copy into an empty folder.
 
     1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
