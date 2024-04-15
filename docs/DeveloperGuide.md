@@ -188,7 +188,9 @@ The add free time mechanism is a version of the `EditCommand`. Instead of replac
 
 Given below is an example usage scenario and how the add free time mechanism behaves at each step.
 
-Step 1. The user launches the application and executes `add n/Jane …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+
+Step 2. The user executes `add n/Jane …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
 
 <box type="info" seamless>
 
@@ -196,7 +198,7 @@ Step 1. The user launches the application and executes `add n/Jane …​` to ad
 
 </box>
 
-Step 2. The user now wants to add another free time for a friend, and does so by executing the `addTime [index] ft/Wed:1000-1100` command. The `addTime` command, after successfully passing the parser, will retrieve the current FreeTimeTags HashSet. It will then append, in order of day, the new free time to the HashSet. That is, the new free time 1000-1100 on Wednesday will be appended just after timings that fall before Wednesday 1000.
+Step 3. The user now wants to add another free time for a friend, and does so by executing the `addTime [index] ft/Wed:1000-1100` command. The `addTime` command, after successfully passing the parser, will retrieve the current FreeTimeTags HashSet. It will then append, in order of day, the new free time to the HashSet. That is, the new free time 1000-1100 on Wednesday will be appended just after timings that fall before Wednesday 1000.
 
 Note: The user can add multiple free times at the same time by using multiple `ft/` flags in the command. An example is `addTime [index] ft/Wed:1000-1100 ft/Thu:1200-1400...`. The current code implementation will loop through the freeTime HashSet n times, with n being the number of free time tags to be added.
 </box>
