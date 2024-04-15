@@ -602,6 +602,10 @@ When `Default Person List` is mentioned, it refers the the default persons which
     Expected: The shown contacts do not change. Error is shown in the status message.<br>
     Status Message:<br>`Invalid command format! whoisfree: Finds all persons who are free given by the specified timestamp (case-insensitive) and displays them as a list with index numbers.Parameters: TIME STAMP`
 
+    1. Test case: `whoisfree Tue:0700`<br>
+    Expected: All contacts in the `Default Person List` are shown. Number of contacts are shown in the status message.<br>
+    Status Message:<br>`6 persons listed!`
+
 ### Saving and Loading data with JSON
 
 1. Dealing with missing/corrupted data files
