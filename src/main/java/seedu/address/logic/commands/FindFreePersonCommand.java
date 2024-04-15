@@ -12,7 +12,7 @@ public class FindFreePersonCommand extends FindCommand {
     public static final String COMMAND_WORD = "whoisfree";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons who are free given by "
-            + "the specified timestamp (case-insensitive) and displays them as a list with index numbers.\n"
+            + "the specified timestamp (case-sensitive) and displays them as a list with index numbers.\n"
             + "Parameters: TIME STAMP\n"
             + "Example: " + COMMAND_WORD + " Mon:1000";
 
