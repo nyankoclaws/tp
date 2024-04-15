@@ -81,6 +81,20 @@ It can also help regular users refresh their memory if they forget any of the co
 
 ---
 
+## Navigating the User Interface
+
+![UiLabeled](images/UiLabeled.jpeg)
+
+1. **Taskbar:** Where the `File` and `Help` buttons reside.
+
+1. **Status Message Box:** Where Status Messages from executing commands are shown.
+
+1. **Person Card:** Where details of a person are displayed.
+
+1. **Person List:** Where a collection person cards are displayed.s
+
+---
+
 ## Command summary
 
 | Action                | Format, Examples                                                                                                                                                        |
