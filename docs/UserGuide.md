@@ -197,7 +197,7 @@ Edits the specified fields of an existing person in Dormie.
 - Existing values will be updated to the input values.
 - Minimum 1 field must be specified. e.g. `n/NAME` is a field.
 
-Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [r/ROOM_NUMBER] [t/TELEGRAM_HANDLE] [d/DORM_TAG] [ft/FREE_TIME_TAG]...`
+Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [r/ROOM_NUMBER] [t/TELEGRAM_HANDLE] [b/BIRTHDAY] [d/DORM_TAG] [ft/FREE_TIME_TAG]...`
 
 Examples:
 - `edit 1 n/Alex r/01-05-11` Edits the name and room number of the first person to be Alex and 05-11 respectively.
