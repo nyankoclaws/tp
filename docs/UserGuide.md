@@ -25,6 +25,8 @@ If you don't understand why your command went wrong, this guide will be your bes
 This user guide is created to mainly serve users who are new to using Dormie and may not be well-versed in using Command-Line Interface (CLI) Desktop applications.
 It can also help regular users refresh their memory if they forget any of the commands.
 
+---
+
 <!-- * Table of Contents -->
 <page-nav-print />
 
@@ -81,19 +83,19 @@ It can also help regular users refresh their memory if they forget any of the co
 
 ## Command summary
 
-| Action                | Format, Examples                                                                                                                                                 |
-|-----------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**               | `add n/NAME p/PHONE_NUMBER [e/EMAIL] [r/ROOM_NUMBER] [t/TELEGRAM_HANDLE] [b/BIRTHDAY] [d/DORM_TAG] [ft/FREE_TIME_TAG]...` <br> e.g. `add n/Alice Lim p/91234567` |
-| **Add Free Time**     | `addTime INDEX ft/FREE_TIME_TAG...`<br> e.g. `addTime 1 ft/Mon:0800-1200`                                                                                        |
-| **Clear**             | `clear`                                                                                                                                                          |
-| **Delete**            | `delete INDEX`<br> e.g. `delete 3`                                                                                                                               |
-| **Delete Free Time**  | `deleteTime INDEX ft/FREE_TIME_TAG...`<br> e.g. `deleteTime 1 ft/Mon:0800-1200`                                                                                  |
-| **Edit**              | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [r/ROOM_NUMBER] [t/TELEGRAM_HANDLE] [d/DORM_TAG] [ft/FREE_TIME_TAG]...`<br> e.g.`edit 1 n/Alex p/98765432`       |
-| **Exit**              | `exit`                                                                                                                                                           |
-| **Find**              | `find KEYWORD`<br> e.g. `find Alice` <br> *only searches the name                                                                                                |
-| **Help**              | `help`                                                                                                                                                           |
-| **List**              | `list`                                                                                                                                                           |
-| **Who Is Free**       | `whoisfree DAY:TIME`<br> e.g. `whoisfree Mon:0800`                                                                                                               |
+| Action                | Format, Examples                                                                                                                                                        |
+|-----------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**               | `add n/NAME p/PHONE_NUMBER [e/EMAIL] [r/ROOM_NUMBER] [t/TELEGRAM_HANDLE] [b/BIRTHDAY] [d/DORM_TAG] [ft/FREE_TIME_TAG]...` <br> e.g. `add n/Alice Lim p/91234567`        |
+| **Add Free Time**     | `addTime INDEX ft/FREE_TIME_TAG...`<br> e.g. `addTime 1 ft/Mon:0800-1200`                                                                                               |
+| **Clear**             | `clear`                                                                                                                                                                 |
+| **Delete**            | `delete INDEX`<br> e.g. `delete 3`                                                                                                                                      |
+| **Delete Free Time**  | `deleteTime INDEX ft/FREE_TIME_TAG...`<br> e.g. `deleteTime 1 ft/Mon:0800-1200`                                                                                         |
+| **Edit**              | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [r/ROOM_NUMBER] [t/TELEGRAM_HANDLE] [b/BIRTHDAY] [d/DORM_TAG] [ft/FREE_TIME_TAG]...`<br> e.g.`edit 1 n/Alex p/98765432` |
+| **Exit**              | `exit`                                                                                                                                                                  |
+| **Find**              | `find KEYWORD [MORE_KEYWORDS]...`<br> e.g. `find Alice` <br> *only searches the name                                                                                    |
+| **Help**              | `help`                                                                                                                                                                  |
+| **List**              | `list`                                                                                                                                                                  |
+| **Who Is Free**       | `whoisfree DAY:TIME`<br> e.g. `whoisfree Mon:0800`                                                                                                                      |
 
 ---
 
@@ -199,10 +201,11 @@ Edits the specified fields of an existing person in Dormie.
 Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [r/ROOM_NUMBER] [t/TELEGRAM_HANDLE] [d/DORM_TAG] [ft/FREE_TIME_TAG]...`
 
 Examples:
-- `edit 1 n/Alex r/01-05-11` Edits the name and room number of the 1st person to be Alex and 05-11 respectively.
+- `edit 1 n/Alex r/01-05-11` Edits the name and room number of the first person to be Alex and 05-11 respectively.
 
 Note:
 - Edit command can be executed on multiple specified `INDEX` when editing `DORM_TAG` or `FREE_TIME_TAG`.
+- Edit command can clear all free time tags of the specified contact(s) by leaving it blank after the `ft/` prefix. E.g. `edit 1 ft/` clears all free time tags of the first person.
 
 Examples:
 - `edit 1 2 3 d/PGPR` edits the Dorm tags of the first, second and third person to be PGPR.
@@ -216,7 +219,7 @@ Closes the Dormie application.
 
 View all contacts whose names contain the user input keyword/s.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format: `find KEYWORD [MORE_KEYWORDS]...`
 - Command is case-insensitive. e.g.`alex` will match `Alex`.
 - Order of keywords does not matter. e.g.`Yeoh Alex` will match `Alex Yeoh`.
 - Only the names are searched.
@@ -270,7 +273,7 @@ Dormie data are saved automatically as a JSON file [JAR file location]/data/dorm
 <box type="warning" seamless>
 
 Caution:
-If your changes to the data file makes its format invalid, Dormie will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.<br>
+If your changes to the data file makes its format invalid, Dormie may discard all data during the next run. Hence, it is recommended to take a backup of the file before editing it.<br>
 Furthermore, certain edits can cause the Dormie to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </box>
 
@@ -303,8 +306,6 @@ Shows up next to a contact when the contact's birthday is today. If the birthday
 | **Command Line Interface (CLI)**    | Text-based interface used to interact with the application by typing commands into a command box.                                                                                                                                                                                               |
 | **Graphical User Interface (GUI)**  | User interface that allows users to interact with graphical icons and visual indicators, use graphical elements such as windows, buttons, menus, and dialog boxes to facilitate user interaction with the application.                                                                          |
 | **JavaScript Object Notation (JSON)** | Lightweight data interchange format that is easy for humans to read and write and easy for machines to parse and generate. JSON is based on key-value pairs and data structures, making it a popular format for representing structured data in web development and other programming contexts. |
-| **Web Browser**                     | Software application used to access information on the World Wide Web. Examples include Google Chrome, Mozilla Firefox, and Microsoft Edge.                                                                                                                                                     |
-| **Document Viewer** | Software application used to view, read, and interact with documents in various formats, such as PDF, Word, Excel, and PowerPoint files. Examples include Adobe Acrobat Reader, Microsoft Word, and Google Docs.                                                                                |
 | **Java** | General-purpose, class-based, object-oriented programming language designed to have as few implementation dependencies as possible. Java is widely used for developing applications, including desktop, web, and mobile applications.                                                           |
 | **MacOS** | Operating system developed by Apple Inc. for its Macintosh line of computers. MacOS is known for its user-friendly interface, stability, and security features.                                                                                                                                 |
 | **Windows** | Operating system developed by Microsoft Corporation for personal computers. Windows is known for its graphical user interface, multitasking capabilities, and compatibility with a wide range of software applications.                                                                         |
