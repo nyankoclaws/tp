@@ -299,8 +299,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | student living in dorm                    | delete a contact                                        | I can stay updated on who no longer resides in the dorm                                    |
 | `* * *`  | student living in dorm                    | edit a contact’s name                                   | I can change the name if it was initially created incorrectly or the name has been changed |
 | `* * *`  | student living in dorm                    | edit a contact’s phone number                           | I can stay updated if my dorm mate changes phone numbers                                   |
-| `* * *`  | student living in dorm                    | view all contacts                                       | I can have an overview of all my contacts easily                                           |
-| `* *`    | student living in dorm                    | add when my friends are free                            | I can remember when my friends are available                                               |
+| `* * *`  | student living in dorm                    | view all contacts                                       | I can have an overview of all my dorm mates easily                                         |
+| `* *`    | student living in dorm                    | add when my contacts are free                           | I can remember when my dorm mates are available                                            |
 | `* *`    | student living in dorm                    | view which of my friends are free at a certain time     | I know who I can ask to meet for leisure or work                                           |
 | `* *`    | student living in dorm                    | update when my friends are free                         | I ensure that the free times stored are accurate                                           |
 | `* *`    | new user of this application              | view allowed commands when the application launches     | I am aware of what functions I can use in the application                                  |
@@ -308,7 +308,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | student living in dorm with many contacts | search a contact by name                                | I can quickly find details of my dorm mates                                                |
 | `* *`    | student living in dorm with many contacts | filter contacts by dorm room number                     | I can find where are my dorm mates                                                         |
 | `* *`    | student living in dorm with many contacts | search a contact by birthday                            | I know whose birthday is in which month                                                    |
-| `* *`    | student living in dorm                    | add a profile picture for each contact                  | I can recognise and identify the contact person                                            |
+| `* *`    | student living in dorm                    | add a profile picture for each contact                  | I can recognise and identify my dorm mates                                                 |
 | `* *`    | student living in dorm                    | add a telegram handle for each contact                  | I can contact them on telegram as an alternative to their phone number                     |
 | `*`      | student living in dorm who enjoys events  | add upcoming events                                     | I can remember what events are coming up                                                   |
 | `*`      | student living in dorm who enjoys events  | view upcoming events                                    | I can plan for them accordingly                                                            |
