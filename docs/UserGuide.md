@@ -31,7 +31,7 @@ It can also help regular users refresh their memory if they forget any of the co
 ## Using This User Guide
 
 ### Searching for Keywords (Ctrl-F)
-1. Press the Ctrl + F keys on your keyboard.
+1. Press the Ctrl + F keys on your keyboard. For MacOS users, it will be Command + F.
 2. A search bar or dialog box should appear on your screen. A screenshot is shown below.
    ![Screenshot of search bar](images/ctrl-F.png)
 3. Type the keyword or phrase you want to search for in the search bar and press enter.
