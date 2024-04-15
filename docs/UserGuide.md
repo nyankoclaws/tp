@@ -155,7 +155,6 @@ Examples:
 - Multiple input: `addTime 1 ft/Mon:1300-1400 ft/Tue:1300-1400`
 
 Note:
-- As this is the first version, there is no functionality to merge overlapping free time tags yet.
 - The command will only add the user input free time tags that the specified contact does not have.
 
 ### Clearing all persons: `clear`
@@ -187,7 +186,6 @@ Examples:
 - Multiple input: `deleteTime 1 ft/Mon:1300-1400 ft/Tue:1300-1400`
 
 Note:
-- As this is the first version, only free time tags that **exactly** match the interval(s) specified will be deleted.
 - The command will only delete the user input free time tags that the specified person has.
 
 ### Editing a person : `edit`
@@ -242,8 +240,7 @@ List all contacts and their details.
 ### Checking who is free : `whoisfree`
 View all persons that are available on the specified day and time.
 
-Format: `whoisfree TIMESTAMP`
-- `TIMESTAMP` comprises of `DAY` and `TIME`:
+Format: `whoisfree DAY:TIME`
    - `DAY` is from Mon-Sun which is case-sensitive.
    - `TIME` is 24-hour time format.
 
@@ -251,6 +248,7 @@ Example:
 - `whoisfree Mon:1300` lists all contacts that are free at the specified day and time
 
 Note:
+- `TIMESTAMP` in the error message refers to `DAY:TIME`.
 - `freeTimeTag` that is on the specified day and ends at the specified time will not be considered as free.
 - Example:
    - John is free on `Mon:1200-1300`
