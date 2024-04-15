@@ -671,9 +671,11 @@ Team size: 5
    * Currently, the room number format is {block}-{floor}-{room number}, where block and room number are at least 2 alphanumeric characters and floor is strictly 2 alphanumeric characters. e.g. `nw-12-12`.
    * To accommodate more room number formats, it will be good to change the minimum length of block and room number as 1.
 
-7. **Make day format in free time tag case-insensitive:**
-   * Currently, free time tag only accept forms of `DDD:HHmm-HHmm`, e.g. `Mon:1200-1300`.
-   * It may provide more convenience to user by disabling case sensitivity on the day part, e.g. allowing `mon:1000-1200`, `Mon:1000-1200`, `MON:1000-1200`.
+7. **Make day formats case-insensitive:**
+   * Currently, day formats in free time tag and the timestamp for the `whoisfree` command only accepts days from Mon-Sun.
+     * For example, Timestamp: `Mon:1300`, Free time tag: `Mon:1300-1400`.
+   * It may provide more convenience to user by making day formats case-insensitive
+     * For example, Timestamp: `mon:1300`, `MON:1300`, Free time tag: `mon:1000-1200`, `MON:1000-1200`.
 
 8. **Support more accurate free time:**
    * A person may not always be free for the same time interval every week. 
@@ -689,7 +691,7 @@ Team size: 5
 
 10. **Make the `whoisfree` command to search for a range of time:**
     * When user perform a `whoisfree` command, it might be useful to ascertain that a person would be free for the whole duration.
-    * For example, `whoisfree Mon:1200-1400` will display all person that are free for the time interval.
+    * For example, `whoisfree Mon:1200-1400` will display all persons that are free for the time interval.
 
 
 
