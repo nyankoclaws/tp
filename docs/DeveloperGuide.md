@@ -188,7 +188,7 @@ The add free time mechanism is a version of the `EditCommand`. Instead of replac
 
 Given below is an example usage scenario and how the add free time mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+Step 1. The user launches the application for the first time. The person list of Dormie will be loaded with the `Default Person List`.
 
 Step 2. The user executes `add n/Jane …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
 
@@ -227,7 +227,7 @@ The delete free time mechanism is a version of the `addFreeTimeCommand`. Instead
 
 Given below is an example usage scenario and how the delete free time mechanism behaves at each step.
 
-Step 1. The user has launched the application and added a new person called Jane using the add command `add n/Jane …​`.
+Step 1. The user launches the application for the first time. The person list of Dormie will be loaded with the `Default Person List`.
 
 Step 2. Then, the user adds free time to Jane's freeTimeTags HashSet using the command `addTime [index of Jane] ft/Wed:1000-1100`.
 
@@ -260,7 +260,7 @@ The "find free person" mechanism is a version of the `FindCommand`. Apart from f
 
 Given below is an example usage scenario and how the "find free person" mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+Step 1. The user launches the application for the first time. The person list of Dormie will be loaded with the `Default Person List`.
 
 Step 2. The user now wants to find a person who is free at a given time of a given day, and does so by executing the `whoisfree Tue:0700` command. The `whoisfree` command, after successfully passing the parser, will generate a `PersonIsFreePredicate` and return a `FindCommand` object with the given `Predicate`.
 
