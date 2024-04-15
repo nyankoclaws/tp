@@ -58,7 +58,7 @@ public class Telegram {
         }
 
         Telegram otherTelegram = (Telegram) other;
-        return value.equals(otherTelegram.value);
+        return value.toLowerCase().equals(otherTelegram.value.toLowerCase());
     }
 
     @Override
