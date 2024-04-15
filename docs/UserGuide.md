@@ -25,13 +25,15 @@ If you don't understand why your command went wrong, this guide will be your bes
 This user guide is created to mainly serve users who are new to using Dormie and may not be well-versed in using Command-Line Interface (CLI) Desktop applications.
 It can also help regular users refresh their memory if they forget any of the commands.
 
+---
+
 <!-- * Table of Contents -->
 <page-nav-print />
 
 ## Using This User Guide
 
-### Searching for Keywords (Ctrl-F)
-1. Press the Ctrl + F keys on your keyboard.
+### Searching for Keywords
+1. Press the Ctrl + F keys on your keyboard. For MacOS users, it will be Command + F.
 2. A search bar or dialog box should appear on your screen. A screenshot is shown below.
    ![Screenshot of search bar](images/ctrl-F.png)
 3. Type the keyword or phrase you want to search for in the search bar and press enter.
@@ -43,25 +45,25 @@ It can also help regular users refresh their memory if they forget any of the co
 
 ## Quick start
 
-1. Ensure you have Java `11` or above installed in your Computer.
+1. Ensure you have Java `11` installed in your Computer.
     - MacOS: [Java 11](https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html)
     - Windows: [Java 11](https://www.azul.com/downloads/?version=java-11-lts&os=macos&architecture=arm-64-bit&package=jdk-fx#zulu)
 
 1. Download the latest `dormie.jar` from [here](https://github.com/AY2324S2-CS2103T-F11-4/tp/releases).
 
 1. Create a new _Home Folder_ you want Dormie to permanently reside in.
-    - Move Dormie into the _Home Folder_
-    - This is where Dormie and all it's supporting data will be stored
+    - Move Dormie into the _Home Folder_.
+    - This is where Dormie and all it's supporting data will be stored.
 
-1. Open a command terminal (`Terminal` for MacOS, or `Windows Terminal` for Windows)
+1. Open a command terminal (`Terminal` for MacOS, or `Windows Terminal` for Windows).
     - MacOS:
-        1. Right click the _Home Folder_
-        2. Left click `Services`
-        3. Then, click `New Terminal at Folder`
+        1. Right click the _Home Folder_.
+        2. Left click `Services`.
+        3. Then, click `New Terminal at Folder`.
     - Windows:
-        1. Navigate into the _Home Folder_
-        2. Right click anywhere inside the _Home Folder_
-        3. Left click `Open in Windows Terminal`
+        1. Navigate into the _Home Folder_.
+        2. Right click anywhere inside the _Home Folder_.
+        3. Left click `Open in Windows Terminal`.
 
 1. Paste this Command into the new terminal window `java -jar dormie.jar` and press enter.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
@@ -69,7 +71,7 @@ It can also help regular users refresh their memory if they forget any of the co
 
 1. Type the command in the command box and press Enter to execute it.<br>
    Quick Tutorial:
-    - `add n/John Doe p/98765432 ` : Adds a contact named `John Doe` to Dormie with the specified phone number
+    - `add n/John Doe p/98765432 ` : Adds a contact named `John Doe` to Dormie with the specified phone number.
     - `find John` : Finds a contact with `John` in his name.
     - `delete 1` : Deletes the 1st contact shown in the current list.
     - `list` : Lists all contacts again.
@@ -81,19 +83,19 @@ It can also help regular users refresh their memory if they forget any of the co
 
 ## Command summary
 
-| Action                | Format, Examples                                                                                                                                                 |
-|-----------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**               | `add n/NAME p/PHONE_NUMBER [e/EMAIL] [r/ROOM_NUMBER] [t/TELEGRAM_HANDLE] [b/BIRTHDAY] [d/DORM_TAG] [ft/FREE_TIME_TAG]...` <br> e.g. `add n/Alice Lim p/91234567` |
-| **Add Free Time**     | `addTime INDEX ft/FREE_TIME_TAG...`<br> e.g. `addTime 1 ft/Mon:0800-1200`                                                                                        |
-| **Clear**             | `clear`                                                                                                                                                          |
-| **Delete**            | `delete INDEX`<br> e.g. `delete 3`                                                                                                                               |
-| **Delete Free Time**  | `deleteTime INDEX ft/FREE_TIME_TAG...`<br> e.g. `deleteTime 1 ft/Mon:0800-1200`                                                                                  |
-| **Edit**              | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [r/ROOM_NUMBER] [t/TELEGRAM_HANDLE] [d/DORM_TAG] [ft/FREE_TIME_TAG]...`<br> e.g.`edit 1 n/Alex p/98765432`       |
-| **Exit**              | `exit`                                                                                                                                                           |
-| **Find**              | `find KEYWORD`<br> e.g. `find Alice` <br> *only searches the name                                                                                                |
-| **Help**              | `help`                                                                                                                                                           |
-| **List**              | `list`                                                                                                                                                           |
-| **Who Is Free**       | `whoisfree DAY:TIME`<br> e.g. `whoisfree Mon:0800`                                                                                                               |
+| Action                | Format, Examples                                                                                                                                                        |
+|-----------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**               | `add n/NAME p/PHONE_NUMBER [e/EMAIL] [r/ROOM_NUMBER] [t/TELEGRAM_HANDLE] [b/BIRTHDAY] [d/DORM_TAG] [ft/FREE_TIME_TAG]...` <br> e.g. `add n/Alice Lim p/91234567`        |
+| **Add Free Time**     | `addTime INDEX ft/FREE_TIME_TAG...`<br> e.g. `addTime 1 ft/Mon:0800-1200`                                                                                               |
+| **Clear**             | `clear`                                                                                                                                                                 |
+| **Delete**            | `delete INDEX`<br> e.g. `delete 3`                                                                                                                                      |
+| **Delete Free Time**  | `deleteTime INDEX ft/FREE_TIME_TAG...`<br> e.g. `deleteTime 1 ft/Mon:0800-1200`                                                                                         |
+| **Edit**              | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [r/ROOM_NUMBER] [t/TELEGRAM_HANDLE] [b/BIRTHDAY] [d/DORM_TAG] [ft/FREE_TIME_TAG]...`<br> e.g.`edit 1 n/Alex p/98765432` |
+| **Exit**              | `exit`                                                                                                                                                                  |
+| **Find**              | `find KEYWORD [MORE_KEYWORDS]...`<br> e.g. `find Alice` <br> *only searches the name                                                                                    |
+| **Help**              | `help`                                                                                                                                                                  |
+| **List**              | `list`                                                                                                                                                                  |
+| **Who Is Free**       | `whoisfree DAY:TIME`<br> e.g. `whoisfree Mon:0800`                                                                                                                      |
 
 ---
 
@@ -102,7 +104,7 @@ It can also help regular users refresh their memory if they forget any of the co
 |------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Name             | Can only contain alphanumeric characters and spaces in between. <br> e.g. `Dormie Tan`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
 | Phone Number     | Must contain only numbers, be 8 digits long, and must start with an 8 or 9.<br> All mobile numbers are assumed to be Singapore numbers, with an area code of (+65). <br> e.g. `91234567`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
-| Email            | Must be of the format local-part@domain and adhere to the following constraints:<br> 1. The local-part should only contain alphanumeric characters and the following special character (fullstop): `.`. The local-part may not start or end with any special characters.<br> 2. This is followed by a '@' and then a domain name. The domain name is made up of domain labels separated by periods.<br> The domain name must:<br>     - end with a domain label at least 2 characters long<br>     - have each domain label start and end with alphanumeric characters<br>     - have each domain label consist of alphanumeric characters, separated only by periods, if any. <br> e.g.`dormie@example.com`. |
+| Email            | Must be of the format local-part@domain and adhere to the following constraints:<br> 1. The local-part should only contain alphanumeric characters and the following special character (fullstop): `.`. The local-part may not start or end with any special characters.<br> 2. This is followed by a `@` and then a domain name. The domain name is made up of domain labels separated by periods.<br> The domain name must:<br>     - end with a domain label at least 2 characters long<br>     - have each domain label start and end with alphanumeric characters<br>     - have each domain label consist of alphanumeric characters, separated only by periods, if any. <br> e.g.`dormie@example.com`. |
 | Room Number      | {block}-{floor}-{room number}, where block and room number are at least 2 alphanumeric characters and floor is strictly 2 alphanumeric characters. <br> e.g.`nw-12-12`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
 | Telegram Handle  | Can only contain case-insensitive letters A-Z, digits 0-9, and underscores, with a length between 5 and 32 characters. <br> Note: Do not include the `@` symbol in the input. <br> e.g `dormie_123`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
 | Birthday         | `dd/MM/yyyy`, `dd-MM-yyyy`, `yyyy-MM-dd`, `yyyy/MM/dd`. <br> `dd` is the date of the month, `MM` is the month, `YYYY` is the year. <br> e.g. `30/01/2024, 30-01-2024, 2024-01-30, 2024/01/30` all represent 30 January 2024.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
@@ -199,10 +201,11 @@ Edits the specified fields of an existing person in Dormie.
 Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [r/ROOM_NUMBER] [t/TELEGRAM_HANDLE] [d/DORM_TAG] [ft/FREE_TIME_TAG]...`
 
 Examples:
-- `edit 1 n/Alex r/01-05-11` Edits the name and room number of the 1st person to be Alex and 05-11 respectively.
+- `edit 1 n/Alex r/01-05-11` Edits the name and room number of the first person to be Alex and 05-11 respectively.
 
 Note:
 - Edit command can be executed on multiple specified `INDEX` when editing `DORM_TAG` or `FREE_TIME_TAG`.
+- Edit command can clear all free time tags of the specified contact(s) by leaving it blank after the `ft/` prefix. E.g. `edit 1 ft/` clears all free time tags of the first person.
 
 Examples:
 - `edit 1 2 3 d/PGPR` edits the Dorm tags of the first, second and third person to be PGPR.
@@ -216,7 +219,7 @@ Closes the Dormie application.
 
 View all contacts whose names contain the user input keyword/s.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format: `find KEYWORD [MORE_KEYWORDS]...`
 - Command is case-insensitive. e.g.`alex` will match `Alex`.
 - Order of keywords does not matter. e.g.`Yeoh Alex` will match `Alex Yeoh`.
 - Only the names are searched.
@@ -270,7 +273,7 @@ Dormie data are saved automatically as a JSON file [JAR file location]/data/dorm
 <box type="warning" seamless>
 
 Caution:
-If your changes to the data file makes its format invalid, Dormie will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.<br>
+If your changes to the data file makes its format invalid, Dormie may discard all data during the next run. Hence, it is recommended to take a backup of the file before editing it.<br>
 Furthermore, certain edits can cause the Dormie to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </box>
 
@@ -295,12 +298,6 @@ Shows up next to a contact when the contact's birthday is today. If the birthday
 
 ---
 
-## Known issues
-
-1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
-
---------------------------------------------------------------------------------------------------------------------
-
 ## Glossary
 
 | Term                                | Definition, Examples                                                                                                                                                                                                                                                                            |
@@ -309,8 +306,6 @@ Shows up next to a contact when the contact's birthday is today. If the birthday
 | **Command Line Interface (CLI)**    | Text-based interface used to interact with the application by typing commands into a command box.                                                                                                                                                                                               |
 | **Graphical User Interface (GUI)**  | User interface that allows users to interact with graphical icons and visual indicators, use graphical elements such as windows, buttons, menus, and dialog boxes to facilitate user interaction with the application.                                                                          |
 | **JavaScript Object Notation (JSON)** | Lightweight data interchange format that is easy for humans to read and write and easy for machines to parse and generate. JSON is based on key-value pairs and data structures, making it a popular format for representing structured data in web development and other programming contexts. |
-| **Web Browser**                     | Software application used to access information on the World Wide Web. Examples include Google Chrome, Mozilla Firefox, and Microsoft Edge.                                                                                                                                                     |
-| **Document Viewer** | Software application used to view, read, and interact with documents in various formats, such as PDF, Word, Excel, and PowerPoint files. Examples include Adobe Acrobat Reader, Microsoft Word, and Google Docs.                                                                                |
 | **Java** | General-purpose, class-based, object-oriented programming language designed to have as few implementation dependencies as possible. Java is widely used for developing applications, including desktop, web, and mobile applications.                                                           |
 | **MacOS** | Operating system developed by Apple Inc. for its Macintosh line of computers. MacOS is known for its user-friendly interface, stability, and security features.                                                                                                                                 |
 | **Windows** | Operating system developed by Microsoft Corporation for personal computers. Windows is known for its graphical user interface, multitasking capabilities, and compatibility with a wide range of software applications.                                                                         |
