@@ -252,6 +252,38 @@ The following sequence diagram shows how an addFreeTime operation goes through t
 
 <puml src="diagrams/DeleteFreeTimeSequenceDiagram-Logic.puml" alt="DeleteFreeTimeSequenceDiagram-Logic" />
 
+### Find Free Person Command
+
+#### Implementation
+
+The "find free person" mechanism is a version of the `FindCommand`. Apart from finding person by name as given by the original `FindCommand`, the `FindFreePersonCommand` filter the person list by the `FreeTimeTag`.
+
+Given below is an example usage scenario and how the "find free person" mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+
+Step 2. The user now wants to find a person who is free at a given time of a given day, and does so by executing the `whoisfree Tue:0700` command. The `whoisfree` command, after successfully passing the parser, will generate a `PersonIsFreePredicate` and return a `FindCommand` object with the given `Predicate`.
+
+Step 3. The further behavior of the code relies on the original behavior of `FindCommmand` of `AB3`.
+
+</box>
+
+The following sequence diagram shows how an `whoisfree` operation goes through the `Logic` component:
+
+<puml src="diagrams/FindFreePersonSequenceDiagram-Logic.puml" alt="FindFreePersonSequenceDiagram-Logic" />
+
+#### Design Considerations:
+
+**Aspect: How `whoisfree` is implemented:**
+
+* **Alternative 1 (current implementation):** Remain the main logic in the `FindCommand` class and create two subclasses to enable filtering by `FreeTimeTag` and remain the functionality of filtering by `Name`.
+    * Pros: Easy to implement.
+    * Cons: Rely on the original implementation of `FindCommand` heavily.
+
+* **Alternative 2:** Write the whole logic from scratch
+    * Pros: Rely on yourself.
+    * Cons: Tedious to make it correct.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
