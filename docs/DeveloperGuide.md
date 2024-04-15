@@ -283,33 +283,33 @@ He can also schedule meetups with peers with more convenience.
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                   | I can …​                                                | So that …​                                                                                      |
-|----------|-------------------------------------------|---------------------------------------------------------|-------------------------------------------------------------------------------------------------|
-| `* * *`  | student who just started living in dorm   | create a new contact                                    | I can remember the particulars of a new dorm mate                                               |
-| `* * *`  | student living in dorm                    | choose to specify the room number upon contact creation | I do not need to update my dorm mate’s room number separately                                   |
-| `* * *`  | student living in dorm                    | choose to specify the birthday upon contact creation    | I do not need to update my dorm mate’s birthday separately                                      |
-| `* * *`  | student living in dorm                    | delete a contact                                        | I can stay updated on who no longer resides in the dorm                                         |
-| `* * *`  | student living in dorm                    | edit a contact’s name                                   | I can change the name if it was initially created incorrectly or the name has been changed      |
-| `* * *`  | student living in dorm                    | edit a contact’s room number                            | I can stay updated if my dorm mate changes room                                                 |
-| `* * *`  | student living in dorm                    | view all contacts                                       | I can keep track of how to find my dorm mates if I need their help AND remember their birthdays |
-| `* *`    | student living in dorm                    | add when my friends are free                            | I can remember when my friends are available                                                    |
-| `* *`    | student living in dorm                    | view which of my friends are free at a certain time     | I know who I can ask to meet for leisure or work                                                |
-| `* *`    | student living in dorm                    | update when my friends are free                         | I ensure that the free times stored are accurate                                                |
-| `* *`    | new user of this application              | view allowed commands when the application launches     | I am aware of what functions I can use in the application                                       |
-| `* *`    | user exploring this application           | get autocomplete when typing commands                   | I can quickly give my commands                                                                  |
-| `* *`    | student living in dorm with many contacts | search a contact by name                                | I can quickly find details of my dorm mates                                                     |
-| `* *`    | student living in dorm with many contacts | filter contacts by dorm room number                     | I can find where are my dorm mates                                                              |
-| `* *`    | student living in dorm with many contacts | search a contact by birthday                            | I know whose birthday is in which month                                                         |
-| `* *`    | student living in dorm                    | add a profile picture for each contact                  | I can recognise and identify the contact person                                                 |
-| `* *`    | student living in dorm                    | add telegram handle for each contact                    | I can contact them on telegram as an alternative to their phone number                          |
-| `*`      | student living in dorm who enjoys events  | add upcoming events                                     | I can remember what events are coming up                                                        |
-| `*`      | student living in dorm who enjoys events  | view upcoming events                                    | I can plan for them accordingly                                                                 |
-| `*`      | student living in dorm who enjoys events  | view upcoming birthdays                                 | I can plan a celebration and wish them happy birthday                                           |
-| `*`      | new user of this application              | enter a command to get help for using this application  | I can find the command I want to use                                                            |
-| `*`      | user exploring this application           | toggle between dark and light mode                      | I can make my view of the application more comfortable to the eye                               |
-| `*`      | user exploring this application           | apply custom background                                 | I can personalise the application to my liking                                                  |
-| `*`      | expert user of this application           | export contact details                                  | I can save and share the contacts in a backup location                                          |
-| `*`      | expert user of this application           | import contact details                                  | I can duplicate contacts into another copy of the application on another device                 |
+| Priority | As a …​                                   | I can …​                                                | So that …​                                                                                 |
+|----------|-------------------------------------------|---------------------------------------------------------|--------------------------------------------------------------------------------------------|
+| `* * *`  | student who just started living in dorm   | create a new contact                                    | I can remember the particulars of a new dorm mate                                          |
+| `* * *`  | student living in dorm                    | choose to specify the room number upon contact creation | I do not need to update my dorm mate’s room number separately                              |
+| `* * *`  | student living in dorm                    | choose to specify the birthday upon contact creation    | I do not need to update my dorm mate’s birthday separately                                 |
+| `* * *`  | student living in dorm                    | delete a contact                                        | I can stay updated on who no longer resides in the dorm                                    |
+| `* * *`  | student living in dorm                    | edit a contact’s name                                   | I can change the name if it was initially created incorrectly or the name has been changed |
+| `* * *`  | student living in dorm                    | edit a contact’s phone number                           | I can stay updated if my dorm mate changes phone numbers                                   |
+| `* * *`  | student living in dorm                    | view all contacts                                       | I can have an overview of all my dorm mates easily                                         |
+| `* *`    | student living in dorm                    | add when my contacts are free                           | I can remember when my dorm mates are available                                            |
+| `* *`    | student living in dorm                    | view which of my friends are free at a certain time     | I know who I can ask to meet for leisure or work                                           |
+| `* *`    | student living in dorm                    | update when my friends are free                         | I ensure that the free times stored are accurate                                           |
+| `* *`    | new user of this application              | view allowed commands when the application launches     | I am aware of what functions I can use in the application                                  |
+| `* *`    | user exploring this application           | get autocomplete when typing commands                   | I can quickly give my commands                                                             |
+| `* *`    | student living in dorm with many contacts | search a contact by name                                | I can quickly find details of my dorm mates                                                |
+| `* *`    | student living in dorm with many contacts | filter contacts by dorm room number                     | I can find where are my dorm mates                                                         |
+| `* *`    | student living in dorm with many contacts | search a contact by birthday                            | I know whose birthday is in which month                                                    |
+| `* *`    | student living in dorm                    | add a profile picture for each contact                  | I can recognise and identify my dorm mates                                                 |
+| `* *`    | student living in dorm                    | add a telegram handle for each contact                  | I can contact them on telegram as an alternative to their phone number                     |
+| `*`      | student living in dorm who enjoys events  | add upcoming events                                     | I can remember what events are coming up                                                   |
+| `*`      | student living in dorm who enjoys events  | view upcoming events                                    | I can plan for them accordingly                                                            |
+| `*`      | student living in dorm who enjoys events  | view upcoming birthdays                                 | I can plan a celebration and wish them happy birthday                                      |
+| `*`      | new user of this application              | enter a command to get help for using this application  | I can find the command I want to use                                                       |
+| `*`      | user exploring this application           | toggle between dark and light mode                      | I can make my view of the application more comfortable to the eye                          |
+| `*`      | user exploring this application           | apply custom background                                 | I can personalise the application to my liking                                             |
+| `*`      | expert user of this application           | export contact details                                  | I can save and share the contacts in a backup location                                     |
+| `*`      | expert user of this application           | import contact details                                  | I can duplicate contacts into another copy of the application on another device            |
 
 ### Use cases
 
@@ -333,8 +333,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: Edit a contact's name**
-
 **Use case: Delete a contact**
 
 **MSS**
@@ -356,13 +354,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 3a1. Dormie shows an error message.
 
-      Use case resumes at step 2.
+      Use case resumes at step 3.
 
 * 3b. Dormie detects that the command format is invalid.
 
     * 3b1. Dormie shows an error message.
 
-      Use case resumes at step 2.
+      Use case resumes at step 3.
 
 **Use case: Edit a contact's name**
 
@@ -385,19 +383,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 3a1. Dormie shows an error message.
 
-      Use case resumes at step 2.
+      Use case resumes at step 3.
 
 * 3b. Dormie detects that the given name is invalid.
 
     * 3b1. Dormie shows an error message.
 
-      Use case resumes at step 2.
+      Use case resumes at step 3.
 
 * 3c. Dormie detects that the given command format is invalid.
 
     * 3c1. Dormie shows an error message.
 
-      Use case resumes at step 2.
+      Use case resumes at step 3.
 
 **Use case: Add a contact's free time**
 
@@ -420,25 +418,25 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 3a1. Dormie shows an error message.
 
-      Use case resumes at step 2.
+      Use case resumes at step 3.
 
 * 3b. Dormie detects that the specified free time tag is of an invalid format.
 
     * 3b1. Dormie shows an error message.
 
-      Use case resumes at step 2.
+      Use case resumes at step 3.
 
 * 3c. Dormie detects that the specified free time tag is already exists for the specified contact.
 
     * 3c1. Dormie shows an error message.
 
-      Use case resumes at step 2.
+      Use case ends.
 
 * 3d. Dormie detects that the given command format is invalid.
 
     * 3d1. Dormie shows an error message.
 
-      Use case resumes at step 2.
+      Use case resumes at step 3.
 
 ### Non-Functional Requirements
 
@@ -665,15 +663,15 @@ Team size: 5
 4. **Make command prefixes case-insensitive:**
    * Currently, the command prefixes are case-sensitive.
      * For example, `n/` is the prefix for "name" parameter, but `N/` is not acceptable by the command parser.
-   * It may provide more convenience to user by disabling case sensitivity for prefixes. For example, allowing `n/` and `N/` as the prefix for "name" parameter.
+   * It may provide more convenience to user by disabling case sensitivity for prefixes. For example, allowing `n/` and `N/` as the prefix for `name` parameter.
 
 5. **Supporting more forms of name:**
    * Currently, only name form that consist of alphanumeric characters and spaces in between is allowed.
    * It may improve the diversity of the application, by supporting name in different forms, including names in different languages and names that contain non-alphanumeric symbols.
 
 6. **Supporting more forms of room number:**
-   * Currently, the room number format is {block}-{floor}-{room number}, where block and room number are at least 2 alphanumeric characters and floor is strictly 2 alphanumeric characters. E.g. `nw-12-12`.
-   * To accommodate more room number format, it will be good to change the minimum length of block and room number as 1.
+   * Currently, the room number format is {block}-{floor}-{room number}, where block and room number are at least 2 alphanumeric characters and floor is strictly 2 alphanumeric characters. e.g. `nw-12-12`.
+   * To accommodate more room number formats, it will be good to change the minimum length of block and room number as 1.
 
 7. **Make day format in free time tag case-insensitive:**
    * Currently, free time tag only accept forms of `DDD:HHmm-HHmm`, e.g. `Mon:1200-1300`.
@@ -682,14 +680,14 @@ Team size: 5
 8. **Support more accurate free time:**
    * A person may not always be free for the same time interval every week. 
      * For example, a person can be free at `Mon:1000-1200` for every odd week of the semester, and busy at the time for every even week of the semester.
-   * Hence, it will be useful for user to optionally specify an actual date as part of the free time interval, e.g. `01/01:Mon:1000-1200`.
+   * Hence, it will be useful for the user to optionally specify an actual date as part of the free time interval, e.g. `01/01:Mon:1000-1200`.
      * If the date is not specified, e.g. `Mon:1000-1200`, the free time tag should be interpreted as recurring weekly.
      
-9. **Make "Invalid command format" error messages more specific:**
-   * When user provides a command with invalid format, the "Invalid command format" error messages are too general. 
-     * For example, when executing `add n/Alice d/pgpr`, the error messages will suggest that the command format is invalid, and display the correct format together with a usage example. 
+9. **Make the "Invalid command format" error message more specific:**
+   * When user provides a command with invalid format, the "Invalid command format" error message is too general. 
+     * For example, when executing `add n/Alice d/pgpr`, the error message will suggest that the command format is invalid, and display the correct format together with a usage example. 
      * In this case, the command is invalid as some mandatory parameters are omitted, but new users may not expect that some parameters are mandatory.
-   * Hence, error messages can be enhanced to be more specific, such that user can easily identify the reason of command failure.
+   * Hence, the "Invalid command format" error message can be enhanced to be more specific, such that user can easily identify the reason of command failure.
 
 10. **Make the `whoisfree` command to search for a range of time:**
     * When user perform a `whoisfree` command, it might be useful to ascertain that a person would be free for the whole duration.
